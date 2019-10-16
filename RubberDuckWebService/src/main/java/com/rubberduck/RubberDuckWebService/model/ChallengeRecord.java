@@ -17,6 +17,9 @@ public class ChallengeRecord {
     @Column(name = "CHALLENGER_ID", nullable = false)
     private Long challengerId;
 
+    @Column(name = "CHALLENGE_ID", nullable = false)
+    private Long challengeId;
+
     @Column(name = "ANSWER_TIME")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date answerTime;
@@ -27,8 +30,9 @@ public class ChallengeRecord {
     @Column(name = "IS_SUCCESS", nullable = false)
     private boolean success;
 
-    public ChallengeRecord(Long challengerId, Date answerTime, int correctAnswerCount, boolean success) {
+    public ChallengeRecord(Long challengerId, Long challengeId, Date answerTime, int correctAnswerCount, boolean success) {
         this.challengerId = challengerId;
+        this.challengeId = challengeId;
         this.answerTime = answerTime;
         this.correctAnswerCount = correctAnswerCount;
         this.success = success;
@@ -40,6 +44,10 @@ public class ChallengeRecord {
 
     public Long getChallengerId() {
         return challengerId;
+    }
+
+    public Long getChallengeId() {
+        return challengeId;
     }
 
     public Date getAnswerTime() {
