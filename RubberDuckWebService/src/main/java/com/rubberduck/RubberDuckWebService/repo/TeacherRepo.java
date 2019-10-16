@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface TeacherRepo extends JpaRepository<Teacher, Integer> {
     Teacher findById(Long id);
 
-    Teacher findByUserName(Long userName);
+    Teacher findByUserName(String userName);
 
     Teacher save(Teacher teacher);
 
