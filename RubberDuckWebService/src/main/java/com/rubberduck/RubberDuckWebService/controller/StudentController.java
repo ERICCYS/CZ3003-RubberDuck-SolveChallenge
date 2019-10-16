@@ -32,7 +32,7 @@ public class StudentController {
         return JSONConvert.JSONConverter(student);
     }
 
-    @PostMapping("/customer")
+    @PostMapping("/student")
     @ResponseStatus(HttpStatus.CREATED)
     public String createStudentAccount(
             @Valid @RequestBody Student student
@@ -42,5 +42,18 @@ public class StudentController {
         JSONConvert.JSONConverter(studentService.save(student));
 //        return ValidationController.getAccessToken(student.getId(), "CUSTOMER");
         return "OK";
+    }
+
+    @GetMapping("/student/signin")
+    public String signInStudent(
+            @RequestParam String userName,
+            @RequestParam String password
+    ) throws NoSuchAlgorithmException {
+        Student student = studentService.findByUserName(userName);
+        if (student == null) {
+            throw new IllegalArgumentException();
+        }
+//        return ValidationController.UserSignIn(student, password);
+        return "Finish";
     }
 }
