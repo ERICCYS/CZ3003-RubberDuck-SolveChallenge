@@ -3,7 +3,7 @@ package com.rubberduck.RubberDuckWebService.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "question")
+@Table(name = "Question")
 public class Question {
 
     @Id
@@ -14,7 +14,7 @@ public class Question {
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 
-    @Column(name = "CHARACTER", nullable = false)
+    @Column(name = "CHARACTER_CHOICE", nullable = false)
     private String character;
 
     @Column(name = "WORLD", nullable = false)
