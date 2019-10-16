@@ -1,11 +1,12 @@
-package com.rubberduck.RubberDuckWebService.repo;
+package com.rubberduck.RubberDuckWebService.service;
 
 import com.rubberduck.RubberDuckWebService.model.Question;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface QuestionRepo extends JpaRepository<Question, Integer> {
+public interface QuestionService {
+
+    List<Question> findAll();
 
     Question findById(Long id);
 
