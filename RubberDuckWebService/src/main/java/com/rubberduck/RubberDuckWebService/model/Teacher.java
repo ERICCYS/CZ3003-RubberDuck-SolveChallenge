@@ -4,46 +4,33 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Teacher")
-public class Teacher {
+public class Teacher extends User {
 
-    @Id
-    @Column(name = "ID", unique = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "TITLE")
+    private String title;
 
-    @Column(name = "USERNAME", nullable = false)
-    private String userName;
-
-    @Column(name = "PASSWORD", nullable = false)
-    private String password;
-
-    public Teacher(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+    public Teacher() {
     }
+
+
+    public Teacher(String firstName, String lastName, String userName, String password, String title) {
+        super(firstName, lastName, userName, password);
+        this.title = title;
+    }
+
 
     @Override
     public String toString() {
         return "Teacher{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
+                "title='" + title + '\'' +
                 '}';
     }
 
-    public String getUserName() {
-        return userName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
