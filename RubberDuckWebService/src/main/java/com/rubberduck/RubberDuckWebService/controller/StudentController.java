@@ -32,6 +32,7 @@ public class StudentController {
         return JSONConvert.JSONConverter(student);
     }
 
+
     @PostMapping("/student")
     @ResponseStatus(HttpStatus.CREATED)
     public String createStudentAccount(
@@ -55,5 +56,28 @@ public class StudentController {
         }
 //        return ValidationController.UserSignIn(student, password);
         return "Finish";
+    }
+
+    @GetMapping("student/username")
+    public String getStudentByUserName(
+            @RequestParam String userName
+    ) throws NullPointerException {
+        Student student = studentService.findByUserName(userName);
+        if (student == null) {
+            throw new NullPointerException();
+        }
+        return JSONConvert.JSONConverter(student);
+    }
+
+    @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "User name or password incorrect")
+    @ExceptionHandler(IllegalAccessException.class)
+    public void badAuthenticationException() {
+
+    }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Student user name doesn't exist")
+    @ExceptionHandler(NullPointerException.class)
+    public void notFoundException() {
+
     }
 }

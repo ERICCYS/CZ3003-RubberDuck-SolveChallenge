@@ -18,31 +18,20 @@ public class TeacherController {
     TeacherService teacherService;
 
     @GetMapping("/teachers")
-    public String getAllStudents() {
+    public String getAllTeacher() {
         List<Teacher> teachers = teacherService.findAll();
         return JSONConvert.JSONConverter(teachers);
     }
 
 
     @GetMapping("/teacher")
-    public String getStudentById(
+    public String getTeacherById(
             @RequestParam Long id
     ) {
         Teacher teacher = teacherService.findById(id);
         return JSONConvert.JSONConverter(teacher);
     }
 
-    @PostMapping("/teacher")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String createStudentAccount(
-            @Valid @RequestBody Teacher teacher
-    ) throws NoSuchAlgorithmException {
-        String hashedPassword = teacher.hashPassword(teacher.getPassword());
-        teacher.setPassword(hashedPassword);
-        JSONConvert.JSONConverter(teacherService.save(teacher));
-//        return ValidationController.getAccessToken(teacher.getId(), "CUSTOMER");
-        return "OK";
-    }
 
     @GetMapping("/teacher/signin")
     public String signInTeacher(
@@ -55,5 +44,17 @@ public class TeacherController {
         }
 //        return ValidationController.UserSignIn(teacher, password);
         return "Finish";
+    }
+
+    @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "User name or password incorrect")
+    @ExceptionHandler(IllegalAccessException.class)
+    public void badAuthenticationException() {
+
+    }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Student user name doesn't exist")
+    @ExceptionHandler(NullPointerException.class)
+    public void notFoundException() {
+
     }
 }
