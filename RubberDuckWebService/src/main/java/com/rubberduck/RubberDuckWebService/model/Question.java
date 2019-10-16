@@ -24,7 +24,7 @@ public class Question {
     private String section;
 
     @Column(name = "LEVEL", nullable = false)
-    private int level;
+    private String level;
 
     @Column(name = "DIFFICULTY", nullable = false)
     private DifficultyEnum difficulty;
@@ -48,7 +48,7 @@ public class Question {
     public Question() {
     }
 
-    public Question(String description, String character, String world, String section, int level, DifficultyEnum difficulty, String choiceA, String choiceB, String choiceC, String choiceD, String correctChoice) {
+    public Question(String description, String character, String world, String section, String level, DifficultyEnum difficulty, String choiceA, String choiceB, String choiceC, String choiceD, String correctChoice) {
         this.description = description;
         this.character = character;
         this.world = world;
@@ -102,11 +102,11 @@ public class Question {
         this.section = section;
     }
 
-    public int getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 
