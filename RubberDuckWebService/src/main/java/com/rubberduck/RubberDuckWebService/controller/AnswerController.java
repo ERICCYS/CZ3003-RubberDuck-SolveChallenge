@@ -39,7 +39,7 @@ public class AnswerController {
         return JSONConvert.JSONConverter(answers);
     }
 
-    @PostMapping("/answer/")
+    @PostMapping("/answer")
     public String createAnswer(
             @Valid @RequestBody Answer answer
     ) {
