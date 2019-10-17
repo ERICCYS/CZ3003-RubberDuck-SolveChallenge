@@ -44,11 +44,14 @@ public class Question {
     @Column(name = "CORRECT_CHOICE", nullable = false)
     private String correctChoice;
 
+    @Column(name = "AWARD", nullable = false)
+    private int award;
+
 
     public Question() {
     }
 
-    public Question(String description, String character, String world, String section, String level, DifficultyEnum difficulty, String choiceA, String choiceB, String choiceC, String choiceD, String correctChoice) {
+    public Question(String description, String character, String world, String section, String level, DifficultyEnum difficulty, String choiceA, String choiceB, String choiceC, String choiceD, String correctChoice, int award) {
         this.description = description;
         this.character = character;
         this.world = world;
@@ -60,6 +63,7 @@ public class Question {
         this.choiceC = choiceC;
         this.choiceD = choiceD;
         this.correctChoice = correctChoice;
+        this.award = award;
     }
 
     public Long getId() {
@@ -156,5 +160,13 @@ public class Question {
 
     public void setCorrectChoice(String correctChoice) {
         this.correctChoice = correctChoice;
+    }
+
+    public int getAward() {
+        return award;
+    }
+
+    public void setAward(int award) {
+        this.award = award;
     }
 }
