@@ -75,6 +75,22 @@ public class Challenge {
                 '}';
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public Long getCreatorId() {
+        return creatorId;
+    }
+
+    public List<Long> getQuestionIds() {
+        return questionIds;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
     public int getQuestionCount() {
         return questionCount;
     }

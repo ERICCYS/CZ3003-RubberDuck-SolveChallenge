@@ -46,6 +46,12 @@ public class User {
                 '}';
     }
 
+    // only create the getter can the JPA repo access the field
+
+    public Long getId() {
+        return id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
