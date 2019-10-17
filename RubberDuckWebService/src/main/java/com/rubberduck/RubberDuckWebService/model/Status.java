@@ -1,0 +1,79 @@
+package com.rubberduck.RubberDuckWebService.model;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Status")
+public class Status {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", unique = true)
+    private Long id;
+
+    @Column(name = "STUDENT_ID", nullable = false)
+    private Long studentId;
+
+    @Column(name = "CHARACTER_CHOICE", nullable = false)
+    private String character;
+
+    @Column(name = "WORLD", nullable = false)
+    private String world;
+
+    @Column(name = "SECTION", nullable = false)
+    private String section;
+
+    @Column(name = "LEVEL", nullable = false)
+    private String level;
+
+    public Status() {
+    }
+
+    public Status(Long studentId, String character, String world, String section, String level) {
+        this.studentId = studentId;
+        this.character = character;
+        this.world = world;
+        this.section = section;
+        this.level = level;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public String getCharacter() {
+        return character;
+    }
+
+    public String getWorld() {
+        return world;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
+    public void setWorld(String world) {
+        this.world = world;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+}
