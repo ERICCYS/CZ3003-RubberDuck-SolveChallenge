@@ -12,7 +12,11 @@ public interface AnswerService {
 
     List<Answer> findByQuestionId(Long questionId);
 
-    Answer save(Answer answer);
+    boolean checkAnswer(Answer answer);
+
+    String countAward(Answer answer);
+
+    String save(Answer answer);
 
     void delete(Answer answer);
 }
