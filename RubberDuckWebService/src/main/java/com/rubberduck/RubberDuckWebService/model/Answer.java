@@ -25,16 +25,21 @@ public class Answer {
     private boolean correct;
 
     @Column(name = "REWARD", nullable = false)
-    private String reward;
+    private int reward;
+
+    @Column(name = "MODE")
+    private String mode;
 
 
     public Answer() {
     }
 
-    public Answer(String choice, boolean correct, String reward) {
+
+    public Answer(String choice, boolean correct, int reward, String mode) {
         this.choice = choice;
         this.correct = correct;
         this.reward = reward;
+        this.mode = mode;
     }
 
     @Override
@@ -87,11 +92,19 @@ public class Answer {
         this.correct = correct;
     }
 
-    public String getReward() {
+    public int getReward() {
         return reward;
     }
 
-    public void setReward(String reward) {
+    public void setReward(int reward) {
         this.reward = reward;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 }
