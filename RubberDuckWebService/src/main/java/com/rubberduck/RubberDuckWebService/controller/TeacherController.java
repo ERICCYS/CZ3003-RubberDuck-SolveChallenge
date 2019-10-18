@@ -3,11 +3,11 @@ package com.rubberduck.RubberDuckWebService.controller;
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Teacher;
 import com.rubberduck.RubberDuckWebService.service.TeacherService;
+import com.rubberduck.RubberDuckWebService.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -42,12 +42,12 @@ public class TeacherController {
         if (teacher == null) {
             throw new IllegalArgumentException();
         }
-//        return ValidationController.UserSignIn(teacher, password);
-        return "Finish";
+
+        return ValidationService.userSignIn(teacher, password);
     }
 
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "User name or password incorrect")
-    @ExceptionHandler(IllegalAccessException.class)
+    @ExceptionHandler(IllegalArgumentException.class)
     public void badAuthenticationException() {
 
     }

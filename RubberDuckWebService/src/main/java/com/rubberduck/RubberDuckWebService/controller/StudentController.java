@@ -3,6 +3,7 @@ package com.rubberduck.RubberDuckWebService.controller;
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Student;
 import com.rubberduck.RubberDuckWebService.service.StudentService;
+import com.rubberduck.RubberDuckWebService.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -52,10 +53,9 @@ public class StudentController {
     ) throws NoSuchAlgorithmException {
         Student student = studentService.findByUserName(userName);
         if (student == null) {
-            throw new IllegalArgumentException();
+            throw new NullPointerException();
         }
-//        return ValidationController.UserSignIn(student, password);
-        return "Finish";
+        return ValidationService.userSignIn(student, password);
     }
 
     @GetMapping("student/username")
@@ -70,7 +70,7 @@ public class StudentController {
     }
 
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "User name or password incorrect")
-    @ExceptionHandler(IllegalAccessException.class)
+    @ExceptionHandler(IllegalArgumentException.class)
     public void badAuthenticationException() {
 
     }
