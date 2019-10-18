@@ -12,6 +12,12 @@ public interface QuestionService {
 
     List<Question> findByLevel(String level);
 
+    List<Question> findByWorld(String world);
+
+    List<Question> findBySectionAndWorld(String section, String world);
+
+    List<Question> findByLevelAndSectionAndWorld(String level, String section, String world);
+
     Question save(Question question);
 
     void delete(Question question);

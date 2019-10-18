@@ -29,6 +29,21 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<Question> findByWorld(String world) {
+        return questionRepo.findByWorld(world);
+    }
+
+    @Override
+    public List<Question> findBySectionAndWorld(String section, String world) {
+        return questionRepo.findBySectionAndWorld(section, world);
+    }
+
+    @Override
+    public List<Question> findByLevelAndSectionAndWorld(String level, String section, String world) {
+        return questionRepo.findByLevelAndSectionAndWorld(level, section, world);
+    }
+
+    @Override
     public Question save(Question question) {
         return questionRepo.save(question);
     }
