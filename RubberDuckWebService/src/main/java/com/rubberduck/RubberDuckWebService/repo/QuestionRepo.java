@@ -17,6 +17,8 @@ public interface QuestionRepo extends JpaRepository<Question, Integer> {
 
     List<Question> findByLevelAndSectionAndWorld(String level, String section, String world);
 
+    List<Question> findByCharacter(String character);
+
     Question save(Question question);
 
     void delete(Question question);

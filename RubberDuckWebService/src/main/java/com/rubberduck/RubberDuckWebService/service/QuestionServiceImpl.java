@@ -44,6 +44,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<Question> findByCharacter(String character) {
+        return questionRepo.findByCharacter(character);
+    }
+
+    @Override
     public Question save(Question question) {
         return questionRepo.save(question);
     }
