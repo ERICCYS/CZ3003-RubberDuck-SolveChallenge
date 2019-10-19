@@ -3,7 +3,7 @@ package com.rubberduck.RubberDuckWebService.controller;
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Student;
 import com.rubberduck.RubberDuckWebService.service.StudentService;
-import com.rubberduck.RubberDuckWebService.service.ValidationService;
+import com.rubberduck.RubberDuckWebService.service.ValidationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +17,9 @@ public class StudentController {
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    ValidationServiceImpl validationService;
 
     @GetMapping("/students")
     public String getAllStudents() {
@@ -55,7 +58,7 @@ public class StudentController {
         if (student == null) {
             throw new NullPointerException();
         }
-        return ValidationService.userSignIn(student, password);
+        return validationService.userSignIn(student, password);
     }
 
     @GetMapping("student/username")
@@ -67,6 +70,14 @@ public class StudentController {
             throw new NullPointerException();
         }
         return JSONConvert.JSONConverter(student);
+    }
+
+    @GetMapping("/accessToken")
+    public String parseUserId(
+            @RequestHeader(value = "Authorization") String accessToken
+    ) {
+        System.out.println(accessToken);
+        return validationService.getUserId(accessToken, "STUDENT");
     }
 
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "User name or password incorrect")

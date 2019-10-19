@@ -3,7 +3,7 @@ package com.rubberduck.RubberDuckWebService.controller;
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Teacher;
 import com.rubberduck.RubberDuckWebService.service.TeacherService;
-import com.rubberduck.RubberDuckWebService.service.ValidationService;
+import com.rubberduck.RubberDuckWebService.service.ValidationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +16,9 @@ public class TeacherController {
 
     @Autowired
     TeacherService teacherService;
+
+    @Autowired
+    ValidationServiceImpl validationService;
 
     @GetMapping("/teachers")
     public String getAllTeacher() {
@@ -43,7 +46,7 @@ public class TeacherController {
             throw new IllegalArgumentException();
         }
 
-        return ValidationService.userSignIn(teacher, password);
+        return validationService.userSignIn(teacher, password);
     }
 
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "User name or password incorrect")
