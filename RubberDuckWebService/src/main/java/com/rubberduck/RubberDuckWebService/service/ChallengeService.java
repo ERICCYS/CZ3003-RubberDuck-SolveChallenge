@@ -13,4 +13,7 @@ public interface ChallengeService {
     Challenge save(Challenge challenge);
 
     void delete(Challenge challenge);
+
+    // need to generate the challenge (sampling question from the world
+
 }
