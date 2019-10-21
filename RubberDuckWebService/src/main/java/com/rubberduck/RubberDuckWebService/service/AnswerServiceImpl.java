@@ -35,7 +35,6 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public boolean checkAnswer(Answer answer) throws NullPointerException {
-        // Get the corresponding question
         Long questionId = answer.getQuestionId();
         Question question = questionRepo.findById(questionId);
         boolean isCorrect = question.getCorrectChoice().equals(answer.getChoice());
@@ -51,7 +50,6 @@ public class AnswerServiceImpl implements AnswerService {
         Long questionId = answer.getQuestionId();
         Question question = questionRepo.findById(questionId);
 
-        // check how many times
         List<Answer> previousAnswers = answerRepo.findByStudentIdAndQuestionIdAndMode(studentId, questionId, "Q");
 
         if (previousAnswers.size() >= 3) {
@@ -61,14 +59,13 @@ public class AnswerServiceImpl implements AnswerService {
             answer.setReward(mark);
             awardMessage = "You got " + mark + " marks for this question";
         } else {
-            // count if there is successful answers
             for (Answer previousAnswer : previousAnswers) {
                 if (previousAnswer.isCorrect()) {
                     awardMessage = "You have answered this question correctly before!";
                     return awardMessage;
                 }
             }
-            int mark = (int) (question.getAward() * (1 - 0.3 * previousAnswers.size()));
+            int mark = (int) (question.getAward() * (1 - 0.33 * previousAnswers.size()));
             answer.setReward(mark);
             awardMessage = "You got " + mark + " marks for this question";
         }
@@ -78,7 +75,6 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public String save(Answer answer) {
-        // validate answer
         if (answer == null) {
             return "Answer Not Received";
         }
