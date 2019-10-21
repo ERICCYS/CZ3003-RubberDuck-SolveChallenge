@@ -45,7 +45,7 @@ public class Question {
     private String correctChoice;
 
     @Column(name = "AWARD", nullable = false)
-    private int award;
+    private int award = 15;
 
 
     public Question() {
