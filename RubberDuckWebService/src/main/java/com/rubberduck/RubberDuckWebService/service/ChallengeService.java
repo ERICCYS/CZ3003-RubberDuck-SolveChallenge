@@ -10,6 +10,8 @@ public interface ChallengeService {
 
     List<Challenge> findByCreatorId(Long creatorId);
 
+    void addQuestions(Challenge challenge);
+
     Challenge save(Challenge challenge);
 
     void delete(Challenge challenge);

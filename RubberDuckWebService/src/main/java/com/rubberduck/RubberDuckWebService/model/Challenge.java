@@ -18,8 +18,15 @@ public class Challenge {
     @Column(name = "CREATOR_ID", nullable = false)
     private Long creatorId;
 
+    @Column(name = "CHARACTER_CHOICE", nullable = false)
+    private String character;
+
     @ElementCollection
     private List<Long> questionIds;
+
+    @ElementCollection
+
+    private List<WorldQuestion> worldQuestion;
 
     @Column(name = "CREATE_TIME")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -47,24 +54,28 @@ public class Challenge {
     }
 
 
-    public Challenge(Long creatorId, Date createTime, int questionCount, int easyQnCount, int mediumQnCount, int hardQnCount) {
+    public Challenge(Long creatorId, String character, List<Long> questionIds, List<WorldQuestion> worldQuestion, Date createTime, int questionCount, int easyQnCount, int mediumQnCount, int hardQnCount, int successCount, int failureCount) {
         this.creatorId = creatorId;
+        this.character = character;
+        this.questionIds = questionIds;
+        this.worldQuestion = worldQuestion;
         this.createTime = createTime;
         this.questionCount = questionCount;
         this.easyQnCount = easyQnCount;
         this.mediumQnCount = mediumQnCount;
         this.hardQnCount = hardQnCount;
-        this.successCount = 0;
-        this.failureCount = 0;
+        this.successCount = successCount;
+        this.failureCount = failureCount;
     }
-
 
     @Override
     public String toString() {
         return "Challenge{" +
                 "id=" + id +
                 ", creatorId=" + creatorId +
+                ", character='" + character + '\'' +
                 ", questionIds=" + questionIds +
+                ", worldQuestion=" + worldQuestion +
                 ", createTime=" + createTime +
                 ", questionCount=" + questionCount +
                 ", easyQnCount=" + easyQnCount +
@@ -83,8 +94,16 @@ public class Challenge {
         return creatorId;
     }
 
+    public String getCharacter() {
+        return character;
+    }
+
     public List<Long> getQuestionIds() {
         return questionIds;
+    }
+
+    public List<WorldQuestion> getWorldQuestion() {
+        return worldQuestion;
     }
 
     public Date getCreateTime() {
