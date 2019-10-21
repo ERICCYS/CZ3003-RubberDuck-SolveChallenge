@@ -49,6 +49,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<Question> findByLevelAndSectionAndWorldAndCharacter(String level, String section, String world, String character) {
+        return questionRepo.findByLevelAndSectionAndWorldAndCharacter(level, section, world, character);
+    }
+
+    @Override
     public Question save(Question question) {
         return questionRepo.save(question);
     }
