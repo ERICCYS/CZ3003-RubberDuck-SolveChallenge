@@ -41,7 +41,7 @@ public class ValidationServiceImpl implements ValidationService {
         }
     }
 
-    private String getAccessToken(User user, String userType) {
+    public String getAccessToken(User user, String userType) {
 
         // use userId|userType|userName|password| to generate the access token
         String accessToken = "";
@@ -64,7 +64,7 @@ public class ValidationServiceImpl implements ValidationService {
         return accessToken;
     }
 
-    private static String[] decryptAccessToken(String accessToken) {
+    private String[] decryptAccessToken(String accessToken) {
 
         String decrypted = "";
         String[] info = null;
