@@ -33,57 +33,22 @@
         android:scaleType="centerCrop"
         android:src="@drawable/question_mark" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/img_qestionmark_signin"
-        android:id="@+id/name_bar"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.AppCompatAutoCompleteTextView
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Sign in as:"
-            android:drawablePadding="15dp"
-            android:textColor="#fff"
-            android:textSize="20sp"
-            android:drawableLeft="@drawable/user_icon"
-            android:drawableStart="@drawable/user_icon" />
-
-
-<!--        <android.support.v7.widget.AppCompatEditText-->
-<!--            android:id="@+id/editText_name_signin"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:inputType="textPersonName"-->
-<!--            android:drawableLeft="@drawable/user_icon"-->
-<!--            android:drawablePadding="15dp"-->
-<!--            android:hint="Name"-->
-<!--            android:maxLength="15"-->
-<!--            android:maxLines="1"-->
-<!--            android:textColor="#fff"-->
-<!--            android:textColorHint="#fff"-->
-<!--            android:textSize="20sp" />-->
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:id="@+id/user_role_spinner"
-            android:layout_height="40dp"
-            android:layout_weight=".34"
-            android:textAlignment="center"
-            />
-        <!--Add a spinner to select male or female-->
-    </LinearLayout>
+        android:id="@+id/user_role_spinner"
+        android:textAlignment="center"/>
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/editText_email_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name_bar"
+        android:layout_below="@id/user_role_spinner"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
@@ -100,7 +65,8 @@
         android:id="@+id/password_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editText_email_signin">
+        android:layout_below="@id/editText_email_signin"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/editText_password_signin"
@@ -130,6 +96,7 @@
             android:textColor="#fff" />
 
     </RelativeLayout>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

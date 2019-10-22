@@ -39,7 +39,7 @@ public class Activity_SignIn extends AppCompatActivity {
 
         //set up user role spinner
         user_role_spinner = (Spinner) findViewById(R.id.user_role_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.user_roles, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.user_roles, R.layout.role_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         user_role_spinner.setAdapter(adapter);
         user_role_spinner.setOnItemSelectedListener(new spinnerListener());
@@ -64,6 +64,8 @@ public class Activity_SignIn extends AppCompatActivity {
                         }else if(user_role.equals("Student")){
                             //start next student activity
                             //TODO
+                            Intent intent = new Intent(Activity_SignIn.this, Activity_SelectCharacter.class);
+                            startActivity(intent);
                         }
                     }else{
                         Toast.makeText(Activity_SignIn.this, "Sorry, user not found.", Toast.LENGTH_SHORT).show();
