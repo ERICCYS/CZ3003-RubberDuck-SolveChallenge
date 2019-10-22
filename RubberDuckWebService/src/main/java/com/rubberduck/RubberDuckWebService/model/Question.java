@@ -27,6 +27,7 @@ public class Question {
     private String level;
 
     @Column(name = "DIFFICULTY", nullable = false)
+    @Enumerated(EnumType.STRING)
     private DifficultyEnum difficulty;
 
     @Column(name = "CHOICE_A", nullable = false)
