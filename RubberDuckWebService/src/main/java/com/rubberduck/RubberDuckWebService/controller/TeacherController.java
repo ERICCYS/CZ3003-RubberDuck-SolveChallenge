@@ -26,7 +26,6 @@ public class TeacherController {
         return JSONConvert.JSONConverter(teachers);
     }
 
-
     @GetMapping("/teacher")
     public String getTeacherById(
             @RequestParam Long id
@@ -34,7 +33,6 @@ public class TeacherController {
         Teacher teacher = teacherService.findById(id);
         return JSONConvert.JSONConverter(teacher);
     }
-
 
     @GetMapping("/teacher/signin")
     public String signInTeacher(
@@ -49,13 +47,21 @@ public class TeacherController {
         return validationService.userSignIn(teacher, password);
     }
 
+    @GetMapping("/teacher/getId")
+    public String parseTeacherId(
+            @RequestHeader(value = "Authorization") String accessToken
+    ) {
+        System.out.println(accessToken);
+        return validationService.getUserId(accessToken, "TEACHER");
+    }
+
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "User name or password incorrect")
     @ExceptionHandler(IllegalArgumentException.class)
     public void badAuthenticationException() {
 
     }
 
-    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Student user name doesn't exist")
+    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Teacher user name doesn't exist")
     @ExceptionHandler(NullPointerException.class)
     public void notFoundException() {
 

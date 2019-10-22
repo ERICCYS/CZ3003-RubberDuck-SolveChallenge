@@ -3,7 +3,7 @@ package com.rubberduck.RubberDuckWebService.controller;
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Student;
 import com.rubberduck.RubberDuckWebService.service.StudentService;
-import com.rubberduck.RubberDuckWebService.service.ValidationServiceImpl;
+import com.rubberduck.RubberDuckWebService.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,14 +19,13 @@ public class StudentController {
     StudentService studentService;
 
     @Autowired
-    ValidationServiceImpl validationService;
+    ValidationService validationService;
 
     @GetMapping("/students")
     public String getAllStudents() {
         List<Student> students = studentService.findAll();
         return JSONConvert.JSONConverter(students);
     }
-
 
     @GetMapping("/student")
     public String getStudentById(
@@ -36,7 +35,6 @@ public class StudentController {
         return JSONConvert.JSONConverter(student);
     }
 
-
     @PostMapping("/student")
     @ResponseStatus(HttpStatus.CREATED)
     public String createStudentAccount(
@@ -45,8 +43,7 @@ public class StudentController {
         String hashedPassword = student.hashPassword(student.getPassword());
         student.setPassword(hashedPassword);
         JSONConvert.JSONConverter(studentService.save(student));
-//        return ValidationController.getAccessToken(student.getId(), "CUSTOMER");
-        return "OK";
+        return validationService.getAccessToken(student, "STUDENT");
     }
 
     @GetMapping("/student/signin")
@@ -72,8 +69,8 @@ public class StudentController {
         return JSONConvert.JSONConverter(student);
     }
 
-    @GetMapping("/accessToken")
-    public String parseUserId(
+    @GetMapping("/student/getId")
+    public String parseStudentId(
             @RequestHeader(value = "Authorization") String accessToken
     ) {
         System.out.println(accessToken);
