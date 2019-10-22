@@ -34,7 +34,7 @@
 
 
             <Button
-                android:id="@+id/b2"
+                android:id="@+id/btn_analysis_World"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_margin="2dp"
@@ -54,7 +54,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/b3"
+                android:id="@+id/btn_design_World"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_margin="2dp"
@@ -75,7 +75,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/b4"
+                android:id="@+id/btn_testing_World"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
                 android:layout_margin="2dp"
@@ -89,7 +89,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/b5"
+                android:id="@+id/btn_maintainance_World"
                 android:layout_width="0dp"
                 android:layout_height="190dp"
                 android:layout_margin="-4dp"
