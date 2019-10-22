@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">SolveChallenge</string>
     <string-array name="user_roles">
-        <item>Staff</item>
         <item>Student</item>
+        <item>Teacher</item>
     </string-array>
     <string name="title_activity__select_character">Activity_SelectCharacter</string>
     <string name="product_manager">Product Manager</string>

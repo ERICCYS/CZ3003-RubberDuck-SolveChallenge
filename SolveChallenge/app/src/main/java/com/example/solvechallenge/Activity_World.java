@@ -78,7 +78,6 @@ public class Activity_World extends AppCompatActivity {
 //                App_Data.setWorld("maintenance");
 //            }
 //        });
-//
     }
 }
 
