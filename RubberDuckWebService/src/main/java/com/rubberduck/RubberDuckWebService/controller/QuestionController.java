@@ -26,7 +26,6 @@ public class QuestionController {
         return JSONConvert.JSONConverter(questions);
     }
 
-
     @GetMapping("/question")
     public String getQuestionById(
             @RequestParam Long id
@@ -35,11 +34,14 @@ public class QuestionController {
         return JSONConvert.JSONConverter(question);
     }
 
-    @GetMapping("/question/level")
-    public String getQuestionByLevel(
-            @RequestParam String level
+    @GetMapping("/question/stage")
+    public String getQuestionByStage(
+            @RequestParam String level,
+            @RequestParam String section,
+            @RequestParam String world,
+            @RequestParam String character
     ) {
-        List<Question> questions = questionService.findByLevel(level);
+        List<Question> questions = questionService.findByLevelAndSectionAndWorldAndCharacter(level, section, world, character);
         return JSONConvert.JSONConverter(questions);
     }
 

@@ -48,11 +48,14 @@ public class Question {
     @Column(name = "AWARD", nullable = false)
     private int award = 15;
 
+    @Column(name = "IS_BONUS", nullable = false)
+    private boolean bonus;
+
 
     public Question() {
     }
 
-    public Question(String description, String character, String world, String section, String level, DifficultyEnum difficulty, String choiceA, String choiceB, String choiceC, String choiceD, String correctChoice, int award) {
+    public Question(String description, String character, String world, String section, String level, DifficultyEnum difficulty, String choiceA, String choiceB, String choiceC, String choiceD, String correctChoice, int award, boolean bonus) {
         this.description = description;
         this.character = character;
         this.world = world;
@@ -65,6 +68,7 @@ public class Question {
         this.choiceD = choiceD;
         this.correctChoice = correctChoice;
         this.award = award;
+        this.bonus = bonus;
     }
 
     public Long getId() {
@@ -169,5 +173,13 @@ public class Question {
 
     public void setAward(int award) {
         this.award = award;
+    }
+
+    public boolean isBonus() {
+        return bonus;
+    }
+
+    public void setBonus(boolean bonus) {
+        this.bonus = bonus;
     }
 }
