@@ -36,48 +36,48 @@ public class Activity_World extends AppCompatActivity {
 
 
 
-        enter_intro_btn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-
-                if (0<= world_upperbound){
-                    switchToNextActivity(v);
-                    App_Data.setWorld(0);
-                }
-
-                else{
-                    Toast.makeText(Activity_World.this, "it is locked", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-        enter_analysis_btn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                switchToNextActivity(v);
-                App_Data.setWorld("analysis");
-            }
-        });
-
-        enter_design_btn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                switchToNextActivity(v);
-                App_Data.setWorld("design");
-            }
-        });
-
-        enter_testing_btn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                switchToNextActivity(v);
-                App_Data.setWorld("testing");
-            }
-        });
-
-        enter_maintainance_btn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                switchToNextActivity(v);
-                App_Data.setWorld("maintenance");
-            }
-        });
+//        enter_intro_btn.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//
+//                if (0<= world_upperbound){
+//                    switchToNextActivity(v);
+//                    App_Data.setWorld(0);
+//                }
+//
+//                else{
+//                    Toast.makeText(Activity_World.this, "it is locked", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//        });
+//
+//        enter_analysis_btn.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//                switchToNextActivity(v);
+//                App_Data.setWorld("analysis");
+//            }
+//        });
+//
+//        enter_design_btn.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//                switchToNextActivity(v);
+//                App_Data.setWorld("design");
+//            }
+//        });
+//
+//        enter_testing_btn.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//                switchToNextActivity(v);
+//                App_Data.setWorld("testing");
+//            }
+//        });
+//
+//        enter_maintainance_btn.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//                switchToNextActivity(v);
+//                App_Data.setWorld("maintenance");
+//            }
+//        });
 
     }
 }

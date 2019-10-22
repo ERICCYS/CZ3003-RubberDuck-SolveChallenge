@@ -45,7 +45,7 @@
         android:textAlignment="center"/>
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/editText_email_signin"
+        android:id="@+id/editText_username_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/user_role_spinner"
@@ -54,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:drawableLeft="@drawable/email_icon"
         android:drawablePadding="15dp"
-        android:hint="Email"
+        android:hint="Username"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:textColor="#fff"
@@ -65,7 +65,7 @@
         android:id="@+id/password_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editText_email_signin"
+        android:layout_below="@id/editText_username_signin"
         >
 
         <android.support.v7.widget.AppCompatEditText

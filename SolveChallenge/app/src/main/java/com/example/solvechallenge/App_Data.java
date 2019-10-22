@@ -1,10 +1,16 @@
 package com.example.solvechallenge;
 
+import java.security.Key;
+import java.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
 public class App_Data {
 
+    public static String baseUrl = "http://10.27.103.141:8081/api/";
 
-
-    public static String userId;
+    public static Long userId;
     public static String accessToken;
 
     public static String character;
@@ -18,6 +24,9 @@ public class App_Data {
     public static int section_upperbound;
     public static int level_upperbound;
 
+    public static Long getUserId() {
+        return userId;
+    }
 
     public static String getAccessToken() {
         return accessToken;
@@ -25,10 +34,6 @@ public class App_Data {
 
     public static String getBaseUrl() {
         return baseUrl;
-    }
-
-    public static String getUserId() {
-        return userId;
     }
 
     public static String getCharacter() {
@@ -87,7 +92,7 @@ public class App_Data {
         App_Data.no_question = no_question;
     }
 
-    public static void setUserId(String userId) { App_Data.userId = userId; }
+    public static void setUserId(Long userId) { App_Data.userId = userId; }
 
     public static void setWorld_upperbound(int world_upperbound) { App_Data.world_upperbound = world_upperbound; }
 

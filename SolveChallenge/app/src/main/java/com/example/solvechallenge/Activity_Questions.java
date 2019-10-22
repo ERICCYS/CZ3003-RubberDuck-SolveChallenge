@@ -7,8 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import org.json.JSONObject;
 
 public class Activity_Questions extends AppCompatActivity {
@@ -32,40 +30,40 @@ public class Activity_Questions extends AppCompatActivity {
         setContentView(R.layout.activity_questions);
         this.getSupportActionBar().hide();
 
-        while (index_of_question < no_questions){
-
-            App_Data.setNo_question(index_of_question);
-
-            // todo question_data = getQuestion(); // get data from backend
-
-            answer = q.get("answer").tostring()
-
-            tv_question.setText(q.get("question").tostring());
-            btn_choice1.setText(q.get("choice1").tostring());
-            btn_choice2.setText(q.get("choice2").tostring());
-            btn_choice3.setText(q.get("choice3").tostring());
-            btn_choice4.setText(q.get("choice4").tostring());
-
-            btn_choice1.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view){
-                    //My logic for Button goes in here
-
-                    if (btn_choice1.getText() == answer){
-                        score = score + 1;
-
-                        tv_score.setText(score);
-
-                        updateQuestion();
-                        //This line of code is optiona
-                        Toast.makeText(Activity_Questions.this, "correct! lol", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(Activity_Questions.this, "wrong.. try again", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-        }
+//        while (index_of_question < no_questions){
+//
+//            App_Data.setNo_question(index_of_question);
+//
+//            // todo question_data = getQuestion(); // get data from backend
+//
+//            answer = q.get("answer").tostring();
+//
+//            tv_question.setText(q.get("question").tostring());
+//            btn_choice1.setText(q.get("choice1").tostring());
+//            btn_choice2.setText(q.get("choice2").tostring());
+//            btn_choice3.setText(q.get("choice3").tostring());
+//            btn_choice4.setText(q.get("choice4").tostring());
+//
+//            btn_choice1.setOnClickListener(new View.OnClickListener(){
+//                @Override
+//                public void onClick(View view){
+//                    //My logic for Button goes in here
+//
+//                    if (btn_choice1.getText() == answer){
+//                        score = score + 1;
+//
+//                        tv_score.setText(score);
+//
+//                        updateQuestion();
+//                        //This line of code is optiona
+//                        Toast.makeText(Activity_Questions.this, "correct! lol", Toast.LENGTH_SHORT).show();
+//                    }else {
+//                        Toast.makeText(Activity_Questions.this, "wrong.. try again", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//
+//        }
 
 
     }
