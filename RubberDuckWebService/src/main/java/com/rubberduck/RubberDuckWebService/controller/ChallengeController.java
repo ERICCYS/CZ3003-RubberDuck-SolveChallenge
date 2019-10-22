@@ -34,9 +34,7 @@ public class ChallengeController {
             @Valid @RequestBody Challenge challenge
     ) {
         if(validationService.getUserId(accessToken, "STUDENT").equals(String.valueOf(challenge.getCreatorId()))) {
-
-            // TODO: do the sampling of the questions according to the rule
-
+            challengeService.addQuestions(challenge);
             return JSONConvert.JSONConverter(challengeService.save(challenge));
         } else {
             throw new IllegalArgumentException();

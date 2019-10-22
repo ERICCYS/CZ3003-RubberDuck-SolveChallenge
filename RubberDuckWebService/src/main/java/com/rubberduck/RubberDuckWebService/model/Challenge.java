@@ -102,6 +102,10 @@ public class Challenge {
         return questionIds;
     }
 
+    public void setQuestionIds(List<Long> questionIds) {
+        this.questionIds = questionIds;
+    }
+
     public List<WorldQuestion> getWorldQuestion() {
         return worldQuestion;
     }
