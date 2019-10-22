@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_World">
+    tools:context=".Activity_World"
+    android:background="@drawable/bacground_world">
 
 
 
@@ -87,12 +88,13 @@
             <Button
                 android:id="@+id/btn_maintainance_World"
                 android:layout_width="0dp"
-                android:layout_height="190dp"
-                android:layout_margin="-4dp"
+                android:layout_height="180dp"
+                android:layout_margin="2dp"
                 android:layout_weight="1"
                 android:background="#b9d870"
                 android:drawableTop="@drawable/img_maintainance_world"
-                android:paddingTop="2dp"
+                android:paddingTop="25dp"
+                android:text="Maintainance"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="18sp" />
