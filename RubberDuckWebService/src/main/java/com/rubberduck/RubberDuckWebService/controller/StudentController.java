@@ -1,6 +1,7 @@
 package com.rubberduck.RubberDuckWebService.controller;
 
 import com.rubberduck.RubberDuckWebService.JSONConvert;
+import com.rubberduck.RubberDuckWebService.ValidationResponse;
 import com.rubberduck.RubberDuckWebService.model.Student;
 import com.rubberduck.RubberDuckWebService.service.StudentService;
 import com.rubberduck.RubberDuckWebService.service.ValidationService;
@@ -43,7 +44,10 @@ public class StudentController {
         String hashedPassword = student.hashPassword(student.getPassword());
         student.setPassword(hashedPassword);
         JSONConvert.JSONConverter(studentService.save(student));
-        return validationService.getAccessToken(student, "STUDENT");
+        String accessToken = validationService.getAccessToken(student, "STUDENT");
+        Long userId = Long.parseLong(validationService.getUserId(accessToken, "STUDENT"));
+        ValidationResponse response = new ValidationResponse(accessToken, userId);
+        return JSONConvert.JSONConverter(response);
     }
 
     @GetMapping("/student/signin")
@@ -55,7 +59,10 @@ public class StudentController {
         if (student == null) {
             throw new NullPointerException();
         }
-        return validationService.userSignIn(student, password);
+        String accessToken = validationService.userSignIn(student, password);
+        Long userId = Long.parseLong(validationService.getUserId(accessToken, "STUDENT"));
+        ValidationResponse response = new ValidationResponse(accessToken, userId);
+        return JSONConvert.JSONConverter(response);
     }
 
     @GetMapping("student/username")

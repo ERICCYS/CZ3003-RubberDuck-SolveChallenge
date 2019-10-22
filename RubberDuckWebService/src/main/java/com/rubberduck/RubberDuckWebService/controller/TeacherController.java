@@ -1,6 +1,7 @@
 package com.rubberduck.RubberDuckWebService.controller;
 
 import com.rubberduck.RubberDuckWebService.JSONConvert;
+import com.rubberduck.RubberDuckWebService.ValidationResponse;
 import com.rubberduck.RubberDuckWebService.model.Teacher;
 import com.rubberduck.RubberDuckWebService.service.TeacherService;
 import com.rubberduck.RubberDuckWebService.service.ValidationServiceImpl;
@@ -43,8 +44,10 @@ public class TeacherController {
         if (teacher == null) {
             throw new IllegalArgumentException();
         }
-
-        return validationService.userSignIn(teacher, password);
+        String accessToken = validationService.userSignIn(teacher, password);
+        Long userId = Long.parseLong(validationService.getUserId(accessToken, "TEACHER"));
+        ValidationResponse response = new ValidationResponse(accessToken, userId);
+        return JSONConvert.JSONConverter(response);
     }
 
     @GetMapping("/teacher/getId")
