@@ -11,7 +11,6 @@ public class Answer {
     @Column(name = "ID", unique = true)
     private Long id;
 
-    // not sure to use id directly or use entity
     @Column(name = "STUDENT_ID")
     private Long studentId;
 

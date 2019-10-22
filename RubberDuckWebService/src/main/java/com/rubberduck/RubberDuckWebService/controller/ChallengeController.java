@@ -33,7 +33,7 @@ public class ChallengeController {
             @RequestHeader(value = "Authorization") String accessToken,
             @Valid @RequestBody Challenge challenge
     ) {
-        if(validationService.getUserId(accessToken, "STUDENT").equals(String.valueOf(challenge.getCreatorId()))) {
+        if (validationService.getUserId(accessToken, "STUDENT").equals(String.valueOf(challenge.getCreatorId()))) {
             challengeService.addQuestions(challenge);
             return JSONConvert.JSONConverter(challengeService.save(challenge));
         } else {

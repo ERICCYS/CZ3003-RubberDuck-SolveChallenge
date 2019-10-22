@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.logging.Level;
 
 @RestController
 public class QuestionController {
@@ -49,7 +48,7 @@ public class QuestionController {
             @RequestHeader(value = "Authorization") String accessToken,
             @Valid @RequestBody Question question
     ) {
-        if(Long.parseLong(validationService.getUserId(accessToken, "TEACHER")) > 0) {
+        if (Long.parseLong(validationService.getUserId(accessToken, "TEACHER")) > 0) {
             return JSONConvert.JSONConverter(questionService.save(question));
         } else {
             throw new IllegalArgumentException();
