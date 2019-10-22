@@ -12,7 +12,6 @@ public class App_Data {
 
     public static Long userId;
     public static String accessToken;
-    public static String baseUrl;
 
     public static String character;
     public static int world;
@@ -100,4 +99,20 @@ public class App_Data {
     public static void setSection_upperbound(int section_upperbound) { App_Data.section_upperbound = section_upperbound; }
 
     public static void setLevel_upperbound(int level_upperbound) { App_Data.level_upperbound = level_upperbound; }
+
+    public static void printAllData(){
+        System.out.println(App_Data.userId);
+        System.out.println(App_Data.accessToken);
+        System.out.println(App_Data.character);
+        System.out.println(App_Data.world);
+        System.out.println(App_Data.world_upperbound);
+        System.out.println(App_Data.section);
+        System.out.println(App_Data.section_upperbound);
+        System.out.println(App_Data.level);
+        System.out.println(App_Data.level_upperbound);
+        System.out.println(App_Data.no_question);
+    }
+
+
+
 }

@@ -118,8 +118,8 @@ public class Activity_SignIn extends AppCompatActivity {
                     OkHttpClient client = new OkHttpClient();
                     String url = Config.baseUrl + "student/signin";
                     HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
-                    httpBuilder.addQueryParameter("userName", username);
-                    httpBuilder.addQueryParameter("password", password);
+                    httpBuilder.addQueryParameter("userName", "MAXI0008");//username);
+                    httpBuilder.addQueryParameter("password", "123456");//password);
                     Request request = new Request.Builder().url(httpBuilder.build()).build();
 
                     client.newCall(request).enqueue(new Callback() {
