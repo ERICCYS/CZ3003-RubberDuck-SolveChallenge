@@ -1,39 +1,44 @@
 package com.example.solvechallenge;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+
+import com.example.solvechallenge.ui.main.SectionsPagerAdapter;
 
 public class Activity_SelectCharacter extends AppCompatActivity {
 
-    private Button select_char_btn;
-
-    public void switchToNextActivity(View view) {
-        Intent intent = new Intent(this, Activity_World.class);
-        startActivity(intent);
-    }
+    String[] characters = {"Product Manager", "Quality Manager", "Lead Developer"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_character);
-        this.getSupportActionBar().hide();
+        setContentView(R.layout.activity__select_character);
+        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        final ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
 
-        select_char_btn = (Button) findViewById(R.id.btn_sc_SelectChar); // type name Activity_name
+        TabLayout tabs = findViewById(R.id.tab_characSelect);
+        tabs.setupWithViewPager(viewPager);
+        FloatingActionButton fab = findViewById(R.id.fab_start_characSelect);
 
-        select_char_btn.setOnClickListener(new View.OnClickListener(){
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-            public void onClick(View v){
+                String characterChosen = characters[viewPager.getCurrentItem()];
 
-                switchToNextActivity(v);
+                //TODO
+                //Jump to next activity
+
 
             }
-
         });
-
     }
 }
-
-

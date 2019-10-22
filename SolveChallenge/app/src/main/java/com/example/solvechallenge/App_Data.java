@@ -12,6 +12,7 @@ public class App_Data {
 
     public static Long userId;
     public static String accessToken;
+    public static String baseUrl;
 
     public static String character;
     public static int world;
