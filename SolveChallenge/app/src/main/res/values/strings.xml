@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">SolveChallenge</string>
-    <string-array name="user_roles">
-        <item>Staff</item>
-        <item>Student</item>
-    </string-array>
-</resources>
