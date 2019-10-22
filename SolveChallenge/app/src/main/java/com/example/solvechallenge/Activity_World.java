@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class Activity_World extends AppCompatActivity {
 
-    private Button enter_section_btn;
+    private Button enter_intro_btn;
 
     public void switchToNextActivity(View view) {
         Intent intent = new Intent(this, Activity_Section.class);
@@ -21,9 +21,9 @@ public class Activity_World extends AppCompatActivity {
         setContentView(R.layout.activity_world);
         this.getSupportActionBar().hide();
 
-        enter_section_btn = (Button) findViewById(R.id.btn_entersection_World); // type name Activity_name
+        enter_intro_btn = (Button) findViewById(R.id.btn_intro_World); // type name Activity_name
 
-        enter_section_btn.setOnClickListener(new View.OnClickListener(){
+        enter_intro_btn.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){
 
