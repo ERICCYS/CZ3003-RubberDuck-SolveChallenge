@@ -9,11 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity_Questions"></activity>
+        <activity
+            android:name=".Activity_SelectCharacter"
+            android:label="@string/title_activity__select_character"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activity_Questions" />
         <activity android:name=".Activity_Level" />
         <activity android:name=".Activity_Section" />
         <activity android:name=".Activity_World" />
-        <activity android:name=".Activity_SelectCharacter" />
         <activity android:name=".Activity_SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
