@@ -9,7 +9,7 @@ public interface StatusRepo extends JpaRepository<Status, Integer> {
 
     List<Status> findByStudentId(Long studentId);
 
-    List<Status> findByStudentIdAndCharacter(Long studentId, String character);
+    Status findByStudentIdAndCharacter(Long studentId, String character);
 
     Status save(Status status);
 

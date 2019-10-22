@@ -8,7 +8,7 @@ public interface StatusService {
 
     List<Status> findByStudentId(Long studentId);
 
-    List<Status> findByStudentIdAndCharacter(Long studentId, String character);
+    Status findByStudentIdAndCharacter(Long studentId, String character);
 
     Status save(Status status);
 
