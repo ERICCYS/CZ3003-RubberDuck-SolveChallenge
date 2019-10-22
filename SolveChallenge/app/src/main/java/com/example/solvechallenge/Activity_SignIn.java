@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 public class Activity_SignIn extends AppCompatActivity {
 
-    EditText name_box, email_box, password_box;
-    Button password_show, start_button;
+    EditText editText_email_signin, editText_password_signin;
+    Button btn_passwordShow_signin, btn_start_signin;
     Spinner user_role_spinner;
     String user_role;
 
@@ -31,10 +31,11 @@ public class Activity_SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         this.getSupportActionBar().hide();
 
-        name_box = findViewById(R.id.name_box);
-        email_box = findViewById(R.id.email_box);
-        password_box = (EditText) findViewById(R.id.password_box);
-        password_show.setOnClickListener(new showButtonListener());
+
+        editText_email_signin = findViewById(R.id.editText_email_signin);
+        editText_password_signin = findViewById(R.id.editText_password_signin);
+        btn_passwordShow_signin = findViewById(R.id.btn_passwordShow_signin);
+        btn_passwordShow_signin.setOnClickListener(new showButtonListener());
 
         //set up user role spinner
         user_role_spinner = (Spinner) findViewById(R.id.user_role_spinner);
@@ -44,19 +45,18 @@ public class Activity_SignIn extends AppCompatActivity {
         user_role_spinner.setOnItemSelectedListener(new spinnerListener());
 
         //Once the user enter the game, validate user info
-        start_button = (Button) findViewById(R.id.start_button);
-        start_button.setOnClickListener(new View.OnClickListener(){
+        btn_start_signin = (Button) findViewById(R.id.btn_start_signin);
+        btn_start_signin.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                String name = name_box.getText().toString();
-                String email = email_box.getText().toString();
-                String password = password_box.getText().toString();
+                String email = editText_email_signin.getText().toString();
+                String password = editText_password_signin.getText().toString();
 
-                if(name.equals("") || email.equals("") || password.equals("")){
-                    Toast.makeText(LoginPage.this, "Please Enter the Details", Toast.LENGTH_SHORT).show();
+                if(email.equals("") || password.equals("")){
+                    Toast.makeText(Activity_SignIn.this, "Please Enter the Details", Toast.LENGTH_SHORT).show();
                 }else{
-                    boolean login_successful = findUser(name, email, password);
+                    boolean login_successful = findUser(user_role, email, password);
                     if(login_successful){
                         if(user_role.equals("Staff")){
                             // start next staff activity
@@ -66,7 +66,7 @@ public class Activity_SignIn extends AppCompatActivity {
                             //TODO
                         }
                     }else{
-                        Toast.makeText(LoginPage.this, "Sorry, user not found.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_SignIn.this, "Sorry, user not found.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -75,7 +75,7 @@ public class Activity_SignIn extends AppCompatActivity {
 
     }
 
-    public boolean findUser(String name, String email, String password){
+    public boolean findUser(String user_role, String email, String password){
         // consult backend
         //TODO
         return true;
@@ -85,12 +85,12 @@ public class Activity_SignIn extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            if(password_show.getText().toString().equals("SHOW")){
-                password_box.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                password_box.setText("HIDE");
+            if(btn_passwordShow_signin.getText().toString().equals("SHOW")){
+                editText_password_signin.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                btn_passwordShow_signin.setText("HIDE");
             }else{
-                password_box.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                password_show.setText("SHOW");
+                editText_password_signin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                btn_passwordShow_signin.setText("SHOW");
             }
         }
     }
