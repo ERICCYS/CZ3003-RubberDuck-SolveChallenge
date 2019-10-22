@@ -1,5 +1,6 @@
 package com.rubberduck.RubberDuckWebService.service;
 
+import com.rubberduck.RubberDuckWebService.model.DifficultyEnum;
 import com.rubberduck.RubberDuckWebService.model.Question;
 import com.rubberduck.RubberDuckWebService.repo.QuestionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,11 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Question> findByLevelAndSectionAndWorldAndCharacter(String level, String section, String world, String character) {
         return questionRepo.findByLevelAndSectionAndWorldAndCharacter(level, section, world, character);
+    }
+
+    @Override
+    public List<Question> findByCharacterAndWorldAndDifficulty(String character, String world, DifficultyEnum difficultyEnum) {
+        return questionRepo.findByCharacterAndWorldAndDifficulty(character, world, difficultyEnum);
     }
 
     @Override
