@@ -10,6 +10,12 @@ public interface StatusService {
 
     Status findByStudentIdAndCharacter(Long studentId, String character);
 
+    Status getCurrentStatus(Long studentId, String character);
+
+    String[] getNextStage(Status status);
+
+    Status updateStatus(Long studentId, String character);
+
     Status save(Status status);
 
     void delete(Status status);

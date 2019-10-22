@@ -2,7 +2,9 @@ package com.rubberduck.RubberDuckWebService.controller;
 
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.ValidationResponse;
+import com.rubberduck.RubberDuckWebService.model.Status;
 import com.rubberduck.RubberDuckWebService.model.Student;
+import com.rubberduck.RubberDuckWebService.service.StatusService;
 import com.rubberduck.RubberDuckWebService.service.StudentService;
 import com.rubberduck.RubberDuckWebService.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class StudentController {
 
     @Autowired
     ValidationService validationService;
+
+    @Autowired
+    StatusService statusService;
 
     @GetMapping("/students")
     public String getAllStudents() {
@@ -82,6 +87,14 @@ public class StudentController {
     ) {
         System.out.println(accessToken);
         return validationService.getUserId(accessToken, "STUDENT");
+    }
+
+    @PutMapping("student/update/status")
+    public String updateStudentStatus(
+            @RequestParam Long studentId,
+            @RequestParam String character
+    ) {
+        return JSONConvert.JSONConverter(statusService.updateStatus(studentId, character));
     }
 
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "User name or password incorrect")

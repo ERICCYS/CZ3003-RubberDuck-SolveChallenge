@@ -37,12 +37,37 @@ public class Status {
         this.level = level;
     }
 
+    public Status(Status that, Long id) {
+        this(that.getStudentId(), that.getCharacter(), that.getWorld(), that.getSection(), that.getLevel());
+        this.setId(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "id=" + id +
+                ", studentId=" + studentId +
+                ", character='" + character + '\'' +
+                ", world='" + world + '\'' +
+                ", section='" + section + '\'' +
+                ", level='" + level + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getStudentId() {
         return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     public String getCharacter() {

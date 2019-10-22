@@ -1,5 +1,6 @@
 package com.rubberduck.RubberDuckWebService.service;
 
+import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Status;
 import com.rubberduck.RubberDuckWebService.repo.StatusRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,28 +58,91 @@ public class StatusServiceImpl implements StatusService {
     };
 
     @Override
+    public String[] getNextStage(Status status) {
+        String[] nextStage = new String[3];
+        Integer worldCode = worldCodes.get(status.getWorld());
+        Integer sectionCode = sectionCodes.get(worldCode).get(status.getSection());
+        String level = status.getLevel();
+        String nextLevel = status.getLevel();
+        String nextWorld = status.getWorld();
+        String nextSection = status.getSection();
+        if (level.equals("EASY")) {
+            nextLevel = "MEDIUM";
+        } else if (level.equals("MEDIUM")) {
+            nextLevel = "HARD";
+        } else if (level.equals("HARD")) {
+            if (sectionCode != 2) {
+                for (Map.Entry<String, Integer> sectionInfo : sectionCodes.get(worldCode).entrySet()) {
+                    if (sectionInfo.getValue() == (sectionCode + 1)) {
+                        nextSection = sectionInfo.getKey();
+                    }
+                }
+                nextLevel = "EASY";
+            } else {
+                if (worldCode < 4) {
+                    for (Map.Entry<String, Integer> worldInfo : worldCodes.entrySet()) {
+                        if (worldInfo.getValue() == (worldCode + 1)) {
+                            nextWorld = worldInfo.getKey();
+                        }
+                    }
+                    for (Map.Entry<String, Integer> sectionInfo : sectionCodes.get(worldCode + 1).entrySet()) {
+                        if (sectionInfo.getValue() == 0) {
+                            nextSection = sectionInfo.getKey();
+                        }
+                    }
+                    nextLevel = "EASY";
+                }
+            }
+        }
+        nextStage[0] = nextWorld;
+        nextStage[1] = nextSection;
+        nextStage[2] = nextLevel;
+        return nextStage;
+    }
+
+    @Override
     public List<Status> findByStudentId(Long studentId) {
         return statusRepo.findByStudentId(studentId);
     }
 
     @Override
     public Status findByStudentIdAndCharacter(Long studentId, String character) {
+        return statusRepo.findByStudentIdAndCharacter(studentId, character);
+    }
+
+    @Override
+    public Status getCurrentStatus(Long studentId, String character) {
         Status status = statusRepo.findByStudentIdAndCharacter(studentId, character);
+        Status resultStatus = new Status(status, status.getId());
         Integer worldCode = worldCodes.get(status.getWorld());
-        status.setWorld(worldCode.toString());
+        resultStatus.setWorld(worldCode.toString());
         Integer sectionCode = sectionCodes.get(worldCode).get(status.getSection());
-        status.setSection(sectionCode.toString());
+        resultStatus.setSection(sectionCode.toString());
         String level = status.getLevel();
         if (level.equals("EASY")) {
-            status.setLevel("0");
+            resultStatus.setLevel("0");
         }
         if (level.equals("MEDIUM")) {
-            status.setLevel("1");
+            resultStatus.setLevel("1");
         }
         if (level.equals("HARD")) {
-            status.setLevel("2");
+            resultStatus.setLevel("2");
         }
-        return status;
+        return resultStatus;
+    }
+
+    @Override
+    public Status updateStatus(Long studentId, String character) {
+        Status status = statusRepo.findByStudentIdAndCharacter(studentId, character);
+        String[] nextStage = getNextStage(status);
+        String nextWorld = nextStage[0];
+        String nextSection = nextStage[1];
+        String nextLevel = nextStage[2];
+        status.setLevel(nextLevel);
+        status.setSection(nextSection);
+        status.setWorld(nextWorld);
+        statusRepo.save(status);
+        return statusRepo.save(status);
     }
 
     @Override

@@ -19,7 +19,7 @@ public class WorldInitializingController {
             @RequestParam Long studentId,
             @RequestParam String character
     ) {
-        Status studentStatusWithChar = statusService.findByStudentIdAndCharacter(studentId, character);
+        Status studentStatusWithChar = statusService.getCurrentStatus(studentId, character);
         return JSONConvert.JSONConverter(studentStatusWithChar);
     }
 }
