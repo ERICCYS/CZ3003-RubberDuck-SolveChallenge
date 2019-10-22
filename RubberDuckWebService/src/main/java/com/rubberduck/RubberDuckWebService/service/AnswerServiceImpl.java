@@ -2,8 +2,10 @@ package com.rubberduck.RubberDuckWebService.service;
 
 import com.rubberduck.RubberDuckWebService.model.Answer;
 import com.rubberduck.RubberDuckWebService.model.Question;
+import com.rubberduck.RubberDuckWebService.model.Student;
 import com.rubberduck.RubberDuckWebService.repo.AnswerRepo;
 import com.rubberduck.RubberDuckWebService.repo.QuestionRepo;
+import com.rubberduck.RubberDuckWebService.repo.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Autowired
     QuestionRepo questionRepo;
+
+    @Autowired
+    StudentRepo studentRepo;
 
     @Override
     public Answer findById(Long id) {
@@ -49,15 +54,18 @@ public class AnswerServiceImpl implements AnswerService {
         Long studentId = answer.getStudentId();
         Long questionId = answer.getQuestionId();
         Question question = questionRepo.findById(questionId);
+        Student student = studentRepo.findById(studentId);
 
         List<Answer> previousAnswers = answerRepo.findByStudentIdAndQuestionIdAndMode(studentId, questionId, "Q");
 
+        int mark;
         if (previousAnswers.size() >= 3) {
             awardMessage = "You have attempted too many times!";
         } else if (previousAnswers.size() == 0) {
-            int mark = question.getAward();
+            mark = question.getAward();
             answer.setReward(mark);
             awardMessage = "You got " + mark + " marks for this question";
+            student.addMark(mark);
         } else {
             for (Answer previousAnswer : previousAnswers) {
                 if (previousAnswer.isCorrect()) {
@@ -65,10 +73,13 @@ public class AnswerServiceImpl implements AnswerService {
                     return awardMessage;
                 }
             }
-            int mark = (int) (question.getAward() * (1 - 0.33 * previousAnswers.size()));
+            mark = (int) (question.getAward() * (1 - 0.33 * previousAnswers.size()));
             answer.setReward(mark);
             awardMessage = "You got " + mark + " marks for this question";
+            student.addMark(mark);
         }
+
+        studentRepo.save(student);
 
         return awardMessage;
     }

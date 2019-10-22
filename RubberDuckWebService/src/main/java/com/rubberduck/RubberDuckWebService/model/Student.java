@@ -24,4 +24,8 @@ public class Student extends User {
     public void setMark(int mark) {
         this.mark = mark;
     }
+
+    public void addMark(int mark) {
+        this.mark = this.mark + mark;
+    }
 }
