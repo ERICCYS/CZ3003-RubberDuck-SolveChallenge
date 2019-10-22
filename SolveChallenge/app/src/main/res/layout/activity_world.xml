@@ -42,7 +42,7 @@
                 android:background="#f5f0e3"
                 android:drawableTop="@drawable/img_requirements_world"
                 android:paddingTop="25dp"
-                android:text="Requiurements \nAnalysis"
+                android:text="Requiurements Analysis"
                 android:textAllCaps="false"
                 android:textColor="#000"
                 android:textSize="18sp" />
