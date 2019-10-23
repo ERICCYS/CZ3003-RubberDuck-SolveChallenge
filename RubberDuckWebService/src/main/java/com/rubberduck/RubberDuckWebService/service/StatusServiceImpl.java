@@ -113,6 +113,17 @@ public class StatusServiceImpl implements StatusService {
     @Override
     public Status getCurrentStatus(Long studentId, String character) {
         Status status = statusRepo.findByStudentIdAndCharacter(studentId, character);
+        if (status == null) {
+            status = new Status(studentId, character, "Requirement Gathering and Analysis", "Requirement Engineering", "EASY");
+            statusRepo.save(status);
+            Status resultStatus = new Status(status, status.getId());
+            resultStatus.setWorld("0");
+            resultStatus.setSection("0");
+            resultStatus.setLevel("0");
+            status = statusRepo.findByStudentIdAndCharacter(studentId, character);
+            resultStatus.setId(status.getId());
+            return resultStatus;
+        }
         Status resultStatus = new Status(status, status.getId());
         Integer worldCode = worldCodes.get(status.getWorld());
         resultStatus.setWorld(worldCode.toString());
