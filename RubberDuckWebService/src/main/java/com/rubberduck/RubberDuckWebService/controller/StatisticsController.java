@@ -3,13 +3,13 @@ package com.rubberduck.RubberDuckWebService.controller;
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.service.StatisticsService;
 import com.rubberduck.RubberDuckWebService.service.StatusService;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class StatisticsController {
@@ -31,7 +31,7 @@ public class StatisticsController {
     public String getSectionStatistics(
             @RequestParam String character
     ) {
-        List<Pair<String, String>> worldSections = statusService.getWorldAndSection();
+        Map<String, List<String>> worldSections = statusService.getWorldAndSection();
         return JSONConvert.JSONConverter(statisticsService.getSectionPerformance(character, worldSections));
     }
 

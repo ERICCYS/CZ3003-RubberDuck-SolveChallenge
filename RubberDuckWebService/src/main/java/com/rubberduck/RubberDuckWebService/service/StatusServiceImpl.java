@@ -3,7 +3,6 @@ package com.rubberduck.RubberDuckWebService.service;
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Status;
 import com.rubberduck.RubberDuckWebService.repo.StatusRepo;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -166,16 +165,18 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    public List<Pair<String, String>> getWorldAndSection() {
-        List<Pair<String, String>> worldSections = new ArrayList<>();
+    public Map<String, List<String>> getWorldAndSection() {
+        Map<String, List<String>> worldSections = new LinkedHashMap<>();
         String world;
         String section;
         for (Map.Entry<String, Integer> worldInfo : worldCodes.entrySet()) {
             world = worldInfo.getKey();
+            List<String> sectionList = new ArrayList<>();
             for (Map.Entry<String, Integer> sectionInfo : sectionCodes.get(worldInfo.getValue()).entrySet()) {
                 section = sectionInfo.getKey();
-                worldSections.add(new Pair<>(world, section));
+                sectionList.add(section);
             }
+            worldSections.put(world, sectionList);
         }
         return worldSections;
     }

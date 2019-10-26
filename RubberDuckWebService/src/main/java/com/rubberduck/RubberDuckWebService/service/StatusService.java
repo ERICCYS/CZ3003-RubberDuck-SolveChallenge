@@ -1,9 +1,9 @@
 package com.rubberduck.RubberDuckWebService.service;
 
 import com.rubberduck.RubberDuckWebService.model.Status;
-import javafx.util.Pair;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StatusService {
 
@@ -19,7 +19,7 @@ public interface StatusService {
 
     List<String> getWorlds();
 
-    List<Pair<String, String>> getWorldAndSection();
+    Map<String, List<String>> getWorldAndSection();
 
     Status save(Status status);
 

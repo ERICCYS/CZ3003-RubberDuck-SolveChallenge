@@ -6,12 +6,12 @@ import com.rubberduck.RubberDuckWebService.model.Question;
 import com.rubberduck.RubberDuckWebService.model.WorldQuestion;
 import com.rubberduck.RubberDuckWebService.repo.AnswerRepo;
 import com.rubberduck.RubberDuckWebService.repo.QuestionRepo;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
@@ -272,21 +272,24 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
-    public List<Object> getSectionPerformance(String character, List<Pair<String, String>> worldSections) {
+    public List<Object> getSectionPerformance(String character, Map<String, List<String>> worldSections) {
         List<Object> questionPerformances = this.getQuestionPerformance(character);
         List<Object> sectionPerformances = new ArrayList<>();
 
-        for (Pair<String, String> worldSection : worldSections) {
+        for (Map.Entry<String, List<String>> worldSection : worldSections.entrySet()) {
             String world = worldSection.getKey();
-            String section = worldSection.getValue();
-            SectionPerformance sectionPerformance = new SectionPerformance(world, section, 0,0d);
-            for (Object questionPerformance : questionPerformances) {
-                if (((QuestionPerformance) questionPerformance).getQuestionWorld().equals(world) && ((QuestionPerformance) questionPerformance).getQuestionSection().equals(section)) {
-                    sectionPerformance.addAttempt(((QuestionPerformance) questionPerformance).getQuestionAttempts());
-                    sectionPerformance.addScore(((QuestionPerformance) questionPerformance).getQuestionAverageScore());
+            List<String> sections = worldSection.getValue();
+            for (String section : sections) {
+                SectionPerformance sectionPerformance = new SectionPerformance(world, section, 0,0d);
+                for (Object questionPerformance : questionPerformances) {
+                    if (((QuestionPerformance) questionPerformance).getQuestionWorld().equals(world) && ((QuestionPerformance) questionPerformance).getQuestionSection().equals(section)) {
+                        sectionPerformance.addAttempt(((QuestionPerformance) questionPerformance).getQuestionAttempts());
+                        sectionPerformance.addScore(((QuestionPerformance) questionPerformance).getQuestionAverageScore());
+                    }
                 }
+                sectionPerformances.add(sectionPerformance);
             }
-            sectionPerformances.add(sectionPerformance);
+
         }
         return sectionPerformances;
     }
