@@ -3,13 +3,11 @@ package com.rubberduck.RubberDuckWebService.service;
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Status;
 import com.rubberduck.RubberDuckWebService.repo.StatusRepo;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class StatusServiceImpl implements StatusService {
@@ -17,7 +15,7 @@ public class StatusServiceImpl implements StatusService {
     @Autowired
     StatusRepo statusRepo;
 
-    public static final Map<String, Integer> worldCodes = new HashMap<String, Integer>(){
+    private static final Map<String, Integer> worldCodes = new LinkedHashMap<String, Integer>(){
         {
             put("Requirement Gathering and Analysis", 0);
             put("Design", 1);
@@ -27,29 +25,29 @@ public class StatusServiceImpl implements StatusService {
         }
     };
 
-    public static final List<Map<String, Integer>> sectionCodes = new ArrayList<Map<String, Integer>>(){
+    private static final List<Map<String, Integer>> sectionCodes = new ArrayList<Map<String, Integer>>(){
         {
-            add(new HashMap<String, Integer>() {{
+            add(new LinkedHashMap<String, Integer>() {{
                 put("Requirement Engineering", 0);
                 put("Requirement Analysis", 1);
                 put("Requirement Specification and Validations", 2);
             }});
-            add(new HashMap<String, Integer>() {{
+            add(new LinkedHashMap<String, Integer>() {{
                 put("Design Phrase I", 0);
                 put("Design Phrase II", 1);
                 put("Design Phrase III", 2);
             }});
-            add(new HashMap<String, Integer>() {{
+            add(new LinkedHashMap<String, Integer>() {{
                 put("Implementation FE Dev", 0);
                 put("Implementation BE Dev", 1);
                 put("Implementation ALL", 2);
             }});
-            add(new HashMap<String, Integer>() {{
+            add(new LinkedHashMap<String, Integer>() {{
                 put("Testing", 0);
                 put("Deployment", 1);
                 put("DevOps", 2);
             }});
-            add(new HashMap<String, Integer>() {{
+            add(new LinkedHashMap<String, Integer>() {{
                 put("Maintenance I", 0);
                 put("Maintenance II", 1);
                 put("Maintenance III", 2);
@@ -154,6 +152,32 @@ public class StatusServiceImpl implements StatusService {
         status.setWorld(nextWorld);
         statusRepo.save(status);
         return statusRepo.save(status);
+    }
+
+    @Override
+    public List<String> getWorlds() {
+        List<String> worlds = new ArrayList<>();
+        String world;
+        for (Map.Entry<String, Integer> worldInfo : worldCodes.entrySet()) {
+            world = worldInfo.getKey();
+            worlds.add(world);
+        }
+        return worlds;
+    }
+
+    @Override
+    public List<Pair<String, String>> getWorldAndSection() {
+        List<Pair<String, String>> worldSections = new ArrayList<>();
+        String world;
+        String section;
+        for (Map.Entry<String, Integer> worldInfo : worldCodes.entrySet()) {
+            world = worldInfo.getKey();
+            for (Map.Entry<String, Integer> sectionInfo : sectionCodes.get(worldInfo.getValue()).entrySet()) {
+                section = sectionInfo.getKey();
+                worldSections.add(new Pair<>(world, section));
+            }
+        }
+        return worldSections;
     }
 
     @Override
