@@ -2,11 +2,28 @@ plugins {
 	id 'org.springframework.boot' version '2.1.8.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'com.palantir.docker' version '0.22.1'
 }
 
 group = 'com.rubberduck'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+bootJar {
+	version =  '0.1.0'
+}
+
+task unpack(type: Copy) {
+	dependsOn bootJar
+	from(zipTree(tasks.bootJar.outputs.files.singleFile))
+	into("build/dependency")
+}
+
+docker {
+	name "${project.group}/solve_challenge"
+	copySpec.from(tasks.unpack.outputs).into("dependency")
+	buildArgs(['DEPENDENCY': "dependency"])
+}
 
 configurations {
 	developmentOnly
@@ -25,4 +42,8 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile "org.springframework.boot:spring-boot-starter-web"
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile 'mysql:mysql-connector-java'
+	testCompile "org.springframework.boot:spring-boot-starter-test"
 }
