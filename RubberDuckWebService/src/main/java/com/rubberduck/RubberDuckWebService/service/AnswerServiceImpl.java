@@ -60,27 +60,27 @@ public class AnswerServiceImpl implements AnswerService {
 
         int mark;
         if (previousAnswers.size() >= 3) {
-            awardMessage = "You have attempted too many times!";
+            awardMessage = "You have attempted too many times! Correct answer is " + question.getCorrectChoice();
         } else if (previousAnswers.size() == 0) {
             mark = question.getAward();
             answer.setReward(mark);
+            answerRepo.save(answer);
             awardMessage = "You got " + mark + " marks for this question";
             student.addMark(mark);
         } else {
             for (Answer previousAnswer : previousAnswers) {
                 if (previousAnswer.isCorrect()) {
-                    awardMessage = "You have answered this question correctly before!";
+                    awardMessage = "You have answered this question correctly before! Correct answer is " + question.getCorrectChoice();
                     return awardMessage;
                 }
             }
             mark = (int) (question.getAward() * (1 - 0.33 * previousAnswers.size()));
             answer.setReward(mark);
+            answerRepo.save(answer);
             awardMessage = "You got " + mark + " marks for this question";
             student.addMark(mark);
         }
-
         studentRepo.save(student);
-
         return awardMessage;
     }
 
@@ -94,7 +94,7 @@ public class AnswerServiceImpl implements AnswerService {
         try {
             if (!checkAnswer(answer)) {
                 resultMessage = "Wrong Answer";
-            } else if (answer.getMode().equals("Q")){
+            } else if (answer.getMode().equals("Q")) {
                 resultMessage = countAward(answer);
             } else {
                 resultMessage = "Correct!";
@@ -102,7 +102,7 @@ public class AnswerServiceImpl implements AnswerService {
         } catch (NullPointerException e) {
             return "Question Invalid";
         }
-        answerRepo.save(answer);
+
         return resultMessage;
     }
 

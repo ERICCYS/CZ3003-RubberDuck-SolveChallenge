@@ -13,6 +13,8 @@ public interface AnswerRepo extends JpaRepository<Answer, Integer> {
 
     List<Answer> findByQuestionId(Long questionId);
 
+    List<Answer> findByQuestionIdAndMode(Long questionId, String mode);
+
     List<Answer> findByStudentIdAndQuestionIdAndMode(Long studentId, Long questionId, String mode);
 
     Answer save(Answer answer);
