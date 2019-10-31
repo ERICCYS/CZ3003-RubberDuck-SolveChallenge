@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity_Section"
-    android:background="@drawable/background_signin_1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background_signin_6">
 
 
 <!--        <TextView-->
