@@ -15,10 +15,12 @@ public class User {
     @Column(name = "ID", unique = true)
     private Long id;
 
-    @Column(name = "FIRST_NAME", nullable = false, length = 30)
+    @Column(name = "FIRST_NAME", nullable = false)
+    @Convert(converter = StringEncryptDecryptConverter.class)
     private String firstName;
 
-    @Column(name = "LAST_NAME", nullable = false, length = 15)
+    @Column(name = "LAST_NAME", nullable = false)
+    @Convert(converter = StringEncryptDecryptConverter.class)
     private String lastName;
 
     @Column(name = "USERNAME", nullable = false, unique = true)
