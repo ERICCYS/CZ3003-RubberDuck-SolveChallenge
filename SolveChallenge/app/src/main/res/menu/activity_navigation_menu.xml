@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_leaderboard_menu"
+            android:icon="@drawable/scorecard_drwaer"
+            android:title="Leaderboard" />
+        <item
+            android:id="@+id/item_feedback_menu"
+            android:icon="@drawable/feedback_drawer"
+            android:title="Create Challenge" />
+        <item
+            android:id="@+id/item_assignment_menu"
+            android:icon="@drawable/feedback_drawer"
+            android:title="Assignment"/>
+        <item
+            android:id="@+id/item_settings_menu"
+            android:icon="@drawable/setting_drawer"
+            android:title="Settings" />
+
+    </group>
+
+    <item android:title="More">
+        <menu>
+            <item
+                android:id="@+id/item_share_menu"
+                android:icon="@drawable/share_drawer"
+                android:title="Share" />
+
+            <item
+                android:id="@+id/item_help_menu"
+                android:icon="@drawable/help_drawer"
+                android:title="Help" />
+            <item
+                android:id="@+id/item_about_menu"
+                android:icon="@drawable/about_us_drawer"
+                android:title="Visit Developer" />
+        </menu>
+    </item>
+
+</menu>

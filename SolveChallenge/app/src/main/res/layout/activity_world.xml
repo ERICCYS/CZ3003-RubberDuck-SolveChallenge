@@ -7,12 +7,64 @@
     tools:context=".Activity_World"
     android:background="@drawable/bacground_world">
 
+<!--    <android.support.v7.widget.LinearLayoutCompat-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_margin="2dp">-->
+
+<!--        <android.support.v7.widget.LinearLayoutCompat-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_intro_World"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_weight="0.5"-->
+<!--                android:drawableTop="@drawable/img_design_world"-->
+<!--                android:padding="25dp"-->
+<!--                android:background="#E640BFC1"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="#2f2e2e"-->
+<!--                android:textSize="18dp"-->
+<!--                android:text="Test"-->
+<!--                >-->
+<!--            </Button>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_analysis_World"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_weight="0.5"-->
+<!--                android:drawableTop="@drawable/img_requirements_world"-->
+<!--                android:padding="26dp"-->
+<!--                android:background="#E640BFC1"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="#2f2e2e"-->
+<!--                android:textSize="18dp"-->
+<!--                android:text="Test"-->
+<!--                >-->
+<!--            </Button>-->
+
+
+<!--        </android.support.v7.widget.LinearLayoutCompat>-->
+
+
+<!--    </android.support.v7.widget.LinearLayoutCompat>-->
+
+
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +82,8 @@
                 android:paddingTop="25dp"
                 android:textAllCaps="false"
                 android:textColor="#2f2e2e"
-                android:textSize="18sp"/>
+                android:textSize="18dp"
+                android:text="Requirement Gathering and Analysis"/>
 
 
             <Button
@@ -41,16 +94,18 @@
                 android:layout_weight="1"
                 android:background="#f5f0e3"
                 android:drawableTop="@drawable/img_requirements_world"
-                android:paddingTop="25dp"
+                android:paddingTop="29dp"
                 android:textAllCaps="false"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:text="\nDeisgn"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="2dp">
 
             <Button
                 android:id="@+id/btn_design_World"
@@ -70,7 +125,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="2dp"
+            >
 
             <Button
                 android:id="@+id/btn_testing_World"
@@ -84,6 +141,7 @@
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="18sp" />
+            <!--                android:background="#80000000-->
 
             <Button
                 android:id="@+id/btn_maintainance_World"
@@ -103,3 +161,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+

@@ -19,7 +19,9 @@ public class Activity_World extends AppCompatActivity {
     private Button enter_testing_btn ;
     private Button enter_maintenance_btn;
 
-    private String[] worlds = Config.getWorlds();
+    private String[] worlds = {"Requirement Gathering and Analysis", "\nDesign", "Implementation", "Testing and Deployment", "Maintenance"};
+
+    private String[] config_worlds = Config.getWorlds();
     private ArrayList<Button> btns = new ArrayList<>();
     private int world_upperbound = App_Data.getWorld_upperbound();
 
@@ -42,7 +44,7 @@ public class Activity_World extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_world);
+        setContentView(R.layout.activity_navigation);
         this.getSupportActionBar().hide();
 
         enter_intro_btn = (Button) findViewById(R.id.btn_intro_World);
@@ -65,7 +67,7 @@ public class Activity_World extends AppCompatActivity {
                 btn.setTextColor(Color.parseColor("#000000"));
                 setOnClick(btn, i);
             } else {
-                btn.setTextColor(Color.parseColor("#DDDDDD00"));
+                btn.setTextColor(Color.parseColor("#80DDDDDD"));
             }
 
         }

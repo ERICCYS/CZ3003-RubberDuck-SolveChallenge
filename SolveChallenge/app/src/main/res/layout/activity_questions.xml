@@ -10,7 +10,7 @@
     android:paddingTop="20dp"
     android:orientation="vertical"
     tools:context=".Activity_Questions">
-
+x
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

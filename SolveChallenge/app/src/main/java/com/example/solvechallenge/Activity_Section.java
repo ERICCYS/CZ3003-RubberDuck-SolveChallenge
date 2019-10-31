@@ -21,7 +21,7 @@ public class Activity_Section extends AppCompatActivity {
         setContentView(R.layout.activity_section);
         this.getSupportActionBar().hide();
 
-//        enter_level_btn = (Button) findViewById(R.id.btn_enterlevel_Section); // type name Activity_name
+        enter_level_btn = (Button) findViewById(R.id.btn_sec1_section); // type name Activity_name
 
         enter_level_btn.setOnClickListener(new View.OnClickListener(){
 

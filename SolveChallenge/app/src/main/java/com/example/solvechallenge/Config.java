@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Config {
 
-    public static final String baseUrl = "http://10.27.103.141:8081/api/";
+    public static final String baseUrl = "http://10.27.135.95:8081/api/";
 
     public static final String[] characters = {"Product Manager", "Quality Manager", "Lead Developer"};
 
