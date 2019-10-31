@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity_Section"
-    android:background="@drawable/bacground_world"
+    android:background="@drawable/background_signin_6"
     android:orientation="vertical">
 
 
