@@ -234,6 +234,7 @@ public class Activity_Questions extends AppCompatActivity {
 //                        JSONObject question_1 = (JSONObject) r.get(0);
 //                        System.out.println(question_1);
 //                        System.out.println(question_1.get("description"));
+                        System.out.print(r);
                         setQuestionsInJson(r);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -275,7 +276,9 @@ public class Activity_Questions extends AppCompatActivity {
         // Get Questions
 
         getQuestionsInJson(char_selected, current_world_str, current_section_str, current_level_str);
-
+        System.out.print("\n\n\n###\n\n\n");
+        System.out.print(questionsInJson);
+        System.out.print("\n\n\nfinish print\n\n\n");
         // Set button listener
 
         for (int i = 0; i < 4; i++) {
