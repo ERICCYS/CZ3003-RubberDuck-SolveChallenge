@@ -16,7 +16,7 @@ import com.example.solvechallenge.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.product_manager, R.string.quality_manager, R.string.lead_developer};
+    private static final int[] TAB_TITLES = new int[]{R.string.lead_developer, R.string.product_manager, R.string.quality_manager};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {

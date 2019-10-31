@@ -27,7 +27,7 @@
         android:layout_marginEnd="50dp"
         android:layout_weight="1"
         android:text="Easy"
-        android:background="@drawable/easy_button"
+        android:background="@drawable/btn_easy_level"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="25sp" />
@@ -41,7 +41,7 @@
         android:layout_marginEnd="50dp"
         android:layout_weight="1"
         android:text="Medium"
-        android:background="@drawable/medium_button"
+        android:background="@drawable/btn_medium_level"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="25sp" />
@@ -56,7 +56,7 @@
         android:layout_marginBottom="200dp"
         android:layout_weight="1"
         android:text="Hard"
-        android:background="@drawable/hard_button"
+        android:background="@drawable/btn_hard_level"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="25sp" />

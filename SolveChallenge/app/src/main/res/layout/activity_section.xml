@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity_Section"
-    android:background="@drawable/bacground_world"
+    android:background="@drawable/background_signin_1"
     android:orientation="vertical">
 
 
@@ -25,44 +25,44 @@
         <Button
             android:id="@+id/btn_sec1_section"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="5dp"
+            android:layout_height="180dp"
+            android:layout_margin="20dp"
             android:layout_weight="1"
             android:drawableTop="@drawable/img_one_section"
             android:paddingTop="25dp"
-            android:text="Section 1"
-            android:background="#FFFFFFFF"
+            android:text="Section one"
+            android:background="@drawable/btn_easy_level"
             android:textAllCaps="false"
-            android:textColor="#2f2e2e"
-            android:textSize="18sp" />
+            android:textColor="#000"
+            android:textSize="25sp" />
 
         <Button
             android:id="@+id/btn_sec2_section"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="5dp"
+            android:layout_height="180dp"
+            android:layout_margin="20dp"
             android:layout_weight="1"
             android:drawableTop="@drawable/img_two_section"
             android:paddingTop="25dp"
             android:text="Section 2"
             android:textAllCaps="false"
-            android:background="#FFFFFFFF"
-            android:textColor="#2f2e2e"
-            android:textSize="18sp" />
+            android:background="@drawable/btn_medium_level"
+            android:textColor="#000"
+            android:textSize="25sp" />
 
         <Button
             android:id="@+id/btn_sec3_section"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="5dp"
+            android:layout_height="180dp"
+            android:layout_margin="20dp"
             android:layout_weight="1"
-            android:background="#FFFFFFFF"
+            android:background="@drawable/btn_hard_level"
             android:drawableTop="@drawable/img_three_section"
             android:paddingTop="25dp"
             android:text="Section 3"
             android:textAllCaps="false"
-            android:textColor="#2f2e2e"
-            android:textSize="18sp" />
+            android:textColor="#000"
+            android:textSize="25sp" />
 
 
         <!--        <Button-->
