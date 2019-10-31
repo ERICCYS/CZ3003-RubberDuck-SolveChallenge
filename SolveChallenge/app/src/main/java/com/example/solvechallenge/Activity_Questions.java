@@ -147,7 +147,7 @@ public class Activity_Questions extends AppCompatActivity {
             score = score+mark;
             showNextQuestion();
         }
-        
+
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 
     }

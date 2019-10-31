@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.support.annotation.Nullable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -21,9 +20,10 @@ public class PlaceholderFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "character_selection_number";
     private static final int[] resources = {
+            R.drawable.lead_developer,
             R.drawable.product_manager,
             R.drawable.quality_manager,
-            R.drawable.lead_developer};
+            };
 
     private PageViewModel pageViewModel;
 
@@ -51,7 +51,7 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_activity__select_character, container, false);
+        View root = inflater.inflate(R.layout.fragment_activity_select_character, container, false);
         final ImageView imageView = root.findViewById(R.id.character_image);
 
         pageViewModel.getIndex().observe(this, new Observer<Integer>() {
