@@ -31,7 +31,7 @@
             android:drawableTop="@drawable/img_ballon_section"
             android:paddingTop="25dp"
             android:text="Section1"
-            android:background="#C4FFFFFF"
+            android:background="#FFFFFFFF"
             android:textAllCaps="false"
             android:textColor="#2f2e2e"
             android:textSize="18sp" />
@@ -46,7 +46,7 @@
             android:paddingTop="25dp"
             android:text="Section1"
             android:textAllCaps="false"
-            android:background="#C4FFFFFF"
+            android:background="#FFFFFFFF"
             android:textColor="#2f2e2e"
             android:textSize="18sp" />
 
@@ -56,7 +56,7 @@
             android:layout_height="200dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="#C4FFFFFF"
+            android:background="#FFFFFFFF"
             android:drawableTop="@drawable/img_icecream_section"
             android:paddingTop="25dp"
             android:text="Section1"

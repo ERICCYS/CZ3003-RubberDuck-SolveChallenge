@@ -14,12 +14,13 @@
         android:layout_centerHorizontal="true"
         android:orientation="vertical">
 
+
         <ImageButton
             android:id="@+id/imgbtn_easylevel_Level"
             android:layout_width="350dp"
             android:layout_height="100dp"
             app:srcCompat="@drawable/img_easy_level"
-            android:layout_gravity="center_horizontal"
+
             />
 
         <ImageButton

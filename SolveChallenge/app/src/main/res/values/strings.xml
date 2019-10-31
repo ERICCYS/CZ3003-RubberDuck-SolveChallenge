@@ -5,7 +5,8 @@
         <item>Teacher</item>
     </string-array>
     <string name="title_activity__select_character">Activity_SelectCharacter</string>
+    <string name="lead_developer">Lead Developer</string>
     <string name="product_manager">Product Manager</string>
     <string name="quality_manager">Quality Manager</string>
-    <string name="lead_developer">Lead Developer</string>
+
 </resources>

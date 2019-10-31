@@ -31,7 +31,7 @@
         android:id="@+id/tv_question_Questions"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:text="Which thing is alive?"
+        android:text="Q"
         android:textSize="20sp"
         android:padding="8dp"
         android:layout_marginBottom="40dp"/>

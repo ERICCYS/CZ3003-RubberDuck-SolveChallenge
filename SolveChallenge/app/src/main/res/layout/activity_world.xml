@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_World"
-    android:background="@drawable/bacground_world">
+    tools:context=".Activity_World">
 
 
 
@@ -29,7 +28,7 @@
                 android:drawableTop="@drawable/img_design_world"
                 android:paddingTop="25dp"
                 android:textAllCaps="false"
-                android:textColor="#2f2e2e"
+                android:textColor="#000"
                 android:textSize="18sp"/>
 
 
@@ -62,7 +61,7 @@
                 android:drawableLeft="@drawable/img_design_world"
                 android:paddingLeft="45dp"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -82,7 +81,7 @@
                 android:drawableTop="@drawable/img_design_world"
                 android:paddingTop="25dp"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:textSize="18sp" />
 
             <Button
@@ -96,7 +95,7 @@
                 android:paddingTop="25dp"
                 android:text="Maintainance"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:textSize="18sp" />
         </LinearLayout>
 

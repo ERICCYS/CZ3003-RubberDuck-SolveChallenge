@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:alpha=".90"
-    android:background="@drawable/bacground"
+    android:background="@drawable/bacground_signin"
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context="com.cz3003.rubberduck.solvechallenge.LoginPage">

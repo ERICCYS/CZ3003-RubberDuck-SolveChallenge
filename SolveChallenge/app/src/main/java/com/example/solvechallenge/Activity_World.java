@@ -62,10 +62,9 @@ public class Activity_World extends AppCompatActivity {
             Button btn = btns.get(i);
             btn.setText(worlds[i]);
             if (i <= world_upperbound) {
-                btn.setTextColor(Color.parseColor("#000000"));
                 setOnClick(btn, i);
             } else {
-                btn.setTextColor(Color.parseColor("#DDDDDD00"));
+                btn.setBackgroundColor(Color.parseColor("#ffffffff"));
             }
 
         }

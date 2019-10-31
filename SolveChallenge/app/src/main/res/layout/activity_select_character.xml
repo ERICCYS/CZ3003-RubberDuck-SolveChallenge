@@ -5,36 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity_SelectCharacter"
-    android:background="@drawable/bacground_charac_select">
+    android:background="@drawable/background_char_select_2">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="?actionBarSize"
-            android:padding="@dimen/appbar_padding"
-
-            android:text="Choose your character..."
-            android:textSize="25sp"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="#FFF"/>
-
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_characSelect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary" />
+            android:background="#ffffff"
+            app:tabTextColor="#000"
+            android:scrollbarSize="50dp"/>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
@@ -48,6 +35,7 @@
         android:layout_margin="50dp"
         android:src="@drawable/done_icon"
         app:fabCustomSize="100dp"
-        app:maxImageSize="72dp" />
+        app:maxImageSize="72dp"
+        />
 
 </android.support.design.widget.CoordinatorLayout>

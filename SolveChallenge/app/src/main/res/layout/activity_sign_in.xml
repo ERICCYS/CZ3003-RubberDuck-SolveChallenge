@@ -4,34 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:alpha=".90"
-    android:background="@drawable/bacground"
+    android:background="@drawable/background_signin_2"
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context="com.example.solvechallenge.Activity_SignIn">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="#fff"
-        android:textSize="30dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/text_appname_signin"
-        />
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/app_name"-->
+<!--        android:textColor="#000"-->
+<!--        android:textSize="30dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:layout_marginBottom="5dp"-->
+<!--        android:id="@+id/text_appname_signin"-->
+<!--        />-->
 
     <ImageView
         android:id="@+id/img_qestionmark_signin"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="20dp"
-        android:layout_below="@id/text_appname_signin"
         android:scaleType="centerCrop"
-        android:src="@drawable/question_mark" />
+        android:src="@drawable/app_icon_signin_2" />
 
     <android.support.v7.widget.AppCompatSpinner
         android:layout_centerHorizontal="true"
@@ -41,6 +41,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
         android:id="@+id/user_role_spinner"
         android:textAlignment="center"/>
 
