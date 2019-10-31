@@ -38,6 +38,7 @@ def insert_students():
         }
     ]
     for datum in data:
+        # depends on your server
         r = requests.post("http://localhost:8082/api/student", json=datum)
         print("##############")
         print(r.json())
@@ -54,7 +55,8 @@ def insert_teachers():
         },
     ]
     for datum in data:
-        r = requests.post("http://localhost:8082/api/student", json=datum)
+        # depends on your server
+        r = requests.post("http://localhost:8082/api/teacher", json=datum)
         print("##############")
         print(r.json())
         print("##############")
@@ -333,14 +335,17 @@ def insert_questions():
             "bonus" : True
         }
     ]
-    headers = {'Authorization': '123'}
+
+    # Need to put the correct 'Authroization' here to do the authentication
+    headers = {'Authorization': 'TJhjh9+Ww8bmtS21WgaelDmEWSN7ckjDj3VUBAZ3Vp54gq96odaF7fki7M0uRkqZllmPQjsHVgdILXAYlmaXMV7lBj2kcztrhTAOIYORsT2EroYWEi9UxAOtKH6WLOJa'}
 
     for datum in data:
+        # depends on your server
         r = requests.post("http://localhost:8082/api/question", json=datum, headers=headers)
         print("##############")
         print(r.json())
         print("##############")
 
-insert_students()
-insert_questions()
-
+# insert_students()
+# insert_teachers()
+# insert_questions()
