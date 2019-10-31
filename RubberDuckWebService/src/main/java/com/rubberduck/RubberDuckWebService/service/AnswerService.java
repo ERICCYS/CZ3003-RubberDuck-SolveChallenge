@@ -14,9 +14,7 @@ public interface AnswerService {
 
     boolean checkAnswer(Answer answer);
 
-    String countAward(Answer answer);
-
-    String save(Answer answer);
+    Object save(Answer answer);
 
     void delete(Answer answer);
 }
