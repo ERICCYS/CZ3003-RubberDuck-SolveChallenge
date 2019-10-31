@@ -1,5 +1,7 @@
 package com.rubberduck.RubberDuckWebService.model;
 
+import com.rubberduck.RubberDuckWebService.converter.StringEncryptDecryptConverter;
+
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -20,6 +22,7 @@ public class User {
     private String lastName;
 
     @Column(name = "USERNAME", nullable = false, unique = true)
+    @Convert(converter = StringEncryptDecryptConverter.class)
     private String userName;
 
     @Column(name = "PASSWORD", nullable = false)
