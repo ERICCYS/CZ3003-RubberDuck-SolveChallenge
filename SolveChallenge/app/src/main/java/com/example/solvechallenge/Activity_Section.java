@@ -19,6 +19,7 @@ public class Activity_Section extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section);
+        enter_level_btn = findViewById(R.id.btn_sec1_section);
         this.getSupportActionBar().hide();
 
 //        enter_level_btn = (Button) findViewById(R.id.btn_enterlevel_Section); // type name Activity_name
