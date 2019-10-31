@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Config {
 
+
+//    public static final String baseUrl = "http://10.27.185.112:8082/api/";
     public static final String baseUrl = "http://206.189.151.97:8082/api/";
 
     public static final String[] characters = {"Product Manager", "Quality Manager", "Lead Developer"};
@@ -66,6 +68,10 @@ public class Config {
 
 
 
+    public static final String[]levels = {"Easy", "Medium", "Hard"};
+
+
+
 //        add(new ArrayList<String>(){Arrays.asList("Requirement Engineering","Requirement Analysis","Requirement Specification and Validations")};);
 //    public static final List<Map<String, Integer>> sectionCodes = new ArrayList<Map<String, Integer>>(){
 //        {
@@ -120,5 +126,9 @@ public class Config {
 
     public static ArrayList<ArrayList<String>> getSections() {
         return sections;
+    }
+
+    public static String[] getLevels() {
+        return levels;
     }
 }
