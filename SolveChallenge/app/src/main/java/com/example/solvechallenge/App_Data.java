@@ -8,8 +8,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class App_Data {
 
-    public static String baseUrl = "http://10.27.103.141:8081/api/";
-
     public static Long userId;
     public static String accessToken;
 
@@ -30,10 +28,6 @@ public class App_Data {
 
     public static String getAccessToken() {
         return accessToken;
-    }
-
-    public static String getBaseUrl() {
-        return baseUrl;
     }
 
     public static String getCharacter() {
