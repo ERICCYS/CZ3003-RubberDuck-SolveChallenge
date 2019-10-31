@@ -1,51 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Level">
-
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical">
-
-
-        <ImageButton
-            android:id="@+id/imgbtn_easylevel_Level"
-            android:layout_width="350dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/img_easy_level"
-
-            />
-
-        <ImageButton
-            android:layout_marginTop="50dp"
-            android:id="@+id/imgbtn_midlevel_Level"
-            android:layout_width="350dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/img_medium_level"
-            android:layout_gravity="center_horizontal"
-            />
-
-        <ImageButton
-            android:layout_marginTop="50dp"
-            android:id="@+id/imgbtn_hardlevel_Level"
-            android:layout_width="350dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/img_hard_level"
-            android:layout_gravity="center_horizontal"
-            />
-
-
-    </LinearLayout>
+    tools:context=".Activity_Level"
+    android:background="@drawable/background_signin_1"
+    android:orientation="vertical">
 
 
 
+<!--    <LinearLayout-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:orientation="vertical">-->
 
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/imgbtn_easylevel_Level"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_weight="1"
+        android:text="Easy"
+        android:background="@drawable/easy_button"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/imgbtn_midlevel_Level"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_weight="1"
+        android:text="Medium"
+        android:background="@drawable/medium_button"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/imgbtn_hardlevel_Level"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="200dp"
+        android:layout_weight="1"
+        android:text="Hard"
+        android:background="@drawable/hard_button"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/imgbtn_easylevel_Level"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            app:srcCompat="@drawable/img_easy_level"-->
+
+<!--            />-->
+
+<!--        <ImageButton-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:id="@+id/imgbtn_midlevel_Level"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            app:srcCompat="@drawable/img_medium_level"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            />-->
+
+<!--        <ImageButton-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:id="@+id/imgbtn_hardlevel_Level"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            app:srcCompat="@drawable/img_hard_level"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            />-->
+
+
+<!--    </LinearLayout>-->
+
+
+
+
+
+</LinearLayout>

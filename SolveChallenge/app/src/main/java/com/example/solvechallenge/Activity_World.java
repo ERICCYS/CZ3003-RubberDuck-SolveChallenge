@@ -2,6 +2,7 @@ package com.example.solvechallenge;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -64,7 +65,11 @@ public class Activity_World extends AppCompatActivity {
             if (i <= world_upperbound) {
                 setOnClick(btn, i);
             } else {
-                btn.setBackgroundColor(Color.parseColor("#ffffffff"));
+//                btn.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.ADD);
+                btn.setClickable(false);
+                btn.setAlpha(0.2f);
+
+//                btn.setBackgroundColor(Color.parseColor("#ffffffff"));
             }
 
         }

@@ -54,7 +54,8 @@ public class Activity_Section extends AppCompatActivity {
             if (i <= section_upperbound) {
                 setOnClick(btn, i);
             } else {
-                btn.setBackgroundColor(Color.parseColor("#c4ffffff"));
+//                btn.setBackgroundColor(Color.parseColor("#c4ffffff"));
+                btn.setAlpha(0.2f);
             }
 
         }
