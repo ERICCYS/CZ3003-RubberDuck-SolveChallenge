@@ -20,6 +20,8 @@ public class Activity_World extends AppCompatActivity {
     private Button enter_testing_btn ;
     private Button enter_maintenance_btn;
 
+    private Button enter_leaderboard;
+
     private String[] worlds = Config.getWorlds();
     private ArrayList<Button> btns = new ArrayList<>();
     private int world_upperbound = App_Data.getWorld_upperbound();
@@ -45,6 +47,15 @@ public class Activity_World extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_world);
         this.getSupportActionBar().hide();
+
+        enter_leaderboard = findViewById(R.id.btn_leaderboard_world);
+        enter_leaderboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_World.this, Activity_Leaderboard.class);
+                startActivity(intent);
+            }
+        });
 
         enter_intro_btn = (Button) findViewById(R.id.btn_intro_World);
         enter_analysis_btn = (Button) findViewById(R.id.btn_analysis_World);
