@@ -100,7 +100,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp">
 
@@ -110,7 +110,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="#00E48954"
+                android:background="@drawable/btn_leaderboard_world"
                 android:drawableTop="@drawable/img_leaderboard_world"
                 android:textAllCaps="false"
                 android:textColor="#000"
@@ -124,12 +124,12 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="#00C7E763"
+                android:background="@drawable/btn_leaderboard_world"
                 android:drawableTop="@drawable/img_challenge_world"
                 android:textAllCaps="false"
                 android:textColor="#000"
                 android:paddingTop="20dp"
-                android:text="Challenge"
+                android:text="Create Challenge"
                 android:textSize="18sp" />
 
             <Button
@@ -138,7 +138,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="#00C7E763"
+                android:background="@drawable/btn_leaderboard_world"
                 android:drawableTop="@drawable/img_assignment_world"
                 android:textAllCaps="false"
                 android:paddingTop="20dp"
