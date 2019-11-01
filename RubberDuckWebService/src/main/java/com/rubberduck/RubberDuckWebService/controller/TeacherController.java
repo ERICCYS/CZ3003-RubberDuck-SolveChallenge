@@ -2,6 +2,7 @@ package com.rubberduck.RubberDuckWebService.controller;
 
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.ValidationResponse;
+import com.rubberduck.RubberDuckWebService.model.Student;
 import com.rubberduck.RubberDuckWebService.model.Teacher;
 import com.rubberduck.RubberDuckWebService.service.TeacherService;
 import com.rubberduck.RubberDuckWebService.service.ValidationServiceImpl;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -33,6 +35,20 @@ public class TeacherController {
     ) {
         Teacher teacher = teacherService.findById(id);
         return JSONConvert.JSONConverter(teacher);
+    }
+
+    @PostMapping("/teacher")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String createStudentAccount(
+            @Valid @RequestBody Teacher teacher
+    ) throws NoSuchAlgorithmException {
+        String hashedPassword = teacher.hashPassword(teacher.getPassword());
+        teacher.setPassword(hashedPassword);
+        JSONConvert.JSONConverter(teacherService.save(teacher));
+        String accessToken = validationService.getAccessToken(teacher, "TEACHER");
+        Long userId = Long.parseLong(validationService.getUserId(accessToken, "TEACHER"));
+        ValidationResponse response = new ValidationResponse(accessToken, userId);
+        return JSONConvert.JSONConverter(response);
     }
 
     @GetMapping("/teacher/signin")
