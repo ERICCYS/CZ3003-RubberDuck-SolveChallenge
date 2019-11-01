@@ -45,7 +45,7 @@ public class Activity_Level extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                App_Data.setSection(i);
+                App_Data.setLevel(i);
                 App_Data.printAllData();
                 switchToNextActivity(v);
             }
@@ -102,14 +102,41 @@ public class Activity_Level extends AppCompatActivity {
                         App_Data.setSection_upperbound(Integer.parseInt(r.get("section").toString()));
                         App_Data.setLevel_upperbound(Integer.parseInt(r.get("level").toString()));
 
+                        Activity_Level.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                level_upperbound = App_Data.getLevel_upperbound();
+                                current_section = App_Data.getSection();
+                                section_upperbound = App_Data.getSection_upperbound();
+                                world_upperbound = App_Data.getWorld_upperbound();
+                                current_world = App_Data.getWorld();
+
+
+
+                                for (int i = 0; i < 3; i++) {
+                                    Button btn = btns.get(i);
+                                    if (current_section == section_upperbound && current_world==world_upperbound) {
+                                        if (i <= level_upperbound) {
+                                            setOnClick(btn, i);
+                                        } else {
+                                            //                btn.setBackgroundColor(Color.parseColor("#c4ffffff"));
+                                            btn.setAlpha(0.2f);
+                                        }
+                                    } else {
+                                        setOnClick(btn, i);
+                                    }
+
+                                }
+                            }
+                        });
+
                     }catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                     App_Data.printAllData();
 
-                    Intent myIntent = new Intent(Activity_Level.this, Activity_World.class);
-                    startActivity(myIntent);
 
                 } else {
                     Activity_Level.this.runOnUiThread(new Runnable() {
@@ -122,30 +149,10 @@ public class Activity_Level extends AppCompatActivity {
             }
         });
 
-        level_upperbound = App_Data.getLevel_upperbound();
-        current_section = App_Data.getSection();
-        section_upperbound = App_Data.getSection_upperbound();
-        world_upperbound = App_Data.getWorld_upperbound();
-        current_world = App_Data.getWorld();
 
-
-
-        for (int i = 0; i < 3; i++) {
-            Button btn = btns.get(i);
-            if (current_section == section_upperbound && current_world==world_upperbound) {
-                if (i <= level_upperbound) {
-                    setOnClick(btn, i);
-                } else {
-                    //                btn.setBackgroundColor(Color.parseColor("#c4ffffff"));
-                    btn.setAlpha(0.2f);
-                }
-            } else {
-                setOnClick(btn, i);
-            }
-
-        }
 
     }
+
 }
 
 

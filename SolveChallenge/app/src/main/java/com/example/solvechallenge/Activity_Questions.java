@@ -244,8 +244,11 @@ public class Activity_Questions extends AppCompatActivity {
         }
         else {
 
+            System.out.println("***" + Integer.toString(current_level_int) + Integer.toString(upperbound_level_int));
+
             if (current_level_int < upperbound_level_int){
-                finish();
+                Intent myIntent = new Intent(Activity_Questions.this, Activity_Level.class);
+                startActivity(myIntent);
             }
 
             else {
@@ -296,9 +299,8 @@ public class Activity_Questions extends AppCompatActivity {
                     }
                 });
 
-
-
-                finish();
+                Intent myIntent = new Intent(Activity_Questions.this, Activity_Level.class);
+                startActivity(myIntent);
             }
         }
     }

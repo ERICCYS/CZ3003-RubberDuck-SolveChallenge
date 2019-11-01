@@ -98,7 +98,7 @@ public class App_Data {
         System.out.println("UserId: " + App_Data.userId);
 //        System.out.println(App_Data.accessToken);
         System.out.println("Character: " + App_Data.character);
-        System.out.println("Current world" + App_Data.world);
+        System.out.println("Current world: " + App_Data.world);
         System.out.println("World upperbound: " + App_Data.world_upperbound);
         System.out.println("Current section: " + App_Data.section);
         System.out.println("Section upperbound: " + App_Data.section_upperbound);
