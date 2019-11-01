@@ -16,7 +16,7 @@ public class App_Data {
     public static int section;
     public static int level;
 
-    public static int no_question;
+//    public static int no_question;
 
     public static int world_upperbound;
     public static int section_upperbound;
@@ -46,9 +46,9 @@ public class App_Data {
         return level;
     }
 
-    public static int getNo_question() {
-        return no_question;
-    }
+//    public static int getNo_question() {
+//        return no_question;
+//    }
 
     public static int getWorld_upperbound() {
         return world_upperbound;
@@ -82,9 +82,9 @@ public class App_Data {
         App_Data.level = level;
     }
 
-    public static void setNo_question(int no_question) {
-        App_Data.no_question = no_question;
-    }
+//    public static void setNo_question(int no_question) {
+//        App_Data.no_question = no_question;
+//    }
 
     public static void setUserId(Long userId) { App_Data.userId = userId; }
 
@@ -95,16 +95,16 @@ public class App_Data {
     public static void setLevel_upperbound(int level_upperbound) { App_Data.level_upperbound = level_upperbound; }
 
     public static void printAllData(){
-        System.out.println(App_Data.userId);
-        System.out.println(App_Data.accessToken);
-        System.out.println(App_Data.character);
-        System.out.println(App_Data.world);
-        System.out.println(App_Data.world_upperbound);
-        System.out.println(App_Data.section);
-        System.out.println(App_Data.section_upperbound);
-        System.out.println(App_Data.level);
-        System.out.println(App_Data.level_upperbound);
-        System.out.println(App_Data.no_question);
+        System.out.println("UserId: " + App_Data.userId);
+//        System.out.println(App_Data.accessToken);
+        System.out.println("Character: " + App_Data.character);
+        System.out.println("Current world" + App_Data.world);
+        System.out.println("World upperbound: " + App_Data.world_upperbound);
+        System.out.println("Current section: " + App_Data.section);
+        System.out.println("Section upperbound: " + App_Data.section_upperbound);
+        System.out.println("Current level: " + App_Data.level);
+        System.out.println("Level upperbound: " + App_Data.level_upperbound);
+//        System.out.println(App_Data.no_question);
     }
 
 

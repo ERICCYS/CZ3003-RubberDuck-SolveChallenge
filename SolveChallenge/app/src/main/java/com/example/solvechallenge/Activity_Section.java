@@ -15,9 +15,9 @@ public class Activity_Section extends AppCompatActivity {
     private Button enter_sec2_btn;
     private Button enter_sec3_btn;
     private int current_world = App_Data.getWorld();
+    private int world_upperbound = App_Data.getWorld_upperbound();
     private ArrayList<Button> btns = new ArrayList<>();
     private int section_upperbound = App_Data.getSection_upperbound();
-    private int world_upperbound = App_Data.getWorld_upperbound();
     private ArrayList<String> sections = Config.getSections().get(current_world);
 
     public void switchToNextActivity(View view) {
@@ -49,9 +49,6 @@ public class Activity_Section extends AppCompatActivity {
         btns.add(enter_sec2_btn);
         btns.add(enter_sec3_btn);
 
-        if (current_world<world_upperbound){
-
-        }
 
         for ( int i = 0; i < 3; i++) {
             Button btn = btns.get(i);
@@ -67,7 +64,7 @@ public class Activity_Section extends AppCompatActivity {
             }
 
         }
-        
+
     }
 }
 

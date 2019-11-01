@@ -295,6 +295,9 @@ public class Activity_Questions extends AppCompatActivity {
                         }
                     }
                 });
+
+
+
                 finish();
             }
         }

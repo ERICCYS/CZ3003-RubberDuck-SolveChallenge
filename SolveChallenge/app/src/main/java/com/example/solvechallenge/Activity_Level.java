@@ -1,23 +1,38 @@
 package com.example.solvechallenge;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class Activity_Level extends AppCompatActivity {
 
     private Button start_easy_question_btn;
     private Button start_mid_question_btn;
     private Button start_hard_question_btn;
-    private int current_section = App_Data.getSection();
-    private int current_level = App_Data.getLevel();
-    private int level_upperbound = App_Data.getLevel_upperbound();
-    private int section_upperbound = App_Data.getSection_upperbound();
+    private int level_upperbound;
+    private int current_section;
+    private int section_upperbound;
+    private int world_upperbound;
+    private int current_world;
 
     private ArrayList<Button> btns = new ArrayList<>();
 
@@ -39,6 +54,9 @@ public class Activity_Level extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        System.out.println("###############################Level page on load###############################");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
         this.getSupportActionBar().hide();
@@ -51,9 +69,70 @@ public class Activity_Level extends AppCompatActivity {
         btns.add(start_mid_question_btn);
         btns.add(start_hard_question_btn);
 
+        OkHttpClient client = new OkHttpClient();
+        String url = Config.baseUrl + "world/initialize";
+        HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
+        httpBuilder.addQueryParameter("character", App_Data.getCharacter());
+        httpBuilder.addQueryParameter("studentId", App_Data.getUserId().toString());
+
+        Request request = new Request.Builder()
+                .url(httpBuilder.build())
+                .addHeader("Authorization", App_Data.getAccessToken())
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Activity_Level.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(Activity_Level.this, "Failed...", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                e.printStackTrace();
+            }
+
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    try {
+                        JSONObject r = new JSONObject(response.body().string());
+                        App_Data.setWorld_upperbound(Integer.parseInt(r.get("world").toString()));
+                        App_Data.setSection_upperbound(Integer.parseInt(r.get("section").toString()));
+                        App_Data.setLevel_upperbound(Integer.parseInt(r.get("level").toString()));
+
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    App_Data.printAllData();
+
+                    Intent myIntent = new Intent(Activity_Level.this, Activity_World.class);
+                    startActivity(myIntent);
+
+                } else {
+                    Activity_Level.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(Activity_Level.this, "Failed..", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+
+        level_upperbound = App_Data.getLevel_upperbound();
+        current_section = App_Data.getSection();
+        section_upperbound = App_Data.getSection_upperbound();
+        world_upperbound = App_Data.getWorld_upperbound();
+        current_world = App_Data.getWorld();
+
+
+
         for (int i = 0; i < 3; i++) {
             Button btn = btns.get(i);
-            if (current_section == section_upperbound) {
+            if (current_section == section_upperbound && current_world==world_upperbound) {
                 if (i <= level_upperbound) {
                     setOnClick(btn, i);
                 } else {
