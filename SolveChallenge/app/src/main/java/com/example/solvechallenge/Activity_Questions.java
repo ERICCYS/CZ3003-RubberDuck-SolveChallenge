@@ -41,6 +41,7 @@ public class Activity_Questions extends AppCompatActivity {
     int current_world_int = App_Data.getWorld();
     int current_section_int = App_Data.getSection();
     int current_level_int = App_Data.getLevel();
+    int upperbound_level_int = App_Data.getLevel_upperbound();
 
     String current_world_str = Config.getWorlds()[current_world_int];
     String current_section_str = Config.getSections().get(current_world_int).get(current_section_int);
@@ -53,23 +54,80 @@ public class Activity_Questions extends AppCompatActivity {
     private int index_of_question = 0;
     private int score = 0;
 
+    private int score_gained;
+    private Boolean ifCorrect;
+    private String answerMessage;
+    private String current_question_id;
+    private String choiceInAlpha;
+
+    public String getChoiceInAlpha() {
+        return choiceInAlpha;
+    }
+
+    public void setChoiceInAlpha(String choiceInAlpha) {
+        this.choiceInAlpha = choiceInAlpha;
+    }
+
+    public String getCurrent_question_id() {
+        return current_question_id;
+    }
+
+    public void setCurrent_question_id(String current_question_id) {
+        this.current_question_id = current_question_id;
+    }
+
+    public int getScore_gained() {
+        return score_gained;
+    }
+
+    public void setScore_gained(int score_gained) {
+        this.score_gained = score_gained;
+    }
+
+    public Boolean getIfCorrect() {
+        return ifCorrect;
+    }
+
+    public void setIfCorrect(Boolean ifCorrect) {
+        this.ifCorrect = ifCorrect;
+    }
+
+    public String getAnswerMessage() {
+        return answerMessage;
+    }
+
+    public void setAnswerMessage(String answerMessage) {
+        this.answerMessage = answerMessage;
+    }
+
+    public int getIndex_of_question() {
+        return index_of_question;
+    }
+
+    public void setIndex_of_question(int index_of_question) {
+        this.index_of_question = index_of_question;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public void setCurrentAnswerResponse(JSONObject currentAnswerResponse) {
         this.currentAnswerResponse = currentAnswerResponse;
     }
 
     public void checkAnswer(int choice){
 
-        String choiceInAlpha;
-        String question_id = "";
-        int mark = 0;
-        Boolean answerCorrectness = false;
-        String message = "";
-
-
-        if (choice==1) choiceInAlpha="A";
-        else if (choice==2) choiceInAlpha="B";
-        else if (choice==3) choiceInAlpha="C";
-        else choiceInAlpha="D";
+        switch (choice){
+            case 0: setChoiceInAlpha("A"); break;
+            case 1: setChoiceInAlpha("B"); break;
+            case 2: setChoiceInAlpha("C"); break;
+            case 3: setChoiceInAlpha("D");
+        }
 
         //TODO check the answer
 
@@ -79,24 +137,34 @@ public class Activity_Questions extends AppCompatActivity {
 
         try {
             JSONObject question = (JSONObject) questionsInJson.get(index_of_question);
-            question_id = question.get("id").toString();
+            setCurrent_question_id(question.get("id").toString());
         } catch(JSONException e){
             e.printStackTrace();
         }
+        System.out.println("############");
+        System.out.println(App_Data.getUserId().toString());
+        System.out.println(getCurrent_question_id());
+        System.out.println(getChoiceInAlpha());
+        System.out.println();
+        System.out.println();
+        System.out.println();
 
-        RequestBody requestBody = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("studentId", App_Data.getUserId().toString())
-                .addFormDataPart("questionId", question_id)
-                .addFormDataPart("choice", choiceInAlpha)
-                .addFormDataPart("correct", "false")
-                .addFormDataPart("reward", "0")
-                .addFormDataPart("mode", "Q")
-                .build();
+        JSONObject newAnswer = new JSONObject();
+        try {
+            newAnswer.put("studentId", App_Data.getUserId().toString());
+            newAnswer.put("questionId", getCurrent_question_id());
+            newAnswer.put("choice", getChoiceInAlpha());
+            newAnswer.put("correct", "false");
+            newAnswer.put("reward", "0");
+            newAnswer.put("mode", "Q");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(Config.JSON, newAnswer.toString());
 
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader("Authorization", App_Data.getAccessToken())
                 .post(requestBody)
                 .build();
 
@@ -118,7 +186,26 @@ public class Activity_Questions extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     try {
                         JSONObject r = new JSONObject(response.body().string());
+                        System.out.println("####");
+                        System.out.println(r);
                         setCurrentAnswerResponse(r);
+
+                        setIfCorrect(Boolean.parseBoolean(currentAnswerResponse.get("correct").toString()));
+                        setScore_gained(Integer.parseInt(currentAnswerResponse.get("mark").toString()));
+                        setAnswerMessage(currentAnswerResponse.get("message").toString());
+
+                        Activity_Questions.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(),getAnswerMessage(),Toast.LENGTH_SHORT).show();
+                                if (getIfCorrect()){
+                                    setIndex_of_question(getIndex_of_question()+1);
+                                    setScore(getScore()+getScore_gained());
+                                    showNextQuestion();
+                                }
+                            }
+                        });
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -134,29 +221,10 @@ public class Activity_Questions extends AppCompatActivity {
             }
         });
 
-        try {
-            answerCorrectness = Boolean.parseBoolean(currentAnswerResponse.get("correct").toString());
-            mark = Integer.parseInt(currentAnswerResponse.get("mark").toString());
-            message = currentAnswerResponse.get("message").toString();
-        }catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        if (answerCorrectness){
-            index_of_question=index_of_question+1;
-            score = score+mark;
-            showNextQuestion();
-        }
-
-        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
-
     }
 
     public void showNextQuestion(){
-        if (index_of_question>no_questions){
-            finish();
-        }
-        else {
+        if ((index_of_question==no_questions-1 && getScore()==75) || (index_of_question<=no_questions-5)){
             try {
                 JSONObject question = (JSONObject) questionsInJson.get(index_of_question);
                 String description = question.get("description").toString();
@@ -169,9 +237,65 @@ public class Activity_Questions extends AppCompatActivity {
                 btn_choice2.setText(choice2);
                 btn_choice3.setText(choice3);
                 btn_choice4.setText(choice4);
-                tv_score.setText(score);
+                tv_score.setText(Integer.toString(getScore()));
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
+        }
+        else {
+
+            if (current_level_int < upperbound_level_int){
+                finish();
+            }
+
+            else {
+                OkHttpClient client = new OkHttpClient();
+                String url = Config.baseUrl + "status/update";
+                HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
+                httpBuilder.addQueryParameter("studentId", App_Data.getUserId().toString());
+                httpBuilder.addQueryParameter("character", App_Data.getCharacter());
+
+                Request request = new Request.Builder()
+                        .url(httpBuilder.build())
+                        .build();
+
+                System.out.println(request.toString());
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Activity_Questions.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(Activity_Questions.this, "Failed...", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        e.printStackTrace();
+                    }
+
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            try {
+                                JSONObject r = new JSONObject(response.body().string());
+                                System.out.println(r);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        } else {
+                            Activity_Questions.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Activity_Questions.this, "Failed............", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                });
+                finish();
             }
         }
     }
@@ -204,7 +328,6 @@ public class Activity_Questions extends AppCompatActivity {
 
         Request request = new Request.Builder()
                 .url(httpBuilder.build())
-                .addHeader("Authorization", App_Data.getAccessToken())
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -225,17 +348,25 @@ public class Activity_Questions extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     try {
                         JSONArray r = new JSONArray(response.body().string());
-//                        System.out.println("################ response body");
-//                        System.out.println(r);
-//                        System.out.println(r.get(0));
-//                        System.out.println(r.get(1));
-//                        System.out.println(r.get(2));
-//                        System.out.println(r.get(3));
-//                        JSONObject question_1 = (JSONObject) r.get(0);
-//                        System.out.println(question_1);
-//                        System.out.println(question_1.get("description"));
+                        System.out.println("################ response body");
+                        System.out.println(r);
+                        System.out.println(r.get(0));
+                        System.out.println(r.get(1));
+                        System.out.println(r.get(2));
+                        System.out.println(r.get(3));
+                        JSONObject question_1 = (JSONObject) r.get(0);
+                        System.out.println(question_1);
+                        System.out.println(question_1.get("description"));
                         System.out.print(r);
                         setQuestionsInJson(r);
+
+                        Activity_Questions.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                showNextQuestion();
+                            }
+                        });
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -273,20 +404,15 @@ public class Activity_Questions extends AppCompatActivity {
         btns.add(btn_choice3);
         btns.add(btn_choice4);
 
-        // Get Questions
 
-        getQuestionsInJson(char_selected, current_world_str, current_section_str, current_level_str);
-        System.out.print("\n\n\n###\n\n\n");
-        System.out.print(questionsInJson);
-        System.out.print("\n\n\nfinish print\n\n\n");
         // Set button listener
-
         for (int i = 0; i < 4; i++) {
             Button btn = btns.get(i);
             setOnClick(btn, i);
         }
 
-        showNextQuestion();
+        // Get Questions
+        getQuestionsInJson(char_selected, current_world_str, current_section_str, current_level_str);
 
     }
 
