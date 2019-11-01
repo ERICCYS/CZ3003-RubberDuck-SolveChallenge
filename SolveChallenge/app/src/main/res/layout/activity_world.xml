@@ -91,9 +91,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/btn_maintain_world"
                 android:drawableTop="@drawable/img_maintainance_world"
-
                 android:paddingTop="25dp"
-                android:text="Maintainance"
+                android:text="Maintenance"
                 android:textAllCaps="false"
                 android:textColor="#000"
                 android:textSize="18sp" />
