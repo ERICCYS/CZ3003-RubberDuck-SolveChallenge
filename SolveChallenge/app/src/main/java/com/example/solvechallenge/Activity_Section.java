@@ -17,6 +17,7 @@ public class Activity_Section extends AppCompatActivity {
     private int current_world = App_Data.getWorld();
     private ArrayList<Button> btns = new ArrayList<>();
     private int section_upperbound = App_Data.getSection_upperbound();
+    private int world_upperbound = App_Data.getWorld_upperbound();
     private ArrayList<String> sections = Config.getSections().get(current_world);
 
     public void switchToNextActivity(View view) {
@@ -48,21 +49,25 @@ public class Activity_Section extends AppCompatActivity {
         btns.add(enter_sec2_btn);
         btns.add(enter_sec3_btn);
 
-        for ( int i = 0; i < 3; i++) {
-            Button btn = btns.get(i);
-            btn.setText(sections.get(i));
-            if (i <= section_upperbound) {
-                setOnClick(btn, i);
-            } else {
-//                btn.setBackgroundColor(Color.parseColor("#c4ffffff"));
-                btn.setAlpha(0.2f);
-            }
+        if (current_world<world_upperbound){
 
         }
 
-//        enter_level_btn = (Button) findViewById(R.id.btn_enterlevel_Section); // type name Activity_name
+        for ( int i = 0; i < 3; i++) {
+            Button btn = btns.get(i);
+            btn.setText(sections.get(i));
+            if (current_world==world_upperbound) {
+                if (i <= section_upperbound) {
+                    setOnClick(btn, i);
+                } else {
+                    btn.setAlpha(0.2f);
+                }
+            }else{
+                setOnClick(btn, i);
+            }
 
-
+        }
+        
     }
 }
 

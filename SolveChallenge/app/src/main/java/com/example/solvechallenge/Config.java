@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import okhttp3.MediaType;
+
 public class Config {
 
 
-//    public static final String baseUrl = "http://10.27.185.112:8082/api/";
+    public static final String baseUrl = "http://10.27.185.112:8082/api/";
     public static final String baseUrl = "http://206.189.151.97:8082/api/";
 
-    public static final String[] characters = {"Product Manager", "Quality Manager", "Lead Developer"};
+    public static final String[] characters = {"Lead Developer", "Product Manager", "Quality Manager",};
 
     public static final String[] worlds = {"Requirement Gathering and Analysis", "Design", "Implementation", "Testing and Deployment", "Maintenance"};
+
+    public static final MediaType JSON = MediaType.parse("application/json");
 
 //    public static final Map<String, Integer> worldCodes = new HashMap<String, Integer>(){
 //        {
@@ -70,38 +74,6 @@ public class Config {
 
     public static final String[]levels = {"Easy", "Medium", "Hard"};
 
-
-
-//        add(new ArrayList<String>(){Arrays.asList("Requirement Engineering","Requirement Analysis","Requirement Specification and Validations")};);
-//    public static final List<Map<String, Integer>> sectionCodes = new ArrayList<Map<String, Integer>>(){
-//        {
-//            add(new HashMap<String, Integer>() {{
-//                put("Requirement Engineering", 0);
-//                put("Requirement Analysis", 1);
-//                put("Requirement Specification and Validations", 2);
-//            }});
-//            add(new HashMap<String, Integer>() {{
-//                put("Design Phrase I", 0);
-//                put("Design Phrase II", 1);
-//                put("Design Phrase III", 2);
-//            }});
-//            add(new HashMap<String, Integer>() {{
-//                put("Implementation FE Dev", 0);
-//                put("Implementation BE Dev", 1);
-//                put("Implementation ALL", 2);
-//            }});
-//            add(new HashMap<String, Integer>() {{
-//                put("Testing", 0);
-//                put("Deployment", 1);
-//                put("DevOps", 2);
-//            }});
-//            add(new HashMap<String, Integer>() {{
-//                put("Maintenance I", 0);
-//                put("Maintenance II", 1);
-//                put("Maintenance III", 2);
-//            }});
-//        }
-//    };
 
     public static String getBaseUrl() {
         return baseUrl;
