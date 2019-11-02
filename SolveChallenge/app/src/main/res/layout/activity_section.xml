@@ -7,6 +7,15 @@
     android:orientation="vertical"
     android:background="@drawable/background_signin_6">
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_back_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:srcCompat="@android:drawable/ic_menu_revert"
+            android:tint="@android:color/white">
+        </android.support.design.widget.FloatingActionButton>
+
 
 <!--        <TextView-->
 <!--            android:id="@+id/txtView_sectionTitle_section"-->

@@ -1,16 +1,13 @@
 package com.example.solvechallenge;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Activity_World extends AppCompatActivity {
 
@@ -19,8 +16,9 @@ public class Activity_World extends AppCompatActivity {
     private Button enter_design_btn ;
     private Button enter_testing_btn ;
     private Button enter_maintenance_btn;
-
-    private Button enter_leaderboard;
+    private FloatingActionButton go_back_btn;
+    private Button enter_assignment_btn;
+    private Button enter_leaderboard_btn;
 
     private String[] worlds = Config.getWorlds();
     private ArrayList<Button> btns = new ArrayList<>();
@@ -48,11 +46,19 @@ public class Activity_World extends AppCompatActivity {
         setContentView(R.layout.activity_world);
         this.getSupportActionBar().hide();
 
-        enter_leaderboard = findViewById(R.id.btn_leaderboard_world);
-        enter_leaderboard.setOnClickListener(new View.OnClickListener() {
+        enter_leaderboard_btn = findViewById(R.id.btn_leaderboard_world);
+        enter_leaderboard_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Activity_World.this, Activity_Leaderboard.class);
+                startActivity(intent);
+            }
+        });
+        enter_assignment_btn = findViewById(R.id.btn_assignment_world);
+        enter_assignment_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_World.this, Activity_GetTweets.class);
                 startActivity(intent);
             }
         });
@@ -67,6 +73,15 @@ public class Activity_World extends AppCompatActivity {
         btns.add(enter_design_btn);
         btns.add(enter_testing_btn);
         btns.add(enter_maintenance_btn);
+
+        go_back_btn = (FloatingActionButton) findViewById(R.id.btn_back_world);
+        go_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_World.this, Activity_SelectCharacter.class);
+                startActivity(intent);
+            }
+        });
 //        enter_maintenance_btn.setText("Test");
 //        btns.get(1).setText("blabalbal");
 
