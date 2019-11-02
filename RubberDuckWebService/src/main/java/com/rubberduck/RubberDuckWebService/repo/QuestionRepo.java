@@ -26,11 +26,10 @@ public interface QuestionRepo extends JpaRepository<Question, Integer> {
 
     List<Question> findByCharacterAndWorldAndDifficulty(String character, String world, DifficultyEnum difficultyEnum);
 
-    @Query(value="SELECT * FROM Question WHERE CHARACTER_CHOICE = :character_choice AND WORLD = :world AND DIFFICULTY = :difficulty ORDER BY RAND() LIMIT :lim", nativeQuery = true)
+    @Query(value="SELECT * FROM Question WHERE CHARACTER_CHOICE = :character_choice AND WORLD = :world ORDER BY RAND() LIMIT :lim", nativeQuery = true)
     List<Question> samplingQuestion(
             @Param("character_choice") String character_choice,
             @Param("world") String world,
-            @Param("difficulty") String difficulty,
             @Param("lim") int lim
     );
 

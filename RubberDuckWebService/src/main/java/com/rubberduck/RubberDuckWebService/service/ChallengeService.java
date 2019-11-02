@@ -1,6 +1,7 @@
 package com.rubberduck.RubberDuckWebService.service;
 
 import com.rubberduck.RubberDuckWebService.model.Challenge;
+import com.rubberduck.RubberDuckWebService.model.Question;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface ChallengeService {
 
     void addQuestions(Challenge challenge);
 
-    Challenge save(Challenge challenge);
+    List<Question> save(Challenge challenge);
 
     void delete(Challenge challenge);
 

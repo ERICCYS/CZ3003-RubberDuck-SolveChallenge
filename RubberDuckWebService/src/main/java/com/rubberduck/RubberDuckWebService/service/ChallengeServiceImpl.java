@@ -41,29 +41,35 @@ public class ChallengeServiceImpl implements ChallengeService {
     public void addQuestions(Challenge challenge) {
         String character = challenge.getCharacter();
         List<WorldQuestion> worldQuestions = challenge.getWorldQuestion();
+        System.out.println(worldQuestions);
         List<Long> questionIds = new ArrayList<>();
 
         for (WorldQuestion worldQuestion : worldQuestions) {
             String world = worldQuestion.getWorld();
-            Map<DifficultyEnum, Integer> questionCount = worldQuestion.getQuestionCount();
-            for (Map.Entry<DifficultyEnum, Integer> questionInfo : questionCount.entrySet()) {
-                System.out.println(character + " " + world + " " + questionInfo.getKey().toString() + " " + questionInfo.getValue());
-                List<Question> sampledQuestion = questionRepo.samplingQuestion(character, world, questionInfo.getKey().toString(), questionInfo.getValue());
-                for (Question question : sampledQuestion) {
-                    questionIds.add(question.getId());
-                }
+            Integer questionCount = worldQuestion.getCount();
+            System.out.println(character + " " + world + " " + questionCount);
+            List<Question> sampledQuestion = questionRepo.samplingQuestion(character, world, questionCount);
+            System.out.println(sampledQuestion.size());
+            for (Question question : sampledQuestion) {
+                questionIds.add(question.getId());
             }
         }
         challenge.setQuestionIds(questionIds);
     }
 
     @Override
-    public Challenge save(Challenge challenge) {
+    public List<Question> save(Challenge challenge) {
         List<WorldQuestion> worldQuestions = challenge.getWorldQuestion();
         for (WorldQuestion worldQuestion : worldQuestions) {
             worldQuestionRepo.save(worldQuestion);
         }
-        return challengeRepo.save(challenge);
+        Challenge createdChallenge =  challengeRepo.save(challenge);
+        List<Question> challengeQuestions = new ArrayList<Question>();
+        List<Long> questionIds = createdChallenge.getQuestionIds();
+        for (Long questionId : questionIds) {
+            challengeQuestions.add(questionRepo.findById(questionId));
+        }
+        return challengeQuestions;
     }
 
     @Override
