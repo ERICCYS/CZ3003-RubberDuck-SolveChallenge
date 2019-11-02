@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.solvechallenge">
     <!-- <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="28" /> -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,13 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <uses-library android:name ="org.apache.http.legacy" android:required ="false"/>
         <activity android:name=".Activity_CreateChallenge"></activity>
-        <activity android:name=".Activity_Leaderboard" />
+        <activity android:name=".Activity_Leaderboard"></activity>
+        <activity android:name=".Activity_Stats"></activity>
         <activity
             android:name=".Activity_SelectCharacter"
             android:label="@string/title_activity__select_character"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity_Questions" />
+        <activity android:name=".Activity_GetTweets" />
         <activity android:name=".Activity_Level" />
         <activity android:name=".Activity_Section" />
         <activity android:name=".Activity_World" />

@@ -1,9 +1,11 @@
 package com.example.solvechallenge;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,7 @@ import okhttp3.Response;
 
 public class Activity_Level extends AppCompatActivity {
 
+    private FloatingActionButton go_back_btn;
     private Button start_easy_question_btn;
     private Button start_mid_question_btn;
     private Button start_hard_question_btn;
@@ -64,6 +67,14 @@ public class Activity_Level extends AppCompatActivity {
         start_easy_question_btn = (Button) findViewById(R.id.imgbtn_easylevel_Level); // type name Activity_name
         start_mid_question_btn = (Button) findViewById(R.id.imgbtn_midlevel_Level);
         start_hard_question_btn = (Button) findViewById(R.id.imgbtn_hardlevel_Level);
+        go_back_btn = (FloatingActionButton) findViewById(R.id.btn_back_level);
+        go_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_Level.this, Activity_Section.class);
+                startActivity(intent);
+            }
+        });
 
         btns.add(start_easy_question_btn);
         btns.add(start_mid_question_btn);

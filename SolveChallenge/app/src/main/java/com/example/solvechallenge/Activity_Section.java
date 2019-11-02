@@ -3,6 +3,7 @@ package com.example.solvechallenge;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 public class Activity_Section extends AppCompatActivity {
 
+    private FloatingActionButton go_back_btn;
     private Button enter_sec1_btn;
     private Button enter_sec2_btn;
     private Button enter_sec3_btn;
@@ -44,6 +46,16 @@ public class Activity_Section extends AppCompatActivity {
         enter_sec2_btn = findViewById(R.id.btn_sec2_section);
         enter_sec3_btn = findViewById(R.id.btn_sec3_section);
         this.getSupportActionBar().hide();
+
+        go_back_btn = (FloatingActionButton) findViewById(R.id.btn_back_section);
+        go_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_Section.this, Activity_World.class);
+                startActivity(intent);
+            }
+        });
+
 
         btns.add(enter_sec1_btn);
         btns.add(enter_sec2_btn);
