@@ -21,6 +21,7 @@ public class Activity_World extends AppCompatActivity {
     private Button enter_maintenance_btn;
 
     private Button enter_leaderboard;
+    private Button enter_create_challenge;
 
     private String[] worlds = Config.getWorlds();
     private ArrayList<Button> btns = new ArrayList<>();
@@ -53,6 +54,15 @@ public class Activity_World extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Activity_World.this, Activity_Leaderboard.class);
+                startActivity(intent);
+            }
+        });
+
+        enter_create_challenge = findViewById(R.id.btn_challenge_world);
+        enter_create_challenge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_World.this, Activity_CreateChallenge.class);
                 startActivity(intent);
             }
         });

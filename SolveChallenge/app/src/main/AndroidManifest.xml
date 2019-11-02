@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity_Leaderboard"></activity>
+        <activity android:name=".Activity_CreateChallenge"></activity>
+        <activity android:name=".Activity_Leaderboard" />
         <activity
             android:name=".Activity_SelectCharacter"
             android:label="@string/title_activity__select_character"
