@@ -32,18 +32,6 @@ public class Challenge {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
-    @Column(name = "QUESTION_COUNT", nullable = false)
-    private int questionCount;
-
-    @Column(name = "EASY_COUNT", nullable = false)
-    private int easyQnCount;
-
-    @Column(name = "MEDIUM_COUNT", nullable = false)
-    private int mediumQnCount;
-
-    @Column(name = "HARD_COUNT", nullable = false)
-    private int hardQnCount;
-
     @Column(name = "SUCCESS_COUNT", nullable = false)
     private int successCount;
 
@@ -54,16 +42,12 @@ public class Challenge {
     }
 
 
-    public Challenge(Long creatorId, String character, List<Long> questionIds, List<WorldQuestion> worldQuestion, Date createTime, int questionCount, int easyQnCount, int mediumQnCount, int hardQnCount, int successCount, int failureCount) {
+    public Challenge(Long creatorId, String character, List<Long> questionIds, List<WorldQuestion> worldQuestion, Date createTime, int successCount, int failureCount) {
         this.creatorId = creatorId;
         this.character = character;
         this.questionIds = questionIds;
         this.worldQuestion = worldQuestion;
         this.createTime = createTime;
-        this.questionCount = questionCount;
-        this.easyQnCount = easyQnCount;
-        this.mediumQnCount = mediumQnCount;
-        this.hardQnCount = hardQnCount;
         this.successCount = successCount;
         this.failureCount = failureCount;
     }
@@ -77,10 +61,6 @@ public class Challenge {
                 ", questionIds=" + questionIds +
                 ", worldQuestion=" + worldQuestion +
                 ", createTime=" + createTime +
-                ", questionCount=" + questionCount +
-                ", easyQnCount=" + easyQnCount +
-                ", mediumQnCount=" + mediumQnCount +
-                ", hardQnCount=" + hardQnCount +
                 ", successCount=" + successCount +
                 ", failureCount=" + failureCount +
                 '}';
@@ -112,22 +92,6 @@ public class Challenge {
 
     public Date getCreateTime() {
         return createTime;
-    }
-
-    public int getQuestionCount() {
-        return questionCount;
-    }
-
-    public int getEasyQnCount() {
-        return easyQnCount;
-    }
-
-    public int getMediumQnCount() {
-        return mediumQnCount;
-    }
-
-    public int getHardQnCount() {
-        return hardQnCount;
     }
 
     public int getSuccessCount() {

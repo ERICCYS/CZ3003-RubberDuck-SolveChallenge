@@ -1,7 +1,6 @@
 package com.rubberduck.RubberDuckWebService.model;
 
 import javax.persistence.*;
-import java.util.Map;
 
 @Entity
 @Table(name = "WorldQuestion")
@@ -15,19 +14,33 @@ public class WorldQuestion {
     @Column(name = "world")
     private String world;
 
-    @ElementCollection
-    private Map<DifficultyEnum, Integer> questionCount;
+    @Column(name = "count")
+    private Integer count;
+
 
     public WorldQuestion() {
     }
 
-    public WorldQuestion(String world, Map<DifficultyEnum, Integer> questionCount) {
+    public WorldQuestion(String world, Integer count) {
         this.world = world;
-        this.questionCount = questionCount;
+        this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "WorldQuestion{" +
+                "id=" + id +
+                ", world='" + world + '\'' +
+                ", count=" + count +
+                '}';
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getWorld() {
@@ -38,11 +51,11 @@ public class WorldQuestion {
         this.world = world;
     }
 
-    public Map<DifficultyEnum, Integer> getQuestionCount() {
-        return questionCount;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setQuestionCount(Map<DifficultyEnum, Integer> questionCount) {
-        this.questionCount = questionCount;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }
