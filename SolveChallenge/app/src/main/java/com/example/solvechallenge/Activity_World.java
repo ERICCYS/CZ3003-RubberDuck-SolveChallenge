@@ -63,6 +63,15 @@ public class Activity_World extends AppCompatActivity {
             }
         });
 
+        enter_create_challenge = findViewById(R.id.btn_challenge_world);
+        enter_create_challenge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_World.this, Activity_CreateChallenge.class);
+                startActivity(intent);
+            }
+        });
+
         enter_intro_btn = (Button) findViewById(R.id.btn_intro_World);
         enter_analysis_btn = (Button) findViewById(R.id.btn_analysis_World);
         enter_design_btn = (Button) findViewById(R.id.btn_design_World);
