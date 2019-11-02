@@ -7,7 +7,7 @@ import android.util.Log;
 public class Activity_GetTweets extends ListActivity {
 
     final static String twitterScreenName = "teacherassign";
-//    final static String TAG = "MainActivity";
+    final static String TAG = "GetTweets";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -15,7 +15,7 @@ public class Activity_GetTweets extends ListActivity {
         if (com.example.solvechallenge.util.isConnected(this)) {
             new com.example.solvechallenge.TwitterAsyncTask().execute(twitterScreenName,this);
         } else {
-//            Log.v(TAG, "Network not Available!");
+            Log.v(TAG, "Network not Available!");
         }
     }
 }

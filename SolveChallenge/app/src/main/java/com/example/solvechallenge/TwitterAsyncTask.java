@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class TwitterAsyncTask extends AsyncTask<Object, Void, ArrayList<com.example.solvechallenge.TwitterTweet>> {
     ListActivity callerActivity;
 
-    final static String TWITTER_API_KEY = "NbmuS6DTsAKGnhIv95yuCBXVn";
-    final static String TWITTER_API_SECRET = "JOOUmKuC424xWad8hJnTL41yA9L2hhSq48KAEEhwzy7XMkqfLQ";
+    final static String TWITTER_API_KEY = "4txYjrr6kDLGUQWg8w6PNnxNP";
+    final static String TWITTER_API_SECRET = "VvZlCx4dWwnBGGXFDkJRVrAQrZgipAlJpdGNw5d8LJt5OhaD41";
 
     @Override
     protected ArrayList<com.example.solvechallenge.TwitterTweet> doInBackground(Object... params) {

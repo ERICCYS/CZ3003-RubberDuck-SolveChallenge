@@ -48,6 +48,7 @@ public class TwitterAPI {
             httpGet.setHeader("Content-Type", "application/json");
             String twitterTweets = com.example.solvechallenge.util.getHttpResponse(httpGet);
             twitterTweetArrayList = convertJsonToTwitterTweet(twitterTweets);
+//            System.out.println(twitterTweetArrayList);
         }
         return twitterTweetArrayList;
     }
