@@ -29,11 +29,13 @@ Eric Ma - CZ3003 RubberDuck
 - Q: What this document will provide?
 - A: HTTP Request for every function provided here.
 
+`Server IP: 206.189.151.97`
+
 ### Student Sign in
 
 Method: GET
 
-URL: "http://localhost:9090/api/student/signin"
+URL: "http://206.189.151.97:8082/api/student/signin"
 
 Request Header: None
 
@@ -56,14 +58,9 @@ Response: The result of the authentication and access token of this student if a
 
 Method: GET
 
-URL: "http://localhost:9090/api/student/"
+URL: "http://206.189.151.97:8082/api/student"
 
-Request Header: 
-```json
-{
-  "Authorization" : "<student access token>"
-}
-```
+Request Header: None
 
 Request Param: None
 
@@ -78,7 +75,7 @@ Respone: The full information related to this student
 
 Method: GET
 
-URL: "http://localhost:9090/api/teacher/signin"
+URL: "http://206.189.151.97:8082/api/teacher/signin"
 
 Request Header: None
 
@@ -101,14 +98,9 @@ Response: The result of the authentication and access token of this teacher if a
 
 Method: GET
 
-URL: "http://localhost:9090/api/teacher/"
+URL: "http://206.189.151.97:8082/api/teacher"
 
-Request Header: 
-```json
-{
-  "Authorization" : "<teacher access token>"
-}
-```
+Request Header: None
 
 Request Param: None
 
@@ -123,16 +115,18 @@ Respone: The full information related to this teacher
 
 Method: GET
 
-URL: "http://localhost:9090/api/world/"
+URL: "http://206.189.151.97:8082/api/world/initialize"
 
 Request Header:
+
+
+Request Param: 
 ```json
 {
-  "Authorization" : "<user access token>"
+  "studentId" : "<student ID>",
+  "character": "<character>"
 }
 ```
-
-Request Param: None
 
 Path Variable: None
 
@@ -141,11 +135,95 @@ Request Body: None
 Response: The progress (i.e. which part is locked and which part is unlocked)
 
 
-### Fetch A Question 
+### Fetch A Question By ID
 
 Method: GET
 
-URL: "http://localhost:9090/api/question/"
+URL: "http://206.189.151.97:8082/api/question"
+
+Request Header: None
+
+
+Request Param: 
+```json
+{
+  "id" : "<question ID>"
+}
+```
+
+Path Variable: None
+
+Request Body: None
+
+Response: The question that match this ID
+
+
+### Fetch Questions By Stage
+
+Method: GET
+
+URL: "http://206.189.151.97:8082/api//question/stage"
+
+Request Header: None
+
+Request Param: 
+```json
+{
+  "character": "<character>",
+  "section": "<section>",
+  "level": "<level>",
+  "world": "<world>"
+}
+```
+
+Path Variable: None
+
+Request Body: None
+
+Response: The questions that is in this level
+
+### Techer Create Question
+
+Method: POST
+
+URL: "http://206.189.151.97:8082/api//question/stage"
+
+Request Header: 
+```json
+{
+  "Authorization" : "<teacher access token>"
+}
+
+Request Param: None
+
+Path Variable: None
+
+Request Body: 
+```json
+{
+  "description" : "<question description>",
+  "character" : "<question character>",
+  "world" : "<question world>",
+  "section" : "<question section>",
+  "level" : "<question level: EASY/MEDIUM/HARD>",
+  "difficulty" : "<question difficulty: EASY/MEDIUM/HARD>",
+  "choiceA" : "<choice A content>",
+  "choiceB" : "<choice B content>",
+  "choiceC" : "<choice C content>",
+  "choiceD" : "<choice D content>",
+  "correctChoice" : "<correct choice A/B/C/D>",
+  "award" : 15,
+  "bonus" : false
+}
+```
+
+Response: The question created
+
+### Student Answer Question
+
+Method: POST
+
+URL: "http://206.189.151.97:8082/api/answer"
 
 Request Header:
 ```json
@@ -158,64 +236,26 @@ Request Param: None
 
 Path Variable: None
 
-Request Body: 
-```json
-{
-  "character": "character",
-  "section": "section",
-  "level": "level",
-  "world": "world"
-}
-```
-
-Response: The question that is in this level
-
-
-### Student Answer Question
-
-Method: POST
-
-URL: "http://localhost:9090/api/answer/create"
-
-Request Header:
-```json
-{
-  "Authorization" : "<user access token>"
-}
-```
-
-Request Param:
-```json
-{
-  "studentID": "<studentID>",
-  "questionID": "<questionID>"
-}
-```
-
-Path Variable: None
-
 Request Body:
 ```json
 {
-  "answer": "answer",
-  "attempts": "attempts"
+  "studentId" : "<student ID>",
+  "questionId" : "<question ID>",
+  "choice" : "<choice>",
+  "correct" : "false",
+  "reward" : "0",
+  "mode" : "<question answer mode: C/Q>"
 }
 ```
-Response: The result of this answer and the point the student gets
-
+Response: The answer response after the validation, the system will update the "is correct" and the reward
 
 ### View Leader Board
 
 Method: GET
 
-URL: "http://localhost:9090/api/leaderboard"
+URL: "http://206.189.151.97:8082/api/leaderboard"
 
-Request Header:
-```json
-{
-  "Authorization" : "<student access token>"
-}
-```
+Request Header: None
 
 Request Param: None
 
@@ -223,51 +263,14 @@ Path Variable: None
 
 Request Body: None
 
-Response: All users' username and their score in sorted order
-
-
-### Techer Create Question
-
-Method: POST
-
-URL: "http://localhost:9090/api/question/create" 
-
-Request Header:
-```json
-{
-  "Authorization" : "<user access token>"
-}
-```
-
-Request Param: None
-
-Path Variable: None
-
-Request Body: 
-```json
-{
-  "questionDescription": "questionDescription",
-  "character": "character",
-  "topic": "topic",
-  "level": "level",
-  "difficulty": "difficulty",
-  "choiceA": "choiceAContent",
-  "choiceB": "choiceBContent",
-  "choiceC": "choiceCContent",
-  "choiceD": "choiceDContent",
-  "correctChoice": "correctChoice",
-  "currentUserLevel": "currentUserLevel"
-}
-```
-
-Response: ACK
+Response: All users with their score in sorted order
 
 
 ### Student Create Challenge
 
 Method: POST
 
-URL: "http://localhost:9090/api/challenge/create"
+URL: "http://206.189.151.97:8082/api/challenge"
 
 Request Header:
 ```json
@@ -281,24 +284,35 @@ Request Param: None
 Path Variable: None
 
 Request Body: 
-```
+```json
 {
-  "questionCount": questionCount,
-  "easyQns": easyQns,
-  "mediumQns": mediumQns,
-  "hardQns": hardQns,
-  "currentUserLevel": currentUserLevel
+  "creatorId": 1,
+  "character": "Product Manager",
+  "questionIds": [],
+  "worldQuestion": [
+    {
+      "world": "Design",
+      "count": 7
+    },
+    {
+      "world": "Implementation or Coding",
+      "count": 4
+    }
+  ],
+  "createTime": null,
+  "successCount": 0,
+  "failureCount": 0
 }
 ```
 
-Response: ACK
+Response: A list of questions sampled by the system that satisfy the requirement of the challeng
 
 
 ### Student Take Challenge
 
 Method: POST
 
-URL: "http://localhost:9090/api/challenge/take"
+URL: "http://206.189.151.97:8082/api/challenge/take"
 
 Request Header:
 ```json
@@ -327,8 +341,65 @@ Request Body:
 Response: If the user win the challenge and the point he/she gets from this challenge
 
 
-### Teacher Check Performance
+### Teacher Check Question Performance
 
+Method: GET
 
-### Teacher Check Progress
+URL: "http://206.189.151.97:8082/api/statistic/section"
 
+Request Header: None
+
+Request Param: 
+```json
+{
+  "character": "<character>"
+}
+```
+
+Path Variable: None
+
+Request Body: None
+
+Response: Performances of every question
+
+### Teacher Check Section Performance
+
+Method: GET
+
+URL: "http://206.189.151.97:8082/api/statistic/section"
+
+Request Header: None
+
+Request Param: 
+```json
+{
+  "character": "<character>"
+}
+```
+
+Path Variable: None
+
+Request Body: None
+
+Response: Performances of every section
+
+### Teacher Check World Performance
+
+Method: GET
+
+URL: "http://206.189.151.97:8082/api/statistic/world"
+
+Request Header: None
+
+Request Param: 
+```json
+{
+  "character": "<character>"
+}
+```
+
+Path Variable: None
+
+Request Body: None
+
+Response: Performances of every world
