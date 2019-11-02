@@ -1,11 +1,15 @@
-package com.example.solvechallenge;
+package com.example.solvechallenge.ui.SelectCharacter;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.solvechallenge.Activity_Level;
+import com.example.solvechallenge.App_Data;
+import com.example.solvechallenge.R;
+import com.example.solvechallenge.Config;
 
 import java.util.ArrayList;
 

@@ -15,7 +15,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:text="Leader Board"
+        android:text="World Performance"
         android:textStyle="bold"
         android:textSize="32dp"
         android:textColor="#fff"
@@ -28,6 +28,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        android:id="@+id/view_recycler_leaderboard"/>
+        android:id="@+id/view_recycler_stats_world"/>
 
 </LinearLayout>

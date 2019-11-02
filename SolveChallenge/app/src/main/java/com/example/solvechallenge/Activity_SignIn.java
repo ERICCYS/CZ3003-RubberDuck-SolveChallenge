@@ -68,7 +68,6 @@ public class Activity_SignIn extends AppCompatActivity {
                 String password = editText_password_signin.getText().toString();
 
                 if (user_role.equals("Teacher")) {
-
                     OkHttpClient client = new OkHttpClient();
                     String url = Config.baseUrl + "teacher/signin";
                     HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
@@ -147,7 +146,9 @@ public class Activity_SignIn extends AppCompatActivity {
                                     App_Data.setUserId(Long.parseLong(myResponse.get("userId").toString()));
                                     System.out.println(App_Data.getAccessToken());
                                     System.out.println(App_Data.getUserId());
-                                    Intent myIntent = new Intent(Activity_SignIn.this, Activity_SelectCharacter.class);
+
+                                    //Debugging Purpose
+                                    Intent myIntent = new Intent(Activity_SignIn.this, Activity_Stats_Main.class);
                                     startActivity(myIntent);
                                 } catch (JSONException e) {
                                     e.printStackTrace();

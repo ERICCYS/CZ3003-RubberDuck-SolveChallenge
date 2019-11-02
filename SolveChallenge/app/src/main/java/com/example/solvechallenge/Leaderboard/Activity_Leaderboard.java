@@ -1,4 +1,4 @@
-package com.example.solvechallenge;
+package com.example.solvechallenge.Leaderboard;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
+
+import com.example.solvechallenge.R;
+import com.example.solvechallenge.Config;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,8 +32,6 @@ public class Activity_Leaderboard extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
 
     private void getRankingJson() {
-
-        JSONObject r;
 
         OkHttpClient client = new OkHttpClient();
         String url = Config.baseUrl + "leaderboard";

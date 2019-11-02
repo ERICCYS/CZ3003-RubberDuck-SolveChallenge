@@ -1,4 +1,4 @@
-package com.example.solvechallenge.ui.main;
+package com.example.solvechallenge.ui.SelectCharacter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
