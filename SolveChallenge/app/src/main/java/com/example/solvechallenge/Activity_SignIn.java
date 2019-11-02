@@ -64,7 +64,7 @@ public class Activity_SignIn extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String username = editText_username_signin.getText().toString();
+                final String username = editText_username_signin.getText().toString();
                 String password = editText_password_signin.getText().toString();
 
                 if (user_role.equals("Teacher")) {
@@ -118,8 +118,8 @@ public class Activity_SignIn extends AppCompatActivity {
                     OkHttpClient client = new OkHttpClient();
                     String url = Config.baseUrl + "student/signin";
                     HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
-                    httpBuilder.addQueryParameter("userName", "MAXI0008");//username);
-                    httpBuilder.addQueryParameter("password", "123456");//password);
+                    httpBuilder.addQueryParameter("userName", username);//"MAXI0008");//
+                    httpBuilder.addQueryParameter("password", password);//"123456");//
                     Request request = new Request.Builder().url(httpBuilder.build()).build();
 
                     client.newCall(request).enqueue(new Callback() {
@@ -145,6 +145,7 @@ public class Activity_SignIn extends AppCompatActivity {
                                     System.out.println(Long.parseLong(myResponse.get("userId").toString()));
                                     App_Data.setAccessToken(myResponse.get("accessToken").toString());
                                     App_Data.setUserId(Long.parseLong(myResponse.get("userId").toString()));
+                                    App_Data.setUserName(username);
                                     System.out.println(App_Data.getAccessToken());
                                     System.out.println(App_Data.getUserId());
                                     Intent myIntent = new Intent(Activity_SignIn.this, Activity_SelectCharacter.class);

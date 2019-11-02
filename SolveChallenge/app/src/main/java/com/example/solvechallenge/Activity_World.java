@@ -19,6 +19,7 @@ public class Activity_World extends AppCompatActivity {
     private FloatingActionButton go_back_btn;
     private Button enter_assignment_btn;
     private Button enter_leaderboard_btn;
+    private Button enter_create_challenge_btn;
 
     private String[] worlds = Config.getWorlds();
     private ArrayList<Button> btns = new ArrayList<>();
@@ -63,8 +64,8 @@ public class Activity_World extends AppCompatActivity {
             }
         });
 
-        enter_create_challenge = findViewById(R.id.btn_challenge_world);
-        enter_create_challenge.setOnClickListener(new View.OnClickListener() {
+        enter_create_challenge_btn = findViewById(R.id.btn_challenge_world);
+        enter_create_challenge_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Activity_World.this, Activity_CreateChallenge.class);

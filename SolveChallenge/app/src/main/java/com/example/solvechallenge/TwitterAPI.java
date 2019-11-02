@@ -1,6 +1,8 @@
 package com.example.solvechallenge;
 import android.util.Base64;
 
+import com.example.solvechallenge.TwitterTweet;
+import com.example.solvechallenge.util;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -24,8 +26,8 @@ public class TwitterAPI {
         this.twitterAPISecret = twitterApiSecret;
     }
 
-    public ArrayList<com.example.solvechallenge.TwitterTweet> getTwitterTweets(String screenName) {
-        ArrayList<com.example.solvechallenge.TwitterTweet> twitterTweetArrayList = null;
+    public ArrayList<TwitterTweet> getTwitterTweets(String screenName) {
+        ArrayList<TwitterTweet> twitterTweetArrayList = null;
         try {
             String twitterUrlApiKey = URLEncoder.encode(twitterApiKey, "UTF-8");
             String twitterUrlApiSecret = URLEncoder.encode(twitterAPISecret, "UTF-8");
@@ -39,16 +41,15 @@ public class TwitterAPI {
         return twitterTweetArrayList;
     }
 
-    public ArrayList<com.example.solvechallenge.TwitterTweet> getTwitterTweets(String screenName,
-                                                                          TwitterAuthToken twitterAuthToken) {
-        ArrayList<com.example.solvechallenge.TwitterTweet> twitterTweetArrayList = null;
+    public ArrayList<TwitterTweet> getTwitterTweets(String screenName,
+                                                    TwitterAuthToken twitterAuthToken) {
+        ArrayList<TwitterTweet> twitterTweetArrayList = null;
         if (twitterAuthToken != null && twitterAuthToken.token_type.equals("bearer")) {
             HttpGet httpGet = new HttpGet(TWITTER_STREAM_URL + screenName);
             httpGet.setHeader("Authorization", "Bearer " + twitterAuthToken.access_token);
             httpGet.setHeader("Content-Type", "application/json");
-            String twitterTweets = com.example.solvechallenge.util.getHttpResponse(httpGet);
+            String twitterTweets = util.getHttpResponse(httpGet);
             twitterTweetArrayList = convertJsonToTwitterTweet(twitterTweets);
-//            System.out.println(twitterTweetArrayList);
         }
         return twitterTweetArrayList;
     }
@@ -58,7 +59,7 @@ public class TwitterAPI {
         httpPost.setHeader("Authorization", "Basic " + twitterKeyBase64);
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         httpPost.setEntity(new StringEntity("grant_type=client_credentials"));
-        String twitterJsonResponse = com.example.solvechallenge.util.getHttpResponse(httpPost);
+        String twitterJsonResponse = util.getHttpResponse(httpPost);
         return convertJsonToTwitterAuthToken(twitterJsonResponse);
     }
 
@@ -73,13 +74,13 @@ public class TwitterAPI {
         return twitterAuthToken;
     }
 
-    private ArrayList<com.example.solvechallenge.TwitterTweet> convertJsonToTwitterTweet(String twitterTweets) {
-        ArrayList<com.example.solvechallenge.TwitterTweet> twitterTweetArrayList = null;
+    private ArrayList<TwitterTweet> convertJsonToTwitterTweet(String twitterTweets) {
+        ArrayList<TwitterTweet> twitterTweetArrayList = null;
         if (twitterTweets != null && twitterTweets.length() > 0) {
             try {
                 Gson gson = new Gson();
                 twitterTweetArrayList =
-                        gson.fromJson(twitterTweets, new TypeToken<ArrayList<com.example.solvechallenge.TwitterTweet>>(){}.getType());
+                        gson.fromJson(twitterTweets, new TypeToken<ArrayList<TwitterTweet>>(){}.getType());
             } catch (IllegalStateException e) {
             }
         }

@@ -10,6 +10,7 @@ public class App_Data {
 
     public static Long userId;
     public static String accessToken;
+    public static String userName;
 
     public static String character;
     public static int world;
@@ -17,6 +18,15 @@ public class App_Data {
     public static int level;
 
 //    public static int no_question;
+
+
+    public static String getUserName() {
+        return userName;
+    }
+
+    public static void setUserName(String userName) {
+        App_Data.userName = userName;
+    }
 
     public static int world_upperbound;
     public static int section_upperbound;
