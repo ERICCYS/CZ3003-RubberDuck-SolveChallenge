@@ -15,6 +15,7 @@
         android:usesCleartextTraffic="true">
         <uses-library android:name ="org.apache.http.legacy" android:required ="false"/>
         <activity android:name=".Activity_Leaderboard"></activity>
+        <activity android:name=".Activity_Stats"></activity>
         <activity
             android:name=".Activity_SelectCharacter"
             android:label="@string/title_activity__select_character"
