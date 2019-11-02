@@ -42,7 +42,7 @@ Request Header: None
 Request Param:
 ```json
 {
-  "username": "<student's username>",
+  "userName": "<student's userName>",
   "password": "<student's password>"
 }
 ```
@@ -62,7 +62,12 @@ URL: "http://206.189.151.97:8082/api/student"
 
 Request Header: None
 
-Request Param: None
+Request Param:
+```json
+{
+  "id": "<student's id>"
+}
+```
 
 Path Variable: None
 
@@ -82,7 +87,7 @@ Request Header: None
 Request Param:
 ```json
 {
-  "username": "<teacher's username>",
+  "userName": "<teacher's userName>",
   "password": "<teacher's password>"
 }
 ```
@@ -102,7 +107,12 @@ URL: "http://206.189.151.97:8082/api/teacher"
 
 Request Header: None
 
-Request Param: None
+Request Param: 
+```json
+{
+  "id": "<teacher's id>"
+}
+```
 
 Path Variable: None
 
@@ -133,7 +143,6 @@ Path Variable: None
 Request Body: None
 
 Response: The progress (i.e. which part is locked and which part is unlocked)
-
 
 ### Fetch A Question By ID
 
