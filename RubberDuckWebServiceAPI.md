@@ -317,37 +317,26 @@ Request Body:
 Response: A list of questions sampled by the system that satisfy the requirement of the challeng
 
 
-### Student Take Challenge
+### Get Challenge By Creator UserName
 
 Method: POST
 
-URL: "http://206.189.151.97:8082/api/challenge/take"
+URL: "http://206.189.151.97:8082/api/challenge/username"
 
-Request Header:
-```json
-{
-  "Authorization" : "<student access token>"
-}
-```
+Request Header: None
 
 Request Param:
 ```json
 {
-  "studnetID": "studentID",
-  "challengeID": "challengeID"
+  "userName": "studentUserName"
 }
 ```
 
 Path Variable: None
 
-Request Body: 
-```json
-{
-  "correctAnswerCount" : "correctAnswerCount"
-}
-```
+Request Body: None
 
-Response: If the user win the challenge and the point he/she gets from this challenge
+Response: If this use exist and he/she has created at least one challenge, return the most recent challenge he/she created.
 
 
 ### Teacher Check Question Performance
