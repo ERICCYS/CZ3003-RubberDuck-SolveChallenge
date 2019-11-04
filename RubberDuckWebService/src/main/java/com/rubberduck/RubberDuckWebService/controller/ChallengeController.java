@@ -2,7 +2,9 @@ package com.rubberduck.RubberDuckWebService.controller;
 
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Challenge;
+import com.rubberduck.RubberDuckWebService.model.Student;
 import com.rubberduck.RubberDuckWebService.service.ChallengeService;
+import com.rubberduck.RubberDuckWebService.service.StudentService;
 import com.rubberduck.RubberDuckWebService.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,12 +21,30 @@ public class ChallengeController {
     @Autowired
     ValidationService validationService;
 
+    @Autowired
+    StudentService studentService;
+
 
     @GetMapping("/challenge")
     public String getChallengeByID(
             @RequestParam Long id
     ) {
         Challenge challenge = challengeService.findById(id);
+        return JSONConvert.JSONConverter(challenge);
+    }
+
+    @GetMapping("challenge/username")
+    public String getChallengeByCreator(
+            @RequestParam String userName
+    ) {
+        Student creator = studentService.findByUserName(userName);
+        if (creator == null) {
+            throw new NullPointerException();
+        }
+        Challenge challenge = challengeService.findByCreatorId(creator.getId());
+        if (challenge == null) {
+            throw new NullPointerException();
+        }
         return JSONConvert.JSONConverter(challenge);
     }
 

@@ -9,7 +9,7 @@ public interface ChallengeService {
 
     Challenge findById(Long id);
 
-    List<Challenge> findByCreatorId(Long creatorId);
+    Challenge findByCreatorId(Long creatorId);
 
     void addQuestions(Challenge challenge);
 

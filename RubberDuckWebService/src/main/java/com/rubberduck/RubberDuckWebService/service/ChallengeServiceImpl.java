@@ -33,8 +33,8 @@ public class ChallengeServiceImpl implements ChallengeService {
     }
 
     @Override
-    public List<Challenge> findByCreatorId(Long creatorId) {
-        return challengeRepo.findByCreatorId(creatorId);
+    public Challenge findByCreatorId(Long creatorId) {
+        return challengeRepo.getByCreatorId(creatorId);
     }
 
     @Override
