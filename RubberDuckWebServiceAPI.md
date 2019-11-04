@@ -319,7 +319,7 @@ Response: A list of questions sampled by the system that satisfy the requirement
 
 ### Get Challenge By Creator UserName
 
-Method: POST
+Method: GET
 
 URL: "http://206.189.151.97:8082/api/challenge/username"
 
