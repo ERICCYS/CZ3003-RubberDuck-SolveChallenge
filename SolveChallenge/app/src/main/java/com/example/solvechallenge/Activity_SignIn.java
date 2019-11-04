@@ -64,8 +64,12 @@ public class Activity_SignIn extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                final String username = editText_username_signin.getText().toString();
-                String password = editText_password_signin.getText().toString();
+
+//                final String username = editText_username_signin.getText().toString();
+//                String password = editText_password_signin.getText().toString();
+
+                final String username = "MAXI0008";
+                String password = "123456";
 
                 if (user_role.equals("Teacher")) {
 
@@ -118,8 +122,8 @@ public class Activity_SignIn extends AppCompatActivity {
                     OkHttpClient client = new OkHttpClient();
                     String url = Config.baseUrl + "student/signin";
                     HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
-                    httpBuilder.addQueryParameter("userName", username);//"MAXI0008");//
-                    httpBuilder.addQueryParameter("password", password);//"123456");//
+                    httpBuilder.addQueryParameter("userName", username);
+                    httpBuilder.addQueryParameter("password", password);
                     Request request = new Request.Builder().url(httpBuilder.build()).build();
 
                     client.newCall(request).enqueue(new Callback() {

@@ -42,7 +42,29 @@ public class Activity_CreateChallenge extends AppCompatActivity {
     Button confirmbtn;
 
     String[] world_names = Config.getWorlds();
+    JSONArray worldsInfo = new JSONArray();
 
+    public JSONArray getWorldsInfo() {
+        return worldsInfo;
+    }
+
+    public void setWorldsInfo(JSONArray worldsInfo) {
+        this.worldsInfo = worldsInfo;
+    }
+
+    public void addWorldInfo(final String world, final String count){
+        try{
+
+            if ((worldsInfo.length() != 0) && (world == world_names[0]) ) {worldsInfo = new JSONArray();}
+
+            worldsInfo.put(new JSONObject(){{
+                put("world", world);
+                put("count", count);
+            }});
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,78 +89,80 @@ public class Activity_CreateChallenge extends AppCompatActivity {
                 noOfQuestionOfworld4 = questionsOfWorld4.getText().toString();
                 String[] noOfQuestionOfworlds={noOfQuestionOfworld0, noOfQuestionOfworld1, noOfQuestionOfworld2, noOfQuestionOfworld3, noOfQuestionOfworld4};
 
-//                OkHttpClient client = new OkHttpClient();
-//                String url = Config.baseUrl + "challenge";
-//                HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
-//
-//                JSONObject newChallenge = new JSONObject();
-//                try {
-//                    newChallenge.put("creatorId", App_Data.getUserId());
-//                    newChallenge.put("character", App_Data.getCharacter());
-//
-//                    JSONArray worldsInfo = new JSONArray();
-//                    for (int i=0; i<5; i++){
-//                        JSONObject newWorldInfo = new JSONObject();
-//                        newWorldInfo.put("world", world_names[i]);
-//                        newWorldInfo.put("count", noOfQuestionOfworlds[i]);
-//                        worldsInfo.
-//                    }
-//
-//                    newChallenge.put("worldQuestions", worldsInfo);
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                RequestBody body = RequestBody.create(HangOutApi.JSON, newVendor.toString());
-//
-//                Request request = new Request.Builder()
-//                        .url(httpBuilder.build())
-//                        .addHeader("Authorization", App_Data.getAccessToken())
-//                        .build();
-//
-//                client.newCall(request).enqueue(new Callback() {
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        Activity_SelectCharacter.this.runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                Toast.makeText(Activity_SelectCharacter.this, "Failed...", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                        e.printStackTrace();
-//                    }
-//
-//                    @RequiresApi(api = Build.VERSION_CODES.O)
-//                    @Override
-//                    public void onResponse(Call call, Response response) throws IOException {
-//                        if (response.isSuccessful()) {
-//                            try {
-//                                JSONObject r = new JSONObject(response.body().string());
-//                                App_Data.setCharacter(characterChosen);
-//                                App_Data.setWorld_upperbound(Integer.parseInt(r.get("world").toString()));
-//                                App_Data.setSection_upperbound(Integer.parseInt(r.get("section").toString()));
-//                                App_Data.setLevel_upperbound(Integer.parseInt(r.get("level").toString()));
-//
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//
-//                            App_Data.printAllData();
-//
-//                            Intent myIntent = new Intent(Activity_SelectCharacter.this, Activity_World.class);
-//                            startActivity(myIntent);
-//
-//                        } else {
-//                            Activity_SelectCharacter.this.runOnUiThread(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    Toast.makeText(Activity_SelectCharacter.this, "Failed..", Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//                        }
-//                    }
-//                });
+                OkHttpClient client = new OkHttpClient();
+                String url = Config.baseUrl + "challenge";
+                HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
+
+                JSONObject newChallenge = new JSONObject();
+                try {
+                    newChallenge.put("creatorId", App_Data.getUserId());
+                    newChallenge.put("character", App_Data.getCharacter());
+
+
+                    for (int i=0; i<5; i++){
+                        System.out.println(world_names[i] + "  " + noOfQuestionOfworlds[i]);
+                        System.out.println(noOfQuestionOfworlds[i].getClass());
+                        if (noOfQuestionOfworlds[i].equals("")) {
+                            continue;
+                        }
+                        addWorldInfo(world_names[i], noOfQuestionOfworlds[i]);
+                    }
+
+
+                    newChallenge.put("worldQuestion", getWorldsInfo());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                RequestBody body = RequestBody.create(Config.JSON, newChallenge.toString());
+
+                System.out.println(newChallenge);
+
+                Request request = new Request.Builder()
+                        .url(httpBuilder.build())
+                        .addHeader("Authorization", App_Data.getAccessToken())
+                        .post(body)
+                        .build();
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Activity_CreateChallenge.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(Activity_CreateChallenge.this, "Failed...", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        e.printStackTrace();
+                    }
+
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        System.out.println(response);
+                        if (response.isSuccessful()) {
+                            Activity_CreateChallenge.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Activity_CreateChallenge.this, "Successfully set challenges", Toast.LENGTH_SHORT).show();
+                                    App_Data.printAllData();
+                                    Intent myIntent = new Intent(Activity_CreateChallenge.this, Activity_World.class);
+                                    startActivity(myIntent);
+                                }
+                            });
+
+
+                        } else {
+                            Activity_CreateChallenge.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Activity_CreateChallenge.this, "Failed..........", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                });
 
 
             }
