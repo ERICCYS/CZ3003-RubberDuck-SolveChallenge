@@ -10,11 +10,17 @@
     android:background="@drawable/background_signin_3">
 
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:drawableBottom="@drawable/img_leaderboard_world"/>
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="Question Performance"
+        android:textStyle="bold"
+        android:textSize="32dp"
+        android:textColor="#fff"
+        android:textAlignment="center"
+        android:background="@drawable/btn_testing_world"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -22,6 +28,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        android:id="@+id/view_recycler_leaderboard"/>
+        android:id="@+id/view_recycler_stats_question"/>
 
 </LinearLayout>

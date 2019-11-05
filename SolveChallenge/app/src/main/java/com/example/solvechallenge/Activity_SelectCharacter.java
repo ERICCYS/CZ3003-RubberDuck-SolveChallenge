@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.solvechallenge.ui.main.SectionsPagerAdapter;
+import com.example.solvechallenge.ui.SelectCharacter.SectionsPagerAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;

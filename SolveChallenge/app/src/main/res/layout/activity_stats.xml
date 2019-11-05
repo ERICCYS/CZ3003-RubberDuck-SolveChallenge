@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_Stats_Main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:text="Course Performance"
+            android:textStyle="bold"
+            android:textSize="32dp"
+            android:textColor="#fff"
+            android:textAlignment="center"
+            android:background="@drawable/btn_testing_world"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:text="Click on each character to view the performance."
+            android:textSize="15dp"
+            android:textColor="#BBBBBB"
+            android:textAlignment="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="630dp"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <Button
+                android:id="@+id/btn_developer_stats"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_intro_world"
+                android:drawableTop="@drawable/btn_lead_developer_stats"
+                android:paddingTop="25dp"
+                android:textAllCaps="false"
+                android:text="Lead Developer"
+                android:textColor="#000"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/btn_product_stats"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_design_world"
+                android:drawableTop="@drawable/btn_product_manager_stats"
+                android:paddingTop="25dp"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:text="Product Manager"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_QA_stats"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_maintain_world"
+                android:drawableTop="@drawable/btn_quality_manager_stats"
+                android:paddingTop="25dp"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:text="Quality Manager"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

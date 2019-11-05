@@ -1,4 +1,4 @@
-package com.example.solvechallenge;
+package com.example.solvechallenge.Leaderboard;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.solvechallenge.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

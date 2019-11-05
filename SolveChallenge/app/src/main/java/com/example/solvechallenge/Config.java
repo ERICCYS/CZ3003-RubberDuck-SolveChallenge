@@ -1,8 +1,6 @@
 package com.example.solvechallenge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import okhttp3.MediaType;
 
