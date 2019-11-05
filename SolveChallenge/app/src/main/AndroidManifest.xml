@@ -13,11 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <uses-library android:name ="org.apache.http.legacy" android:required ="false"/>
-        <activity android:name=".Activity_CreateChallenge"></activity>
-        <activity android:name=".StatsWorld.Activity_Stats_World"></activity>
-        <activity android:name=".StatsSection.Activity_Stats_Section"/>
-        <activity android:name=".StatsQuestion.Activity_Stats_Question"/>
+        <activity
+            android:name=".Activity_Challenge"
+            android:label="@string/title_activity__challenge"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".Activity_CreateChallenge" />
+        <activity android:name=".StatsWorld.Activity_Stats_World" />
+        <activity android:name=".StatsSection.Activity_Stats_Section" />
+        <activity android:name=".StatsQuestion.Activity_Stats_Question" />
         <activity android:name=".Activity_Stats_Second" />
         <activity android:name=".Activity_Stats_Main" />
         <activity android:name=".Leaderboard.Activity_Leaderboard" />

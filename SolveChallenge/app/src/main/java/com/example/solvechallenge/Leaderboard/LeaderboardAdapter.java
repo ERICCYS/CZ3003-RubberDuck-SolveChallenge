@@ -18,8 +18,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.solvechallenge.Activity_Challenge;
 import com.example.solvechallenge.Config;
 import com.example.solvechallenge.R;
+import com.example.solvechallenge.ui.SelectCharacter.Activity_Section;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +29,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -38,7 +41,6 @@ import okhttp3.Response;
 
 class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.LeaderboardViewHolder>{
 
-    private static String current_name;
     private static JSONObject challenge;
     private JSONArray students;
     private static Context context;
@@ -50,14 +52,6 @@ class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.Leaderb
         this.students = students;
         this.context = context;
         this.myDialog = new Dialog(context);
-    }
-
-    public static String getCurrent_name() {
-        return current_name;
-    }
-
-    public static void setCurrent_name(String current_name) {
-        LeaderboardAdapter.current_name = current_name;
     }
 
     public static Context getContext() {
@@ -84,7 +78,7 @@ class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.Leaderb
     public void onBindViewHolder(@NonNull LeaderboardViewHolder holder, final int position){
         try {
 
-            JSONObject studnet = students.getJSONObject(position);
+            final JSONObject studnet = students.getJSONObject(position);
             final String name = studnet.get("userName").toString();
             String score = studnet.get("mark").toString();
 
@@ -142,7 +136,7 @@ class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.Leaderb
                                             txtFail = (TextView) myDialog.findViewById(R.id.noOfFail_challenge_info_popup);
                                             btnTakeChallenge = (Button) myDialog.findViewById(R.id.takeChallenge_challenge_info_popup);
 
-                                            txtUsername.setText(getCurrent_name() + "'s Challenge");
+                                            txtUsername.setText(name + "'s Challenge");
                                             try{
                                                 txtFail.setText(getChallenge().get("failureCount").toString());
                                                 txtPass.setText(getChallenge().get("successCount").toString());
@@ -159,7 +153,20 @@ class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.Leaderb
                                             btnTakeChallenge.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    Toast.makeText(context, "This will lead to challenge questions....", Toast.LENGTH_SHORT).show();
+                                                    try{
+                                                        JSONArray questionIdObjects = (JSONArray) challenge.get("questionIds");
+                                                        ArrayList<Integer> questionIds = new ArrayList<>();
+                                                        for(int i = 0; i < questionIdObjects.length(); i++) {
+                                                            Integer questionId = (Integer) questionIdObjects.get(i);
+                                                            questionIds.add(questionId);
+                                                        }
+
+                                                        Intent intent = new Intent(activity, Activity_Challenge.class);
+                                                        intent.putIntegerArrayListExtra("question_ids", questionIds);
+                                                        context.startActivity(intent);
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
                                                 }
                                             });
                                             myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -211,10 +218,6 @@ class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.Leaderb
             score = itemView.findViewById(R.id.txtview_score_leaderboard);
             challenge = itemView.findViewById(R.id.btn_challenge_leaderboard);
 
-//            System.out.println("@@@@@@@@@@@@@@@@@");
-//            System.out.println(name.getText().toString());
-//            System.out.println("@@@@@@@@@@@@@@@@@");
-//            setCurrent_name(name.getText().toString());
 
         }
 

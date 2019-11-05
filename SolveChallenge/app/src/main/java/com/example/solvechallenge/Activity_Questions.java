@@ -127,7 +127,7 @@ public class Activity_Questions extends AppCompatActivity {
             case 3: setChoiceInAlpha("D");
         }
 
-        //TODO check the answer
+        //check the answer
 
         OkHttpClient client = new OkHttpClient();
         String url = Config.baseUrl + "answer";
@@ -222,7 +222,7 @@ public class Activity_Questions extends AppCompatActivity {
     }
 
     public void showNextQuestion(){
-        if ((index_of_question==no_questions-1 && getScore()==75) || (index_of_question<=no_questions-5)){
+        if ((index_of_question==no_questions-1 && getScore()==75) || (index_of_question<=no_questions-2)){
             try {
                 JSONObject question = (JSONObject) questionsInJson.get(index_of_question);
                 String description = question.get("description").toString();

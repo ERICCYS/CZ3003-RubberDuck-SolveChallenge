@@ -1,5 +1,6 @@
 package com.example.solvechallenge;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -71,7 +72,14 @@ public class Activity_SignIn extends AppCompatActivity {
                 final String username = "MAXI0008";
                 String password = "123456";
 
+
+                // get spinner value and decide which page to go
+
                 if (user_role.equals("Teacher")) {
+
+                    Intent myIntent = new Intent(Activity_SignIn.this, Activity_Stats_Main.class);
+                    startActivity(myIntent);
+
                     OkHttpClient client = new OkHttpClient();
                     String url = Config.baseUrl + "teacher/signin";
                     HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
@@ -153,7 +161,7 @@ public class Activity_SignIn extends AppCompatActivity {
                                     System.out.println(App_Data.getUserId());
 
                                     //Debugging Purpose
-                                    Intent myIntent = new Intent(Activity_SignIn.this, Activity_Stats_Main.class);
+                                    Intent myIntent = new Intent(Activity_SignIn.this, Activity_SelectCharacter.class);
                                     startActivity(myIntent);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
