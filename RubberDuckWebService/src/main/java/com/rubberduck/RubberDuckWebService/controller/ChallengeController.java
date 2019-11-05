@@ -38,13 +38,16 @@ public class ChallengeController {
             @RequestParam String userName
     ) {
         Student creator = studentService.findByUserName(userName);
-        if (creator == null) {
+        Challenge challenge;
+        if (creator != null) {
+            challenge = challengeService.findByCreatorId(creator.getId());
+            if (challenge == null) {
+                throw new NullPointerException();
+            }
+        } else {
             throw new NullPointerException();
         }
-        Challenge challenge = challengeService.findByCreatorId(creator.getId());
-        if (challenge == null) {
-            throw new NullPointerException();
-        }
+
         return JSONConvert.JSONConverter(challenge);
     }
 

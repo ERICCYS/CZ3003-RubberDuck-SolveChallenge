@@ -3,6 +3,7 @@ package com.rubberduck.RubberDuckWebService.controller;
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Answer;
 import com.rubberduck.RubberDuckWebService.service.AnswerService;
+import com.rubberduck.RubberDuckWebService.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,9 @@ public class AnswerController {
 
     @Autowired
     AnswerService answerService;
+
+    @Autowired
+    ValidationService validationService;
 
     @GetMapping("/answer")
     public String getAnswerById(
@@ -41,8 +45,14 @@ public class AnswerController {
 
     @PostMapping("/answer")
     public String createAnswer(
-            @Valid @RequestBody Answer answer
+            @Valid @RequestBody Answer answer,
+            @RequestHeader(value = "Authorization") String accessToken
     ) {
-        return JSONConvert.JSONConverter(answerService.save(answer));
+        if (Long.parseLong(validationService.getUserId(accessToken, "STUDENT")) == answer.getStudentId()) {
+            return JSONConvert.JSONConverter(answerService.save(answer));
+        } else {
+            throw new IllegalArgumentException();
+        }
+
     }
 }
