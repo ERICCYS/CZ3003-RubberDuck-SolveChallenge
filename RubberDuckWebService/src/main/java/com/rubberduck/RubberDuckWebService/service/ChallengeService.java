@@ -13,10 +13,11 @@ public interface ChallengeService {
 
     void addQuestions(Challenge challenge);
 
+    void increaseSuccess(Long challengeId);
+
+    void increaseFail(Long challengeId);
+
     List<Question> save(Challenge challenge);
 
     void delete(Challenge challenge);
-
-    // need to generate the challenge (sampling question from the world
-
 }

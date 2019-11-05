@@ -98,7 +98,7 @@ public class Challenge {
         return successCount;
     }
 
-    public void increaseSuccessCount(int successCount) {
+    public void increaseSuccessCount() {
         this.successCount += 1;
     }
 
@@ -106,7 +106,7 @@ public class Challenge {
         return failureCount;
     }
 
-    public void increaseFailureCount(int failureCount) {
+    public void increaseFailureCount() {
         this.failureCount += 1;
     }
 }

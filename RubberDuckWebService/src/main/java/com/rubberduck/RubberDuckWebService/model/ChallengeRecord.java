@@ -38,6 +38,9 @@ public class ChallengeRecord {
         this.success = success;
     }
 
+    public ChallengeRecord() {
+    }
+
     public Long getId() {
         return id;
     }

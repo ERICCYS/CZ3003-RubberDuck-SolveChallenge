@@ -58,6 +58,20 @@ public class ChallengeServiceImpl implements ChallengeService {
     }
 
     @Override
+    public void increaseSuccess(Long challengeId) {
+        Challenge challenge = challengeRepo.findById(challengeId);
+        challenge.increaseSuccessCount();
+        challengeRepo.save(challenge);
+    }
+
+    @Override
+    public void increaseFail(Long challengeId) {
+        Challenge challenge = challengeRepo.findById(challengeId);
+        challenge.increaseFailureCount();
+        challengeRepo.save(challenge);
+    }
+
+    @Override
     public List<Question> save(Challenge challenge) {
         List<WorldQuestion> worldQuestions = challenge.getWorldQuestion();
         for (WorldQuestion worldQuestion : worldQuestions) {
