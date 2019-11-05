@@ -66,11 +66,11 @@ public class Activity_SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                final String username = editText_username_signin.getText().toString();
-//                String password = editText_password_signin.getText().toString();
+                final String username = editText_username_signin.getText().toString();
+                String password = editText_password_signin.getText().toString();
 
-                final String username = "MAXI0008";
-                String password = "123456";
+//                final String username = "MAXI0008";
+//                String password = "123456";
 
 
                 // get spinner value and decide which page to go
@@ -109,7 +109,8 @@ public class Activity_SignIn extends AppCompatActivity {
                                     App_Data.setAccessToken(myResponse.get("accessToken").toString());
                                     App_Data.setUserId(Long.parseLong(myResponse.get("userId").toString()));
 
-                                    Intent myIntent = new Intent(Activity_SignIn.this, Activity_SelectCharacter.class);
+
+                                    Intent myIntent = new Intent(Activity_SignIn.this, Activity_Stats_Main.class);
                                     startActivity(myIntent);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
