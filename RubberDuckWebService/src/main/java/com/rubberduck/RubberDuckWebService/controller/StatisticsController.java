@@ -62,6 +62,7 @@ public class StatisticsController {
         }
 
     }
+
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "Not authorized to view the statistic")
     @ExceptionHandler(IllegalArgumentException.class)
     public void badAuthenticationException() {

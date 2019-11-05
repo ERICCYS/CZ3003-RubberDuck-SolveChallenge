@@ -1,20 +1,19 @@
 package com.rubberduck.RubberDuckWebService.service;
 
-import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.Status;
 import com.rubberduck.RubberDuckWebService.repo.StatusRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class StatusServiceImpl implements StatusService {
 
-    @Autowired
-    StatusRepo statusRepo;
-
-    private static final Map<String, Integer> worldCodes = new LinkedHashMap<String, Integer>(){
+    private static final Map<String, Integer> worldCodes = new LinkedHashMap<String, Integer>() {
         {
             put("Requirement Gathering and Analysis", 0);
             put("Design", 1);
@@ -24,7 +23,7 @@ public class StatusServiceImpl implements StatusService {
         }
     };
 
-    private static final List<Map<String, Integer>> sectionCodes = new ArrayList<Map<String, Integer>>(){
+    private static final List<Map<String, Integer>> sectionCodes = new ArrayList<Map<String, Integer>>() {
         {
             add(new LinkedHashMap<String, Integer>() {{
                 put("Requirement Engineering", 0);
@@ -53,6 +52,9 @@ public class StatusServiceImpl implements StatusService {
             }});
         }
     };
+
+    @Autowired
+    StatusRepo statusRepo;
 
     @Override
     public String[] getNextStage(Status status) {

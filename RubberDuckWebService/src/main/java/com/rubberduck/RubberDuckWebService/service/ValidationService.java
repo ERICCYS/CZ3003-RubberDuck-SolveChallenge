@@ -10,5 +10,5 @@ public interface ValidationService {
 
     String getAccessToken(User user, String userType);
 
-    String getUserId(String accessToken,  String desiredUserCategory);
+    String getUserId(String accessToken, String desiredUserCategory);
 }

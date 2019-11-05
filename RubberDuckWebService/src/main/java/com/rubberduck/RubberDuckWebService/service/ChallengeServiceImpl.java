@@ -1,7 +1,6 @@
 package com.rubberduck.RubberDuckWebService.service;
 
 import com.rubberduck.RubberDuckWebService.model.Challenge;
-import com.rubberduck.RubberDuckWebService.model.DifficultyEnum;
 import com.rubberduck.RubberDuckWebService.model.Question;
 import com.rubberduck.RubberDuckWebService.model.WorldQuestion;
 import com.rubberduck.RubberDuckWebService.repo.ChallengeRepo;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ChallengeServiceImpl implements ChallengeService {
@@ -77,8 +75,8 @@ public class ChallengeServiceImpl implements ChallengeService {
         for (WorldQuestion worldQuestion : worldQuestions) {
             worldQuestionRepo.save(worldQuestion);
         }
-        Challenge createdChallenge =  challengeRepo.save(challenge);
-        List<Question> challengeQuestions = new ArrayList<Question>();
+        Challenge createdChallenge = challengeRepo.save(challenge);
+        List<Question> challengeQuestions = new ArrayList<>();
         List<Long> questionIds = createdChallenge.getQuestionIds();
         for (Long questionId : questionIds) {
             challengeQuestions.add(questionRepo.findById(questionId));

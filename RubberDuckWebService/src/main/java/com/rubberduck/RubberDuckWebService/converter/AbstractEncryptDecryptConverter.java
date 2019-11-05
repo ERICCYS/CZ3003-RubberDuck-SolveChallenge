@@ -1,16 +1,16 @@
 package com.rubberduck.RubberDuckWebService.converter;
 
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.persistence.AttributeConverter;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 public abstract class AbstractEncryptDecryptConverter<T> implements AttributeConverter<T, String> {
     private static final String SECRET_ENCRYPTION_KEY = "MySuperSecretKey";

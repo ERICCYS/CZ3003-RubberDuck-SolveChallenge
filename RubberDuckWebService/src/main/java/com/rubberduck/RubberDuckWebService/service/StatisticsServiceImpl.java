@@ -3,7 +3,6 @@ package com.rubberduck.RubberDuckWebService.service;
 import com.rubberduck.RubberDuckWebService.model.Answer;
 import com.rubberduck.RubberDuckWebService.model.DifficultyEnum;
 import com.rubberduck.RubberDuckWebService.model.Question;
-import com.rubberduck.RubberDuckWebService.model.WorldQuestion;
 import com.rubberduck.RubberDuckWebService.repo.AnswerRepo;
 import com.rubberduck.RubberDuckWebService.repo.QuestionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,68 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Autowired
     AnswerRepo answerRepo;
+
+    @Override
+    public List<Object> getQuestionPerformance(String character) {
+        List<Question> questions = questionRepo.findByCharacter(character);
+        List<Object> questionPerformances = new ArrayList<>();
+        for (Question question : questions) {
+            // get the number of attempts
+            List<Answer> answers = answerRepo.findByQuestionIdAndMode(question.getId(), "Q");
+            Integer questionAttempts = answers.size();
+            Double questionAverageScore = 0d;
+            if (questionAttempts != 0) {
+                for (Answer answer : answers) {
+                    questionAverageScore += answer.getReward();
+                }
+                questionAverageScore = questionAverageScore / questionAttempts;
+            }
+            QuestionPerformance questionPerformance = new QuestionPerformance(question, questionAttempts, questionAverageScore);
+            questionPerformances.add(questionPerformance);
+        }
+        return questionPerformances;
+    }
+
+    @Override
+    public List<Object> getSectionPerformance(String character, Map<String, List<String>> worldSections) {
+        List<Object> questionPerformances = this.getQuestionPerformance(character);
+        List<Object> sectionPerformances = new ArrayList<>();
+
+        for (Map.Entry<String, List<String>> worldSection : worldSections.entrySet()) {
+            String world = worldSection.getKey();
+            List<String> sections = worldSection.getValue();
+            for (String section : sections) {
+                SectionPerformance sectionPerformance = new SectionPerformance(world, section, 0, 0d);
+                for (Object questionPerformance : questionPerformances) {
+                    if (((QuestionPerformance) questionPerformance).getQuestionWorld().equals(world) && ((QuestionPerformance) questionPerformance).getQuestionSection().equals(section)) {
+                        sectionPerformance.addAttempt(((QuestionPerformance) questionPerformance).getQuestionAttempts());
+                        sectionPerformance.addScore(((QuestionPerformance) questionPerformance).getQuestionAverageScore());
+                    }
+                }
+                sectionPerformances.add(sectionPerformance);
+            }
+
+        }
+        return sectionPerformances;
+    }
+
+    @Override
+    public List<Object> getWorldPerformance(String character, List<String> worlds) {
+        List<Object> questionPerformances = this.getQuestionPerformance(character);
+        List<Object> worldPerformances = new ArrayList<>();
+
+        for (String world : worlds) {
+            WorldPerformance worldPerformance = new WorldPerformance(world, 0, 0d);
+            for (Object questionPerformance : questionPerformances) {
+                if (((QuestionPerformance) questionPerformance).getQuestionWorld().equals(world)) {
+                    worldPerformance.addAttempt(((QuestionPerformance) questionPerformance).getQuestionAttempts());
+                    worldPerformance.addScore(((QuestionPerformance) questionPerformance).getQuestionAverageScore());
+                }
+            }
+            worldPerformances.add(worldPerformance);
+        }
+        return worldPerformances;
+    }
 
     private class QuestionPerformance {
         private Long questionId;
@@ -248,67 +309,5 @@ public class StatisticsServiceImpl implements StatisticsService {
         public void addScore(Double averageScore) {
             this.averageScore += averageScore;
         }
-    }
-
-    @Override
-    public List<Object> getQuestionPerformance(String character) {
-        List<Question> questions = questionRepo.findByCharacter(character);
-        List<Object> questionPerformances = new ArrayList<>();
-        for (Question question : questions) {
-            // get the number of attempts
-            List<Answer> answers = answerRepo.findByQuestionIdAndMode(question.getId(), "Q");
-            Integer questionAttempts = answers.size();
-            Double questionAverageScore = 0d;
-            if (questionAttempts != 0) {
-                for (Answer answer : answers) {
-                    questionAverageScore += answer.getReward();
-                }
-                questionAverageScore = questionAverageScore/questionAttempts;
-            }
-            QuestionPerformance questionPerformance = new QuestionPerformance(question, questionAttempts, questionAverageScore);
-            questionPerformances.add(questionPerformance);
-        }
-        return questionPerformances;
-    }
-
-    @Override
-    public List<Object> getSectionPerformance(String character, Map<String, List<String>> worldSections) {
-        List<Object> questionPerformances = this.getQuestionPerformance(character);
-        List<Object> sectionPerformances = new ArrayList<>();
-
-        for (Map.Entry<String, List<String>> worldSection : worldSections.entrySet()) {
-            String world = worldSection.getKey();
-            List<String> sections = worldSection.getValue();
-            for (String section : sections) {
-                SectionPerformance sectionPerformance = new SectionPerformance(world, section, 0,0d);
-                for (Object questionPerformance : questionPerformances) {
-                    if (((QuestionPerformance) questionPerformance).getQuestionWorld().equals(world) && ((QuestionPerformance) questionPerformance).getQuestionSection().equals(section)) {
-                        sectionPerformance.addAttempt(((QuestionPerformance) questionPerformance).getQuestionAttempts());
-                        sectionPerformance.addScore(((QuestionPerformance) questionPerformance).getQuestionAverageScore());
-                    }
-                }
-                sectionPerformances.add(sectionPerformance);
-            }
-
-        }
-        return sectionPerformances;
-    }
-
-    @Override
-    public List<Object> getWorldPerformance(String character, List<String> worlds) {
-        List<Object> questionPerformances = this.getQuestionPerformance(character);
-        List<Object> worldPerformances = new ArrayList<>();
-
-        for (String world : worlds) {
-            WorldPerformance worldPerformance = new WorldPerformance(world, 0,0d);
-            for (Object questionPerformance : questionPerformances) {
-                if (((QuestionPerformance) questionPerformance).getQuestionWorld().equals(world)) {
-                    worldPerformance.addAttempt(((QuestionPerformance) questionPerformance).getQuestionAttempts());
-                    worldPerformance.addScore(((QuestionPerformance) questionPerformance).getQuestionAverageScore());
-                }
-            }
-            worldPerformances.add(worldPerformance);
-        }
-        return worldPerformances;
     }
 }

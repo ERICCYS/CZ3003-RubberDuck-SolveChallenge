@@ -14,60 +14,10 @@ import java.util.List;
 @Service
 public class AnswerServiceImpl implements AnswerService {
 
-    public class AnswerResultResponse {
-        private int mark;
-        private boolean correct;
-        private String message;
-
-        public AnswerResultResponse(int mark, boolean correct, String message) {
-            this.mark = mark;
-            this.correct = correct;
-            this.message = message;
-        }
-
-        public AnswerResultResponse() {
-        }
-
-        @Override
-        public String toString() {
-            return "AnswerResultResponse{" +
-                    "mark=" + mark +
-                    ", correct=" + correct +
-                    ", message='" + message + '\'' +
-                    '}';
-        }
-
-        public int getMark() {
-            return mark;
-        }
-
-        public void setMark(int mark) {
-            this.mark = mark;
-        }
-
-        public boolean isCorrect() {
-            return correct;
-        }
-
-        public void setCorrect(boolean correct) {
-            this.correct = correct;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-    }
-
     @Autowired
     AnswerRepo answerRepo;
-
     @Autowired
     QuestionRepo questionRepo;
-
     @Autowired
     StudentRepo studentRepo;
 
@@ -116,7 +66,7 @@ public class AnswerServiceImpl implements AnswerService {
                     if (previousAnswer.isCorrect()) {
                         answerResultResponse.setMessage("You have answered this question correctly before! Correct answer is " + question.getCorrectChoice());
                         // don't save duplication correct answer for a question
-                        return ;
+                        return;
                     }
                 }
                 mark = (int) (question.getAward() * (1 - 0.33 * previousAnswers.size()));
@@ -133,7 +83,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public AnswerResultResponse save(Answer answer) {
-        AnswerResultResponse answerResultResponse = new AnswerResultResponse (0, false, "");
+        AnswerResultResponse answerResultResponse = new AnswerResultResponse(0, false, "");
 
         if (answer == null) {
             answerResultResponse.setMessage("Answer Not Received");
@@ -166,5 +116,53 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public void delete(Answer answer) {
         answerRepo.delete(answer);
+    }
+
+    public class AnswerResultResponse {
+        private int mark;
+        private boolean correct;
+        private String message;
+
+        public AnswerResultResponse(int mark, boolean correct, String message) {
+            this.mark = mark;
+            this.correct = correct;
+            this.message = message;
+        }
+
+        public AnswerResultResponse() {
+        }
+
+        @Override
+        public String toString() {
+            return "AnswerResultResponse{" +
+                    "mark=" + mark +
+                    ", correct=" + correct +
+                    ", message='" + message + '\'' +
+                    '}';
+        }
+
+        public int getMark() {
+            return mark;
+        }
+
+        public void setMark(int mark) {
+            this.mark = mark;
+        }
+
+        public boolean isCorrect() {
+            return correct;
+        }
+
+        public void setCorrect(boolean correct) {
+            this.correct = correct;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
     }
 }

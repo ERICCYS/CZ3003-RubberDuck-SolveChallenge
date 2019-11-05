@@ -18,22 +18,22 @@ import java.util.Base64;
 @Service
 public class ValidationServiceImpl implements ValidationService {
 
+    private static String key = "Bar12345Bar54321";
+
     @Autowired
     StudentRepo studentRepo;
 
     @Autowired
     TeacherRepo teacherRepo;
 
-    private static String key = "Bar12345Bar54321";
-
     public String userSignIn(User user, String password) throws NoSuchAlgorithmException {
 
         String hashedPassword = user.hashPassword(password);
 
-        if(hashedPassword.equals(user.getPassword())) {
-            if(user instanceof Student)
+        if (hashedPassword.equals(user.getPassword())) {
+            if (user instanceof Student)
                 return getAccessToken(user, "STUDENT");
-            if(user instanceof Teacher)
+            if (user instanceof Teacher)
                 return getAccessToken(user, "TEACHER");
             return "";
         } else {
@@ -46,7 +46,7 @@ public class ValidationServiceImpl implements ValidationService {
         // use userId|userType|userName|password| to generate the access token
         String accessToken = "";
         try {
-            String text = "" + user.getId() + "|" + userType + "|" + user.getUserName() + "|" + user.getPassword() ;
+            String text = "" + user.getId() + "|" + userType + "|" + user.getUserName() + "|" + user.getPassword();
             Key aesKey = new SecretKeySpec(key.getBytes(), "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, aesKey);
@@ -98,7 +98,7 @@ public class ValidationServiceImpl implements ValidationService {
 
     public String getUserId(String accessToken, String desiredUserCategory) throws IllegalArgumentException {
         String[] result = decryptAccessToken(accessToken);
-        if(result == null || result.length != 4) {
+        if (result == null || result.length != 4) {
             throw new IllegalArgumentException();
         }
         String userType = result[1];

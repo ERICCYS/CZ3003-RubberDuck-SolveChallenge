@@ -1,6 +1,5 @@
 package com.rubberduck.RubberDuckWebService.controller;
 
-
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.ChallengeRecord;
 import com.rubberduck.RubberDuckWebService.model.Student;

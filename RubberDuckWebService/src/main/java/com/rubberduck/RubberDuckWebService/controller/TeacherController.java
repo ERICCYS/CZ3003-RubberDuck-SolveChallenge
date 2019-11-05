@@ -2,7 +2,6 @@ package com.rubberduck.RubberDuckWebService.controller;
 
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.ValidationResponse;
-import com.rubberduck.RubberDuckWebService.model.Student;
 import com.rubberduck.RubberDuckWebService.model.Teacher;
 import com.rubberduck.RubberDuckWebService.service.TeacherService;
 import com.rubberduck.RubberDuckWebService.service.ValidationServiceImpl;

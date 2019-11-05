@@ -74,28 +74,28 @@ public class Status {
         return character;
     }
 
-    public String getWorld() {
-        return world;
-    }
-
-    public String getSection() {
-        return section;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
     public void setCharacter(String character) {
         this.character = character;
+    }
+
+    public String getWorld() {
+        return world;
     }
 
     public void setWorld(String world) {
         this.world = world;
     }
 
+    public String getSection() {
+        return section;
+    }
+
     public void setSection(String section) {
         this.section = section;
+    }
+
+    public String getLevel() {
+        return level;
     }
 
     public void setLevel(String level) {

@@ -17,7 +17,6 @@ public class LeaderBoardServiceImpl implements LeaderBoardService {
 
     @Override
     public List<Student> getLeaderBoard() {
-        // get all the students and sort by the mark
         List<Student> students = studentRepo.findAll();
         students.sort(Comparator.comparing(Student::getMark));
         Collections.reverse(students);

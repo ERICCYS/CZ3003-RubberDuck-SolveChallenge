@@ -13,7 +13,7 @@ public interface ChallengeRepo extends JpaRepository<Challenge, Integer> {
 
     List<Challenge> findByCreatorId(Long creatorId);
 
-    @Query(value="SELECT * FROM Challenge WHERE CREATOR_ID = :creator_id ORDER BY ID DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM Challenge WHERE CREATOR_ID = :creator_id ORDER BY ID DESC LIMIT 1", nativeQuery = true)
     Challenge getByCreatorId(
             @Param("creator_id") Long creator_id
     );

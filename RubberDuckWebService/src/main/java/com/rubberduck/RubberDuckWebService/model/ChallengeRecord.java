@@ -61,12 +61,12 @@ public class ChallengeRecord {
         return correctAnswerCount;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
     public void setCorrectAnswerCount(int correctAnswerCount) {
         this.correctAnswerCount = correctAnswerCount;
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 
     public void setSuccess(boolean success) {
