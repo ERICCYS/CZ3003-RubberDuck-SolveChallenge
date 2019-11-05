@@ -52,7 +52,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Total Attampts: "
+                    android:text="Total Attempts: "
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="#fff">
@@ -90,7 +90,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Average Score/Full Score:"
+                    android:text="Average Score:"
                     android:textAlignment="gravity"
                     android:textSize="20dp"
                     android:textStyle="bold"
