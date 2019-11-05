@@ -58,16 +58,6 @@ public class Activity_Leaderboard extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     try {
                         JSONArray r = new JSONArray(response.body().string());
-                        System.out.println("################ response body");
-                        System.out.println(r);
-                        System.out.println(r.get(0));
-                        System.out.println(r.get(1));
-                        System.out.println(r.get(2));
-                        System.out.println(r.get(3));
-//                        JSONObject question_1 = (JSONObject) r.get(0);
-//                        System.out.println(question_1);
-//                        System.out.println(question_1.get("description"));
-                        System.out.print(r);
                         setStudents(r);
 
                         Activity_Leaderboard.this.runOnUiThread(new Runnable() {
@@ -80,7 +70,7 @@ public class Activity_Leaderboard extends AppCompatActivity {
                                 recyclerView.setLayoutManager(layoutManager);
 
                                 // Instantiate adapter and bind it with recylerview
-                                leaderboardAdapter = new LeaderboardAdapter(students);
+                                leaderboardAdapter = new LeaderboardAdapter(students, Activity_Leaderboard.this,Activity_Leaderboard.this);
                                 recyclerView.setAdapter(leaderboardAdapter);
                             }
                         });
