@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 @RestController
 public class StudentController {
@@ -26,18 +25,18 @@ public class StudentController {
     @Autowired
     StatusService statusService;
 
-    @GetMapping("/students")
-    public String getAllStudents() {
-        List<Student> students = studentService.findAll();
-        return JSONConvert.JSONConverter(students);
-    }
-
     @GetMapping("/student")
     public String getStudentById(
-            @RequestParam Long id
+            @RequestParam Long id,
+            @RequestHeader(value = "Authorization") String accessToken
     ) {
-        Student student = studentService.findById(id);
-        return JSONConvert.JSONConverter(student);
+        if (Long.parseLong(validationService.getUserId(accessToken, "STUDENT")) == id) {
+            Student student = studentService.findById(id);
+            return JSONConvert.JSONConverter(student);
+        } else {
+            throw new IllegalArgumentException();
+        }
+
     }
 
     @PostMapping("/student")
