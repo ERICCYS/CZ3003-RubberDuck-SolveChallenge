@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_Level"
+    android:background="@drawable/background_signin_1"
+    android:orientation="vertical">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_back_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:tint="@android:color/white">
+    </android.support.design.widget.FloatingActionButton>
+
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:orientation="vertical">-->
+
+
+    <Button
+        android:id="@+id/imgbtn_easylevel_Level"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_weight="1"
+        android:text="Easy"
+        android:background="@drawable/btn_easy_level"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/imgbtn_midlevel_Level"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_weight="1"
+        android:text="Medium"
+        android:background="@drawable/btn_medium_level"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/imgbtn_hardlevel_Level"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="200dp"
+        android:layout_weight="1"
+        android:text="Hard"
+        android:background="@drawable/btn_hard_level"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/imgbtn_easylevel_Level"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            app:srcCompat="@drawable/img_easy_level"-->
+
+<!--            />-->
+
+<!--        <ImageButton-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:id="@+id/imgbtn_midlevel_Level"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            app:srcCompat="@drawable/img_medium_level"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            />-->
+
+<!--        <ImageButton-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:id="@+id/imgbtn_hardlevel_Level"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            app:srcCompat="@drawable/img_hard_level"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            />-->
+
+
+<!--    </LinearLayout>-->
+
+
+
+
+
+</LinearLayout>

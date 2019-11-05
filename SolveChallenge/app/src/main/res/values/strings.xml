@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SolveChallenge</string>
+    <string-array name="user_roles">
+        <item>Student</item>
+        <item>Teacher</item>
+    </string-array>
+    <string-array name="characters">
+        <item>Lead Developer</item>
+        <item>Product Manager</item>
+        <item>Quality Manager</item>
+    </string-array>
+    >
+    <string name="title_activity__select_character">Activity_SelectCharacter</string>
+    <string name="lead_developer">Lead Developer</string>
+    <string name="product_manager">Product Manager</string>
+    <string name="quality_manager">Quality Manager</string>
+    <string name="title_activity__challenge">Activity_Challenge</string>
+
+</resources>

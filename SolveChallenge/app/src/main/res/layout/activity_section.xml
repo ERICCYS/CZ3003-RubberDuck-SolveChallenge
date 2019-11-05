@@ -1,0 +1,216 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SelectCharacter.Activity_Section"
+    android:orientation="vertical"
+    android:background="@drawable/background_signin_6">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_back_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:srcCompat="@android:drawable/ic_menu_revert"
+            android:tint="@android:color/white">
+        </android.support.design.widget.FloatingActionButton>
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtView_sectionTitle_section"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="100dp"-->
+<!--            android:background="@color/colorAccent"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="PlaceHolder"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="#FFF"-->
+<!--            android:textSize="30sp"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:layout_editor_absoluteX="0dp" />-->
+
+        <Button
+            android:id="@+id/btn_sec1_section"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/img_one_section"
+            android:paddingTop="25dp"
+            android:text="Section one"
+            android:background="@drawable/btn_easy_level"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/btn_sec2_section"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/img_two_section"
+            android:paddingTop="25dp"
+            android:text="Section 2"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_medium_level"
+            android:textColor="#000"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/btn_sec3_section"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_hard_level"
+            android:drawableTop="@drawable/img_three_section"
+            android:paddingTop="25dp"
+            android:text="Section 3"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="25sp" />
+
+
+        <!--        <Button-->
+<!--            android:id="@+id/btn_section1_section"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/txtView_sectionTitle_section"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="35sp"-->
+<!--            android:textColor="#FFF"-->
+<!--            android:text="1.Section 1"-->
+<!--            android:background="@color/colorPrimary"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_section2_section"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/btn_section1_section"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="35sp"-->
+<!--            android:textColor="#FFF"-->
+<!--            android:text="2.Section 2"-->
+<!--            android:background="@color/colorPrimary"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_section3_section"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/btn_section2_section"-->
+<!--            app:layout_constraintBottom_toBottomOfOf="parent"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="35sp"-->
+<!--            android:textColor="#FFF"-->
+<!--            android:text="3.Section 3"-->
+<!--            android:background="@color/colorPrimary"/>-->
+
+
+
+
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_intro_World"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_margin="2dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="#40bfc1"-->
+<!--                android:drawableTop="@drawable/img_design_world"-->
+<!--                android:paddingTop="25dp"-->
+<!--                android:text="Introduction"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="#2f2e2e"-->
+<!--                android:textSize="18sp" />-->
+
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_analysis_World"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_margin="2dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="#f5f0e3"-->
+<!--                android:drawableTop="@drawable/img_requirements_world"-->
+<!--                android:paddingTop="25dp"-->
+<!--                android:text="Requiurements Analysis"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="#000"-->
+<!--                android:textSize="18sp" />-->
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_design_World"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_margin="2dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="#f04f5b"-->
+<!--                android:drawableLeft="@drawable/img_design_world"-->
+<!--                android:paddingLeft="45dp"-->
+<!--                android:text="Design"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="#fff"-->
+<!--                android:textSize="18sp" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_testing_World"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="180dp"-->
+<!--                android:layout_margin="2dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="#f6ad7b"-->
+<!--                android:drawableTop="@drawable/img_design_world"-->
+<!--                android:paddingTop="25dp"-->
+<!--                android:text="Testing N Deployment"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="#fff"-->
+<!--                android:textSize="18sp" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_maintainance_World"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="180dp"-->
+<!--                android:layout_margin="2dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="#b9d870"-->
+<!--                android:drawableTop="@drawable/img_maintainance_world"-->
+<!--                android:paddingTop="25dp"-->
+<!--                android:text="Maintainance"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="#fff"-->
+<!--                android:textSize="18sp" />-->
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.solvechallenge">
+    <!-- <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="28" /> -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Activity_Challenge"
+            android:label="@string/title_activity__challenge"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".Activity_CreateChallenge" />
+        <activity android:name=".StatsWorld.Activity_Stats_World" />
+        <activity android:name=".StatsSection.Activity_Stats_Section" />
+        <activity android:name=".StatsQuestion.Activity_Stats_Question" />
+        <activity android:name=".Activity_Stats_Second" />
+        <activity android:name=".Activity_Stats_Main" />
+        <activity android:name=".Leaderboard.Activity_Leaderboard" />
+        <activity
+            android:name=".Activity_SelectCharacter"
+            android:label="@string/title_activity__select_character"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity_Questions" />
+        <activity android:name=".Activity_GetTweets" />
+        <activity android:name=".Activity_Level" />
+        <activity android:name=".ui.SelectCharacter.Activity_Section" />
+        <activity android:name=".Activity_World" />
+        <activity android:name=".Activity_SignIn">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
