@@ -23,6 +23,7 @@
             android:id="@+id/tv_score_Questions"
             android:layout_alignParentRight="true"
             android:text="0"
+            android:textStyle="bold"
             android:textSize="20sp"/>
 
     </RelativeLayout>
@@ -41,9 +42,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="A"
-        android:background="#0091EA"
+        android:background="@drawable/btn_design_world"
         android:textColor="#fff"
         android:padding="8dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:layout_marginBottom="24dp"
         android:id="@+id/btn_choice1_Questions"/>
 
@@ -51,9 +54,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="B"
-        android:background="#0091EA"
+        android:background="@drawable/btn_intro_world"
         android:textColor="#fff"
         android:padding="8dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:layout_marginBottom="24dp"
         android:id="@+id/btn_choice2_Questions"/>
 
@@ -61,9 +66,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="C"
-        android:background="#0091EA"
+        android:background="@drawable/btn_testing_world"
         android:textColor="#fff"
         android:padding="8dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:layout_marginBottom="24dp"
         android:id="@+id/btn_choice3_Questions"/>
 
@@ -71,9 +78,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="D"
-        android:background="#0091EA"
+        android:background="@drawable/btn_maintain_world"
         android:textColor="#fff"
         android:padding="8dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:layout_marginBottom="24dp"
         android:id="@+id/btn_choice4_Questions"/>
 

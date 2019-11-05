@@ -44,6 +44,7 @@ class StatsQuestionAdapter extends RecyclerView.Adapter<StatsQuestionAdapter.Sta
 
             holder.attempts.setText(attempts);
             holder.scoreName.setText("Average Score/Full Score");
+            averageScore = String.format("%.2f", Double.parseDouble(averageScore));
             holder.score.setText(averageScore + "/" + fullScore);
             holder.title.setText("Question ID: " + title);
 

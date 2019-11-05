@@ -1,17 +1,13 @@
 package com.example.solvechallenge;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -19,8 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -69,7 +63,7 @@ public class Activity_CreateChallenge extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__create_challenge);
+        setContentView(R.layout.activity_create_challenge);
 
         questionsOfWorld0 = (EditText) findViewById(R.id.create_chall_world0_editText);
         questionsOfWorld1 = (EditText) findViewById(R.id.create_chall_world1_editText);
