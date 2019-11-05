@@ -202,7 +202,7 @@ Request Header:
 {
   "Authorization" : "<teacher access token>"
 }
-
+```
 Request Param: None
 
 Path Variable: None
@@ -345,7 +345,12 @@ Method: GET
 
 URL: "http://206.189.151.97:8082/api/statistic/section"
 
-Request Header: None
+Request Header: 
+```json
+{
+  "Authorization" : "<teacher access token>"
+}
+```
 
 Request Param: 
 ```json
@@ -366,7 +371,12 @@ Method: GET
 
 URL: "http://206.189.151.97:8082/api/statistic/section"
 
-Request Header: None
+Request Header: 
+```json
+{
+  "Authorization" : "<teacher access token>"
+}
+```
 
 Request Param: 
 ```json
@@ -387,7 +397,12 @@ Method: GET
 
 URL: "http://206.189.151.97:8082/api/statistic/world"
 
-Request Header: None
+Request Header: 
+```json
+{
+  "Authorization" : "<teacher access token>"
+}
+```
 
 Request Param: 
 ```json
