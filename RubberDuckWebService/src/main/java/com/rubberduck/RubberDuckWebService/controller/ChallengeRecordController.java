@@ -3,8 +3,10 @@ package com.rubberduck.RubberDuckWebService.controller;
 
 import com.rubberduck.RubberDuckWebService.JSONConvert;
 import com.rubberduck.RubberDuckWebService.model.ChallengeRecord;
+import com.rubberduck.RubberDuckWebService.model.Student;
 import com.rubberduck.RubberDuckWebService.service.ChallengeRecordService;
 import com.rubberduck.RubberDuckWebService.service.ChallengeService;
+import com.rubberduck.RubberDuckWebService.service.StudentService;
 import com.rubberduck.RubberDuckWebService.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,9 @@ public class ChallengeRecordController {
 
     @Autowired
     ChallengeService challengeService;
+
+    @Autowired
+    StudentService studentService;
 
     @Autowired
     ValidationService validationService;
@@ -40,6 +45,9 @@ public class ChallengeRecordController {
             Long challengeId = challengeRecord.getChallengeId();
             if (isSuccess) {
                 challengeService.increaseSuccess(challengeId);
+                Student student = studentService.findById(challengeRecord.getChallengerId());
+                student.addMark(50);
+                studentService.save(student);
             } else {
                 challengeService.increaseFail(challengeId);
             }
