@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,9 +21,14 @@ public class QuestionController {
     @Autowired
     ValidationService validationService;
 
-    @GetMapping("/questions")
-    public String getAllQuestion() {
-        List<Question> questions = questionService.findAll();
+    @PostMapping("/questions")
+    public String getQuestionsById(
+            @RequestBody List<Long> questionIds
+    ) {
+        List<Question> questions = new ArrayList<Question>();
+        for (Long questionId : questionIds) {
+            questions.add(questionService.findById(questionId));
+        }
         return JSONConvert.JSONConverter(questions);
     }
 
