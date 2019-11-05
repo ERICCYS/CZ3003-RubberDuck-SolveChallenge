@@ -9,6 +9,16 @@
     android:orientation="vertical"
     android:background="@drawable/background_signin_3">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_back_leaderboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:tint="@android:color/white">
+    </android.support.design.widget.FloatingActionButton>
+
+
     <TextView
         android:layout_width="100dp"
         android:layout_height="100dp"

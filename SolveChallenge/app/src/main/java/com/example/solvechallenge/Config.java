@@ -7,8 +7,8 @@ import okhttp3.MediaType;
 public class Config {
 
 
-//    public static final String baseUrl = "http://10.27.185.112:8082/api/";
-    public static final String baseUrl = "http://206.189.151.97:8082/api/";
+    public static final String baseUrl = "http://10.27.58.229:8082/api/";
+//    public static final String baseUrl = "http://206.189.151.97:8082/api/";
 
     public static final String[] characters = {"Lead Developer", "Product Manager", "Quality Manager",};
 

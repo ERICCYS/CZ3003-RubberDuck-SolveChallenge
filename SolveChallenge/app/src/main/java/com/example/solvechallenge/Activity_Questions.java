@@ -163,6 +163,7 @@ public class Activity_Questions extends AppCompatActivity {
 
         Request request = new Request.Builder()
                 .url(url)
+                .addHeader("Authorization", App_Data.getAccessToken())
                 .post(requestBody)
                 .build();
 
@@ -258,6 +259,7 @@ public class Activity_Questions extends AppCompatActivity {
 
                 Request request = new Request.Builder()
                         .url(httpBuilder.build())
+                        .addHeader("Authorization", App_Data.getAccessToken())
                         .build();
 
                 System.out.println(request.toString());

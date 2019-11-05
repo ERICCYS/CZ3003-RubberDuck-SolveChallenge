@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.example.solvechallenge.App_Data;
 import com.example.solvechallenge.Config;
 import com.example.solvechallenge.R;
 
@@ -42,6 +43,7 @@ public class Activity_Stats_Question extends AppCompatActivity {
 
         Request request = new Request.Builder()
                 .url(httpBuilder.build())
+                .addHeader("Authorization", App_Data.getAccessToken())
                 .build();
 
         client.newCall(request).enqueue(new Callback() {

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.solvechallenge.Activity_Challenge;
+import com.example.solvechallenge.App_Data;
 import com.example.solvechallenge.Config;
 import com.example.solvechallenge.R;
 import com.example.solvechallenge.ui.SelectCharacter.Activity_Section;
@@ -85,114 +86,120 @@ class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.Leaderb
             holder.name.setText(name);
             holder.score.setText(score);
 
-            holder.challenge.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
+            if (name.equals(App_Data.getUserName())){
+//                Toast.makeText(context, "Not yourself ... ", Toast.LENGTH_SHORT).show();
+                System.out.println("cant challenge yourself");
+            }
+            else {
+                holder.challenge.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                    // Get challenge data
-                    OkHttpClient client = new OkHttpClient();
-                    String url = Config.baseUrl + "challenge/username";
-                    HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
-                    httpBuilder.addQueryParameter("userName", name);
-                    Request request = new Request.Builder().url(httpBuilder.build()).build();
+                        // Get challenge data
+                        OkHttpClient client = new OkHttpClient();
+                        String url = Config.baseUrl + "challenge/username";
+                        HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
+                        httpBuilder.addQueryParameter("userName", name);
+                        Request request = new Request.Builder().url(httpBuilder.build()).build();
 
-                    client.newCall(request).enqueue(new Callback() {
-                        @Override
-                        public void onFailure(Call call, IOException e) {
-                            activity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    System.out.println("#####################");
-                                    System.out.println("Failed");
-                                    System.out.println("#####################");
-                                    Toast.makeText(context, "Request failed", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            e.printStackTrace();
-                        }
-
-                        @RequiresApi(api = Build.VERSION_CODES.O)
-                        @Override
-                        public void onResponse(Call call, Response response) throws IOException {
-                            System.out.println(response);
-                            if (response.isSuccessful()) {
-                                try {
-                                    JSONObject this_challenge = new JSONObject(response.body().string());
-                                    setChallenge(this_challenge);
-
-                                    activity.runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            TextView txtclose;
-                                            TextView txtUsername;
-                                            TextView txtPass;
-                                            TextView txtFail;
-                                            Button btnTakeChallenge;
-
-                                            myDialog.setContentView(R.layout.challenge_info_popup);
-                                            txtclose =(TextView) myDialog.findViewById(R.id.txtclose_challenge_info_popup);
-                                            txtUsername = (TextView) myDialog.findViewById(R.id.userid_challenge_info_popup);
-                                            txtPass = (TextView) myDialog.findViewById(R.id.noOfPass_challenge_info_popup);
-                                            txtFail = (TextView) myDialog.findViewById(R.id.noOfFail_challenge_info_popup);
-                                            btnTakeChallenge = (Button) myDialog.findViewById(R.id.takeChallenge_challenge_info_popup);
-
-                                            txtUsername.setText(name + "'s Challenge");
-                                            try{
-                                                txtFail.setText(getChallenge().get("failureCount").toString());
-                                                txtPass.setText(getChallenge().get("successCount").toString());
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-
-                                            txtclose.setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-                                                    myDialog.dismiss();
-                                                }
-                                            });
-                                            btnTakeChallenge.setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-                                                    try{
-                                                        JSONArray questionIdObjects = (JSONArray) challenge.get("questionIds");
-                                                        ArrayList<Integer> questionIds = new ArrayList<>();
-                                                        for(int i = 0; i < questionIdObjects.length(); i++) {
-                                                            Integer questionId = (Integer) questionIdObjects.get(i);
-                                                            questionIds.add(questionId);
-                                                        }
-
-                                                        Intent intent = new Intent(activity, Activity_Challenge.class);
-                                                        intent.putIntegerArrayListExtra("question_ids", questionIds);
-                                                        context.startActivity(intent);
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-                                            });
-                                            myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                                            myDialog.show();
-                                        }
-                                    });
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                            } else {
+                        client.newCall(request).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
                                 activity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         System.out.println("#####################");
-                                        System.out.println("not successful");
+                                        System.out.println("Failed");
                                         System.out.println("#####################");
-                                        Toast.makeText(context, "Fail ...... ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, "Request failed", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+                                e.printStackTrace();
                             }
-                        }
-                    });
-                }
-            });
 
+                            @RequiresApi(api = Build.VERSION_CODES.O)
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                System.out.println(response);
+                                if (response.isSuccessful()) {
+                                    try {
+                                        final JSONObject this_challenge = new JSONObject(response.body().string());
+                                        setChallenge(this_challenge);
+
+                                        activity.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                TextView txtclose;
+                                                TextView txtUsername;
+                                                TextView txtPass;
+                                                TextView txtFail;
+                                                Button btnTakeChallenge;
+
+                                                myDialog.setContentView(R.layout.challenge_info_popup);
+                                                txtclose = (TextView) myDialog.findViewById(R.id.txtclose_challenge_info_popup);
+                                                txtUsername = (TextView) myDialog.findViewById(R.id.userid_challenge_info_popup);
+                                                txtPass = (TextView) myDialog.findViewById(R.id.noOfPass_challenge_info_popup);
+                                                txtFail = (TextView) myDialog.findViewById(R.id.noOfFail_challenge_info_popup);
+                                                btnTakeChallenge = (Button) myDialog.findViewById(R.id.takeChallenge_challenge_info_popup);
+
+                                                txtUsername.setText(name + "'s Challenge");
+                                                try {
+                                                    txtFail.setText(getChallenge().get("failureCount").toString());
+                                                    txtPass.setText(getChallenge().get("successCount").toString());
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                                txtclose.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        myDialog.dismiss();
+                                                    }
+                                                });
+                                                btnTakeChallenge.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        try {
+                                                            JSONArray questionIdObjects = (JSONArray) challenge.get("questionIds");
+                                                            ArrayList<Integer> questionIds = new ArrayList<>();
+                                                            for (int i = 0; i < questionIdObjects.length(); i++) {
+                                                                Integer questionId = (Integer) questionIdObjects.get(i);
+                                                                questionIds.add(questionId);
+                                                            }
+
+                                                            Intent intent = new Intent(activity, Activity_Challenge.class);
+                                                            intent.putIntegerArrayListExtra("question_ids", questionIds);
+                                                            intent.putExtra("challenge_id", getChallenge().get("id").toString());
+                                                            context.startActivity(intent);
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+                                                });
+                                                myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                                myDialog.show();
+                                            }
+                                        });
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                } else {
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            System.out.println("#####################");
+                                            System.out.println("not successful");
+                                            System.out.println("#####################");
+                                            Toast.makeText(context, "Fail ...... ", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            }
 
 
         }catch (JSONException e){

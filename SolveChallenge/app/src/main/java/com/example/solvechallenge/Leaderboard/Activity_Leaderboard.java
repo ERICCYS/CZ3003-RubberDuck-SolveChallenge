@@ -1,15 +1,22 @@
 package com.example.solvechallenge.Leaderboard;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
+import com.example.solvechallenge.Activity_Level;
+import com.example.solvechallenge.Activity_World;
+import com.example.solvechallenge.App_Data;
 import com.example.solvechallenge.R;
 import com.example.solvechallenge.Config;
+import com.example.solvechallenge.ui.SelectCharacter.Activity_Section;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +37,7 @@ public class Activity_Leaderboard extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter leaderboardAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private FloatingActionButton btn_go_back;
 
     private void getRankingJson() {
 
@@ -39,6 +47,7 @@ public class Activity_Leaderboard extends AppCompatActivity {
 
         Request request = new Request.Builder()
                 .url(httpBuilder.build())
+                .addHeader("Authorization", App_Data.getAccessToken())
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -101,6 +110,16 @@ public class Activity_Leaderboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
         this.getSupportActionBar().hide();
+
+        btn_go_back = findViewById(R.id.btn_back_leaderboard);
+        btn_go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity_Leaderboard.this, Activity_World.class);
+                startActivity(intent);
+            }
+        });
+
         //get student ranking
         getRankingJson();
     }
