@@ -6,12 +6,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-<<<<<<< HEAD
-=======
 
 import com.example.solvechallenge.Leaderboard.Activity_Leaderboard;
 import com.example.solvechallenge.ui.SelectCharacter.Activity_Section;
->>>>>>> feature/teacher
 
 import java.util.ArrayList;
 
