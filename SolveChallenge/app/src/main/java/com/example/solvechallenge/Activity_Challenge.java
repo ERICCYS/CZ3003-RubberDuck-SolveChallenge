@@ -179,7 +179,7 @@ public class Activity_Challenge extends AppCompatActivity {
     }
 
     public void showNextQuestion() {
-        if ((index_of_question != no_questions - 1)) {
+        if ((index_of_question != no_questions)) {
             try {
                 JSONObject question = (JSONObject) questionsInJson.get(index_of_question);
                 String description = question.get("description").toString();
@@ -286,14 +286,13 @@ public class Activity_Challenge extends AppCompatActivity {
         ArrayList<Long> questionId = new ArrayList<>();
 
         for (int i=0; i<no_questions; i++){
-            questionIdObject.put(Long.parseLong(Integer.toString(questionIds.get(i))));
+            questionIdObject.put(Long.parseLong(questionIds.get(i).toString()));
         }
-
+        System.out.println(questionIdObject.toString());
         RequestBody requestBody = RequestBody.create(Config.JSON, questionIdObject.toString());
 
         Request request = new Request.Builder()
                 .url(httpBuilder.build())
-                .addHeader("Authorization", App_Data.getAccessToken())
                 .post(requestBody)
                 .build();
 
@@ -318,7 +317,10 @@ public class Activity_Challenge extends AppCompatActivity {
                 if (response.isSuccessful()) {
 
                     try {
-                        setQuestionsInJson(new JSONArray(response.body().string()));
+
+                        JSONArray r = new JSONArray(response.body().string());
+
+                        setQuestionsInJson(r);
 
                         Activity_Challenge.this.runOnUiThread(new Runnable() {
                             @Override
@@ -355,9 +357,8 @@ public class Activity_Challenge extends AppCompatActivity {
         setQuestionIds(extras.getIntegerArrayList("question_ids"));
         System.out.println("@@@@@@@@@@@@");
         System.out.println(getQuestionIds());
-        setNo_questions(getQuestionIds().size()-12);
+        setNo_questions(getQuestionIds().size());
         setChallenge_id(extras.getString("challenge_id"));
-
 
         tv_question = (TextView) findViewById(R.id.tv_question_Challenge);
         btn_choice1 = (Button) findViewById(R.id.btn_choice1_Challenge);
@@ -376,9 +377,6 @@ public class Activity_Challenge extends AppCompatActivity {
         }
 
         getQuestions(questionIds);
-//
-//        System.out.println("question in json outside");
-//        System.out.println(questionsInJson);
 
     }
 

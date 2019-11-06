@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,17 +134,23 @@ class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.Leaderb
                                                 TextView txtUsername;
                                                 TextView txtPass;
                                                 TextView txtFail;
+                                                TextView txtQuestion;
                                                 Button btnTakeChallenge;
 
                                                 myDialog.setContentView(R.layout.challenge_info_popup);
                                                 txtclose = (TextView) myDialog.findViewById(R.id.txtclose_challenge_info_popup);
                                                 txtUsername = (TextView) myDialog.findViewById(R.id.userid_challenge_info_popup);
+                                                txtQuestion = (TextView) myDialog.findViewById(R.id.noOfQuestions_challenge_info_popup);
                                                 txtPass = (TextView) myDialog.findViewById(R.id.noOfPass_challenge_info_popup);
                                                 txtFail = (TextView) myDialog.findViewById(R.id.noOfFail_challenge_info_popup);
                                                 btnTakeChallenge = (Button) myDialog.findViewById(R.id.takeChallenge_challenge_info_popup);
 
                                                 txtUsername.setText(name + "'s Challenge");
                                                 try {
+                                                    Integer questionCount = ((JSONArray)getChallenge().get("questionIds")).length();
+
+//                                                    ArrayList<Integer> questionNumbers = (ArrayList<Integer>) ;
+                                                    txtQuestion.setText(questionCount.toString());
                                                     txtFail.setText(getChallenge().get("failureCount").toString());
                                                     txtPass.setText(getChallenge().get("successCount").toString());
                                                 } catch (JSONException e) {
@@ -191,7 +198,7 @@ class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.Leaderb
                                             System.out.println("#####################");
                                             System.out.println("not successful");
                                             System.out.println("#####################");
-                                            Toast.makeText(context, "Fail ...... ", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "No challenge created by this user ", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }
